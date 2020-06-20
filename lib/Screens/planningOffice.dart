@@ -123,11 +123,8 @@ class _planning_OfficeState extends State<planning_Office> {
   }
 
   sendDataToServer() async {
-    print('333333333');
     var response = await get_Edu_Plan.get_edu_plan();
-    print('444444444444');
     setState(() {
-      print('555555555555');
       getep.addAll(response['getLesson']);
       date = response['date'];
       day = response['day'];
@@ -221,13 +218,13 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
             ),
             body: TabBarView(
               children: <Widget>[
-                khodnevisiDisable(),
                 khodnevisi(),
                 khodnevisi(),
-                zoodeh(),
-                zoodeh(),
-                zoodeh(),
-                zoodeh(),
+                khodnevisi(),
+                khodnevisi(),
+                khodnevisi(),
+                khodnevisi(),
+                khodnevisi(),
               ],
             )),
       ),

@@ -19,14 +19,13 @@ class get_Edu_Plan {
       print(responseBody);
 
       List<Lesson_Model> getLesson = [];
-      responseBody.forEach((item) {
+      responseBody['lesson'].forEach((item) {
         getLesson.add(Lesson_Model.fromJson(item));
       });
       return {
         "getLesson": getLesson,
         "day": responseBody['day'],
         "date": responseBody['date']
-
       };
     }
   }
