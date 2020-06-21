@@ -2,59 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mmtaz/models/khodnevisiModel.dart';
+import 'package:mmtaz/models/lessonModel.dart';
 
 List<testModel> lesson = [];
+String date;
+String day;
 
 int row = lesson.length;
 int col = 4;
 var twoDList = List.generate(row, (i) => List(col), growable: false);
 
-String date;
-String day;
-
-
-class khodnevisi extends StatefulWidget {
-
-
-  @override
-  _khodnevisiState createState() => _khodnevisiState();
-}
-
-final myList = [
-  "ریاضی",
-  "فیزیک",
-  "شیمی",
-  "ادبیات",
-  "عربی",
-  "زبان انگلیسی",
-  "تعلیمات دینی",
-];
-
-class _khodnevisiState extends State<khodnevisi> {
-  @override
-  Widget build(BuildContext context) {
-    var pageHeight = MediaQuery.of(context).size.height;
-    var pageWidth = MediaQuery.of(context).size.width;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Khodnevisi()),
-    );
-  }
-}
-
-class lesson_values{
-  int stu_hour_read;
-  int stu_hour_test;
-  int stu_num_test;
-}
-
 class Khodnevisi extends StatefulWidget {
+  List<Lesson_Model> lessonList = [];
+
+  Khodnevisi(this.lessonList);
+
   @override
-  _KhodnevisiState createState() => _KhodnevisiState();
+  _KhodnevisiState createState() => _KhodnevisiState(lessonList);
 }
 
 class _KhodnevisiState extends State<Khodnevisi> {
-  lesson_values a1, a2, a3, a4, a5, a6, a7;
+  List<Lesson_Model> lessonList = [];
+
+  _KhodnevisiState(this.lessonList);
+
   @override
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
@@ -67,7 +38,7 @@ class _KhodnevisiState extends State<Khodnevisi> {
           Expanded(
               flex: 9,
               child: ListView.builder(
-                itemCount: myList.length,
+                itemCount: lessonList.length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: Container(
@@ -81,7 +52,7 @@ class _KhodnevisiState extends State<Khodnevisi> {
                             Expanded(
                               flex: 2,
                               child: Center(
-                                child: Text('${myList[index]}'),
+                                child: Text('${lessonList[index].title}'),
                               ),
                             ),
                             SizedBox(
@@ -96,7 +67,10 @@ class _KhodnevisiState extends State<Khodnevisi> {
                                   Container(
                                     width: 120.0,
                                     child: Center(
-                                      child: hours(),
+                                      child: hours(
+                                        id: index,
+                                        n_Dd: 1,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -105,7 +79,10 @@ class _KhodnevisiState extends State<Khodnevisi> {
                                   Container(
                                     width: 120.0,
                                     child: Center(
-                                      child: hours(),
+                                      child: hours(
+                                        id: index,
+                                        n_Dd: 2,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
@@ -114,7 +91,10 @@ class _KhodnevisiState extends State<Khodnevisi> {
                                   Container(
                                     width: 120.0,
                                     child: Center(
-                                      child: hours(),
+                                      child: hours(
+                                        id: index,
+                                        n_Dd: 3,
+                                      ),
                                     ),
                                   )
                                 ],
@@ -143,9 +123,9 @@ class _KhodnevisiState extends State<Khodnevisi> {
     );
   }
 
-  sendDataToServer() async{
+  sendDataToServer() async {
     var response =
-    await http.post('http://192.168.1.103:8080/api/send_edu', body: {
+        await http.post('http://192.168.1.103:8080/api/send_edu', body: {
       "data": twoDList.toString(),
       "token": '888;27',
       "time": (new DateTime.now().millisecondsSinceEpoch / 1000).toString()
@@ -153,15 +133,12 @@ class _KhodnevisiState extends State<Khodnevisi> {
     print(response.statusCode);
     print(response.body);
 
-    for(int i=0;i<lesson.length;i++){
+    for (int i = 0; i < lesson.length; i++) {
       twoDList[i][0] = lesson[i].id;
     }
     print(twoDList);
   }
 }
-
-
-
 
 class hours extends StatefulWidget {
 //  hours({Key key}) : super(key: key);
@@ -231,141 +208,135 @@ class _hoursState extends State<hours> {
     print(nDd);
     twoDList[tit][nDd] = dropdownValue1;
     twoDList[tit][0] = lesson[tit].id;
-//    lll[tit].Sets_h_r(dropdownValue1);
-//    lll[tit].SetlessonId(lesson[tit].id);
   }
 }
 
-
-
-
-
-
-class khodnevisiDisable extends StatefulWidget {
-  @override
-  _khodnevisiDisableState createState() => _khodnevisiDisableState();
-}
-
-class _khodnevisiDisableState extends State<khodnevisiDisable> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowMaterialGrid: false,
-      home: Scaffold(
-          body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: Row(
-                textDirection: TextDirection.rtl,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text('نام درس'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت مطالعاتی'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('تعداد تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 9,
-            child: ListView.builder(
-              itemCount: myList.length,
-              itemBuilder: (context, index){
-                return Card(
-                  child: Container(
-                    height: 70.0,
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Expanded(
-                          child: Center(
-                            child: Text('${myList[index]}'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('75'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('60'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('40'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          )
-        ],
-      )),
-    );
-  }
-}
-
-class zoodeh extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Center(
-          child: Text(
-            'امروز هنوز نیومده!!!',
-            textDirection: TextDirection.rtl,
-          ),
-        )
-      ],
-    );
-  }
-}
+//
+//class khodnevisiDisable extends StatefulWidget {
+//  @override
+//  _khodnevisiDisableState createState() => _khodnevisiDisableState();
+//}
+//
+//class _khodnevisiDisableState extends State<khodnevisiDisable> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//      debugShowMaterialGrid: false,
+//      home: Scaffold(
+//          body: Column(
+//        children: <Widget>[
+//          Expanded(
+//            flex: 1,
+//            child: Container(
+//              child: Row(
+//                textDirection: TextDirection.rtl,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Center(
+//                      child: Text('نام درس'),
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    width: 3.0,
+//                  ),
+//                  Expanded(
+//                    child: Center(
+//                      child: Text('ساعت مطالعاتی'),
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    width: 3.0,
+//                  ),
+//                  Expanded(
+//                    child: Center(
+//                      child: Text('ساعت تست'),
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    width: 3.0,
+//                  ),
+//                  Expanded(
+//                    child: Center(
+//                      child: Text('تعداد تست'),
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    width: 3.0,
+//                  ),
+//                ],
+//              ),
+//            ),
+//          ),
+//          Expanded(
+//            flex: 9,
+//            child: ListView.builder(
+//              itemCount: myList.length,
+//              itemBuilder: (context, index){
+//                return Card(
+//                  child: Container(
+//                    height: 70.0,
+//                    child: Row(
+//                      textDirection: TextDirection.rtl,
+//                      children: <Widget>[
+//                        Expanded(
+//                          child: Center(
+//                            child: Text('${myList[index]}'),
+//                          ),
+//                        ),
+//                        SizedBox(
+//                          width: 3.0,
+//                        ),
+//                        Expanded(
+//                          child: Center(
+//                            child: Text('75'),
+//                          ),
+//                        ),
+//                        SizedBox(
+//                          width: 3.0,
+//                        ),
+//                        Expanded(
+//                          child: Center(
+//                            child: Text('60'),
+//                          ),
+//                        ),
+//                        SizedBox(
+//                          width: 3.0,
+//                        ),
+//                        Expanded(
+//                          child: Center(
+//                            child: Text('40'),
+//                          ),
+//                        ),
+//                        SizedBox(
+//                          width: 3.0,
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                );
+//              },
+//            ),
+//          )
+//        ],
+//      )),
+//    );
+//  }
+//}
+//
+//class zoodeh extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return Column(
+//      mainAxisAlignment: MainAxisAlignment.center,
+//      crossAxisAlignment: CrossAxisAlignment.center,
+//      children: <Widget>[
+//        Center(
+//          child: Text(
+//            'امروز هنوز نیومده!!!',
+//            textDirection: TextDirection.rtl,
+//          ),
+//        )
+//      ],
+//    );
+//  }
+//}
