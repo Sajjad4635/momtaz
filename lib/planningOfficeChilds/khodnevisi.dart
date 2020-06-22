@@ -13,21 +13,26 @@ int col = 4;
 var twoDList = List.generate(row, (i) => List(col), growable: false);
 
 class Khodnevisi extends StatefulWidget {
-  List<Lesson_Model> lessonList = [];
+  List<Lesson_Model> lessonList = new List();
+  int len;
 
-  Khodnevisi(this.lessonList);
+
+  Khodnevisi(this.lessonList, this.len);
 
   @override
-  _KhodnevisiState createState() => _KhodnevisiState(lessonList);
+  _KhodnevisiState createState() => _KhodnevisiState(lessonList, len);
 }
 
 class _KhodnevisiState extends State<Khodnevisi> {
-  List<Lesson_Model> lessonList = [];
+  int len;
+  List<Lesson_Model> lessonList = new List();
 
-  _KhodnevisiState(this.lessonList);
+  _KhodnevisiState(this.lessonList, this.len);
 
   @override
   Widget build(BuildContext context) {
+    List <Lesson_Model> temp = new List(len);
+    temp.addAll(lessonList);
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -52,7 +57,7 @@ class _KhodnevisiState extends State<Khodnevisi> {
                             Expanded(
                               flex: 2,
                               child: Center(
-                                child: Text('${lessonList[index].title}'),
+                                child: Text('${temp[index].title}'),
                               ),
                             ),
                             SizedBox(
@@ -323,20 +328,15 @@ class _hoursState extends State<hours> {
 //  }
 //}
 //
-//class zoodeh extends StatelessWidget {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Column(
-//      mainAxisAlignment: MainAxisAlignment.center,
-//      crossAxisAlignment: CrossAxisAlignment.center,
-//      children: <Widget>[
-//        Center(
-//          child: Text(
-//            'امروز هنوز نیومده!!!',
-//            textDirection: TextDirection.rtl,
-//          ),
-//        )
-//      ],
-//    );
-//  }
-//}
+class zoodeh extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text('امروز هنوز نیومده!!!', textDirection: TextDirection.rtl,),
+        ),
+      ),
+    );
+  }
+}
