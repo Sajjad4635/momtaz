@@ -1,38 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mmtaz/models/khodnevisiModel.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 
-List<testModel> lesson = [];
+List<Lesson_Model> lesson = [];
 String date;
 String day;
-
 int row = lesson.length;
 int col = 4;
 var twoDList = List.generate(row, (i) => List(col), growable: false);
 
 class Khodnevisi extends StatefulWidget {
   List<Lesson_Model> lessonList = new List();
-  int len;
 
 
-  Khodnevisi(this.lessonList, this.len);
+  Khodnevisi(this.lessonList);
 
   @override
-  _KhodnevisiState createState() => _KhodnevisiState(lessonList, len);
+  _KhodnevisiState createState() => _KhodnevisiState(lessonList);
 }
 
 class _KhodnevisiState extends State<Khodnevisi> {
-  int len;
   List<Lesson_Model> lessonList = new List();
 
-  _KhodnevisiState(this.lessonList, this.len);
+  _KhodnevisiState(this.lessonList);
 
   @override
   Widget build(BuildContext context) {
-    List <Lesson_Model> temp = new List(len);
-    temp.addAll(lessonList);
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
@@ -43,7 +37,7 @@ class _KhodnevisiState extends State<Khodnevisi> {
           Expanded(
               flex: 9,
               child: ListView.builder(
-                itemCount: lessonList.length,
+                itemCount: 6,
                 itemBuilder: (context, index) {
                   return Card(
                     child: Container(
@@ -57,7 +51,7 @@ class _KhodnevisiState extends State<Khodnevisi> {
                             Expanded(
                               flex: 2,
                               child: Center(
-                                child: Text('${temp[index].title}'),
+                                child: Text('${widget.lessonList[index].title}'),
                               ),
                             ),
                             SizedBox(

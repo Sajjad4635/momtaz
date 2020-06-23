@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +38,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var pagewidth = MediaQuery.of(context).size.width;
-    var pageheight = MediaQuery.of(context).size.height;
     return Container(
       child: ImageSlider.isEmpty?
           CircularProgressIndicator():
@@ -116,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                       child: CachedNetworkImage(
-                        imageUrl: 'http://192.168.1.101:8080/images/' +
+                        imageUrl: 'http://192.168.1.103:8080/images/' +
                                     '${i.ImageVlaue}'.toString(),
                         placeholder: (context, url) => CircularProgressIndicator(),
                         fit: BoxFit.cover,
@@ -142,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                     child: ClipRRect(
                       //clipBehavior: Clip.antiAlias,
                         borderRadius: new BorderRadius.circular(100.0),
-                        child: Image.network(api.siteName + "/as/images/404.png", fit: BoxFit.cover,)),
+                        child: Image.network(api.siteName + "/as" + logo, fit: BoxFit.cover,)),
                   )),
             )
           ],

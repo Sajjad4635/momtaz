@@ -75,10 +75,6 @@ class Consts {
 class _phoneNumberState extends State<phoneNumber> {
   @override
   Widget build(BuildContext context) {
-    Color hexToColor(String code) {
-      return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
-    }
-
     sendDataToServer() async {
       final response = await http
           .post(api.siteName + '/api/mobile', body: {"mobile": '${aa.text}'});
@@ -402,18 +398,13 @@ class _verificationCodeState extends State<verificationCode> {
 
   @override
   Widget build(BuildContext context) {
-    var pageWidth = MediaQuery.of(context).size.width;
-    Color hexToColor(String code) {
-      return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
-    }
-
     sendDataToServer() async {
       final response = await http.post(api.siteName + '/api/ok_code',
           body: {"random": '${myController.text}', 'stu_id': '${stu_id}'});
       print(response.statusCode);
       var type = json.decode(response.body)['type'];
       if (type == 0) {
-        print('error');
+        print('err');
       } else if (type == 1) {
         Navigator.pushReplacementNamed(context, '/register');
       } else if (type == -2) {
@@ -430,7 +421,8 @@ class _verificationCodeState extends State<verificationCode> {
                     colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                  )),
+                  )
+              ),
               padding: const EdgeInsets.only(
                   top: 150.0, left: 45.0, right: 45.0, bottom: 20.0),
               child: Column(
@@ -651,11 +643,12 @@ class _registerState extends State<register> {
             child: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            )),
+//                gradient: LinearGradient(
+//              colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
+//              begin: Alignment.topLeft,
+//              end: Alignment.bottomRight,
+//            )
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

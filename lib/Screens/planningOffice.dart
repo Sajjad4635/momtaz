@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 import 'package:mmtaz/planningOfficeChilds/Weekly_Schedule.dart';
 import 'package:mmtaz/planningOfficeChilds/fech_edu_Plan.dart';
 import 'package:mmtaz/planningOfficeChilds/khodnevisi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
-List<Lesson_Model> getep = [];
+List<Lesson_Model> getep = new List();
 String date;
 String day;
 
@@ -28,6 +31,7 @@ class _planning_OfficeState extends State<planning_Office> {
           children: <Widget>[
             InkWell(
               onTap: () {
+//                gggg();
                 sendDataToServer();
               },
               child: Container(
@@ -125,6 +129,13 @@ class _planning_OfficeState extends State<planning_Office> {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => DaysOfWeek()));
   }
+
+  gggg() async{
+    SharedPreferences shared = await SharedPreferences.getInstance();
+
+    await shared.remove('myIp_token');
+    print('remm');
+  }
 }
 
 class DaysOfWeek extends StatefulWidget {
@@ -198,16 +209,18 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                     child: InkWell(
                       onTap: () {
                         if (hafteNum[index] == numOfDay) {
-
+                          sendToken(numOfDay, hafteNum[index]);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Khodnevisi(getep, getep.length)));
-                        }else if(hafteNum[index] < numOfDay){
+                                  builder: (context) => new Khodnevisi1(getep.length)));
+                        }else if(hafteNum[index] > numOfDay){
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => zoodeh()));
+                        }else if(hafteNum[index] < numOfDay){
+                          sendToken(numOfDay, hafteNum[index]);
                         }
                       },
                       child: Container(
@@ -310,5 +323,228 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 //            )),
 //      ),
     );
+  }
+
+  sendToken(int numOfDay1, int clickedDay) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    var token = prefs.getString('myIp_token');
+
+//    print('${numOfDay1}');
+//    print('${clickedDay}');
+//    print(token);
+    var res = await http.post(api.siteName + '/api/get_edu', body: {
+      "toDay": '${numOfDay1}',
+      "clickDay": '${clickedDay}',
+      "token": '${token}'
+    });
+//    print(res.statusCode);
+//    print(res.body);
+  }
+}
+
+int row = getep.length;
+int col = 4;
+var twoDList = List.generate(row, (i) => List(col), growable: false);
+class Khodnevisi1 extends StatefulWidget {
+  int len;
+
+  Khodnevisi1(this.len);
+
+  @override
+  _Khodnevisi1State createState() => _Khodnevisi1State(len);
+}
+
+class _Khodnevisi1State extends State<Khodnevisi1> {
+  int len;
+
+  _Khodnevisi1State(this.len);
+
+  @override
+  Widget build(BuildContext context) {
+    var pageHeight = MediaQuery.of(context).size.height;
+    var pageWidth = MediaQuery.of(context).size.width;
+    return MaterialApp(
+      debugShowMaterialGrid: false,
+      home: Scaffold(
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                  flex: 9,
+                  child: ListView.builder(
+                    itemCount: getep.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: Container(
+                            width: pageWidth - 5.0,
+                            height: pageHeight / 9,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              textDirection: TextDirection.rtl,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Center(
+                                    child: Text('${getep[index].title}'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3.0,
+                                ),
+                                Expanded(
+                                  flex: 8,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    reverse: true,
+                                    children: <Widget>[
+                                      Container(
+                                        width: 120.0,
+                                        child: Center(
+                                          child: hours(
+                                            id: index,
+                                            n_Dd: 1,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3.0,
+                                      ),
+                                      Container(
+                                        width: 120.0,
+                                        child: Center(
+                                          child: hours(
+                                            id: index,
+                                            n_Dd: 2,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3.0,
+                                      ),
+                                      Container(
+                                        width: 120.0,
+                                        child: Center(
+                                          child: hours(
+                                            id: index,
+                                            n_Dd: 3,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )),
+                      );
+                    },
+                  )),
+              Expanded(
+                flex: 1,
+                child: InkWell(
+                  onTap: () {
+                    sendDataToServer();
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Text('تایید'),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
+  }
+
+  sendDataToServer() async {
+    for (int i = 0; i < getep.length; i++) {
+      twoDList[i][0] = getep[i].id;
+    }
+    print(twoDList);
+    var response =
+    await http.post('http://192.168.1.103:8080/api/send_edu', body: {
+      "data": twoDList.toString(),
+      "token": '888;27',
+      "time": (new DateTime.now().millisecondsSinceEpoch / 1000).toString()
+    });
+    print(response.statusCode);
+    print(response.body);
+
+
+
+  }
+}
+
+class hours extends StatefulWidget {
+//  hours({Key key}) : super(key: key);
+  int id;
+  int n_Dd;
+
+  hours({Key key, this.id, this.n_Dd}) : super(key: key);
+
+  @override
+  _hoursState createState() => _hoursState(id, n_Dd);
+}
+
+class _hoursState extends State<hours> {
+  int id;
+  int n_Dd;
+
+  _hoursState(this.id, this.n_Dd);
+
+  int dropdownValue1 = null;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+        textDirection: TextDirection.rtl,
+        child: Container(
+            decoration: BoxDecoration(
+                border: Border.all(width: 0.5, color: Colors.deepPurple),
+                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+            child: Center(
+              child: DropdownButton<int>(
+                hint: Text('ساعت مطالعه'),
+                value: dropdownValue1,
+//        icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: Colors.deepPurple),
+                underline: SizedBox(),
+                onChanged: (int newValue) {
+                  setState(() {
+                    dropdownValue1 = newValue;
+                    sendValue(widget.id, widget.n_Dd);
+                  });
+                },
+                items: <int>[
+                  15,
+                  30,
+                  45,
+                  60,
+                  75,
+                  90,
+                  105,
+                  120,
+                ].map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value.toString()),
+                  );
+                }).toList(),
+              ),
+            )));
+  }
+
+  sendValue(var tit, var nDd) {
+    print(dropdownValue1);
+    print('${getep[tit].id}');
+    print(tit);
+    print(nDd);
+    setState(() {
+      twoDList[tit][nDd] = dropdownValue1;
+      twoDList[tit][0] = getep[tit].id;
+    });
   }
 }

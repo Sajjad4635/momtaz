@@ -23,7 +23,7 @@ class getimageSlider {
       return {
         "slider": getimage,
         "message": responseBody['message']['vlaue'],
-        "loho": responseBody['logo']
+        "logo": responseBody['logo']
       };
     }
   }
