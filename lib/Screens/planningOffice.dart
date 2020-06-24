@@ -24,10 +24,10 @@ class planning_Office extends StatefulWidget {
   saveData() async{
     var response = await get_Edu_Plan.get_edu_plan();
     getep.clear();
-      getep.addAll(response['getLesson']);
-      date = response['date'];
-      day = response['day'];
-      print(getep);
+    getep.addAll(response['getLesson']);
+    date = response['date'];
+    day = response['day'];
+    print(getep);
   }
 }
 
@@ -349,24 +349,30 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     var token = prefs.getString('myIp_token');
-
-    print('${numOfDay1}');
-    print('${clickedDay}');
-    print(token);
     var res = await http.post(api.siteName + '/api/get_edu', body: {
       "toDay": '${numOfDay1}',
       "clickDay": '${clickedDay}',
       "token": '${token}'
     });
     print(res.statusCode);
-    var rr = json.decode(res.body);
-    print(rr);
+    var response = json.decode(res.body);
+    List<getLessonModle> getdata = [];
+    response['edu'].forEach((item) {
+      getdata.add(getLessonModle.fromJson(item));
+    });
+    return {
+      "getLesson": getdata,
+    };
   }
 }
 
 int row = getep.length;
 int col = 4;
 var twoDList = List.generate(row, (i) => List(col), growable: false);
+
+int row2 = getep.length;
+int col2 = 4;
+var twoDList2 = List.generate(row2, (i) => List(col2), growable: false);
 
 class Khodnevisi1 extends StatefulWidget {
   int toDay, clickDay;
@@ -526,7 +532,6 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
       "clickDay": '${widget.clickDay}'
     });
     print(response.statusCode);
-    print(json.decode(response.body));
   }
 }
 
