@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mmtaz/Screens/planningOffice.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 
 List<Lesson_Model> lesson = [];
@@ -211,117 +212,117 @@ class _hoursState extends State<hours> {
 }
 
 //
-//class khodnevisiDisable extends StatefulWidget {
-//  @override
-//  _khodnevisiDisableState createState() => _khodnevisiDisableState();
-//}
-//
-//class _khodnevisiDisableState extends State<khodnevisiDisable> {
-//  @override
-//  Widget build(BuildContext context) {
-//    return MaterialApp(
-//      debugShowMaterialGrid: false,
-//      home: Scaffold(
-//          body: Column(
-//        children: <Widget>[
-//          Expanded(
-//            flex: 1,
-//            child: Container(
-//              child: Row(
-//                textDirection: TextDirection.rtl,
-//                children: <Widget>[
-//                  Expanded(
-//                    child: Center(
-//                      child: Text('نام درس'),
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    width: 3.0,
-//                  ),
-//                  Expanded(
-//                    child: Center(
-//                      child: Text('ساعت مطالعاتی'),
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    width: 3.0,
-//                  ),
-//                  Expanded(
-//                    child: Center(
-//                      child: Text('ساعت تست'),
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    width: 3.0,
-//                  ),
-//                  Expanded(
-//                    child: Center(
-//                      child: Text('تعداد تست'),
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    width: 3.0,
-//                  ),
-//                ],
-//              ),
-//            ),
-//          ),
-//          Expanded(
-//            flex: 9,
-//            child: ListView.builder(
-//              itemCount: myList.length,
-//              itemBuilder: (context, index){
-//                return Card(
-//                  child: Container(
-//                    height: 70.0,
-//                    child: Row(
-//                      textDirection: TextDirection.rtl,
-//                      children: <Widget>[
-//                        Expanded(
-//                          child: Center(
-//                            child: Text('${myList[index]}'),
-//                          ),
-//                        ),
-//                        SizedBox(
-//                          width: 3.0,
-//                        ),
-//                        Expanded(
-//                          child: Center(
-//                            child: Text('75'),
-//                          ),
-//                        ),
-//                        SizedBox(
-//                          width: 3.0,
-//                        ),
-//                        Expanded(
-//                          child: Center(
-//                            child: Text('60'),
-//                          ),
-//                        ),
-//                        SizedBox(
-//                          width: 3.0,
-//                        ),
-//                        Expanded(
-//                          child: Center(
-//                            child: Text('40'),
-//                          ),
-//                        ),
-//                        SizedBox(
-//                          width: 3.0,
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                );
-//              },
-//            ),
-//          )
-//        ],
-//      )),
-//    );
-//  }
-//}
-//
+class khodnevisiDisable extends StatefulWidget {
+  @override
+  _khodnevisiDisableState createState() => _khodnevisiDisableState();
+}
+
+class _khodnevisiDisableState extends State<khodnevisiDisable> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowMaterialGrid: false,
+      home: Scaffold(
+          body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 1,
+            child: Container(
+              child: Row(
+                textDirection: TextDirection.rtl,
+                children: <Widget>[
+                  Expanded(
+                    child: Center(
+                      child: Text('نام درس'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 3.0,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('ساعت مطالعاتی'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 3.0,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('ساعت تست'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 3.0,
+                  ),
+                  Expanded(
+                    child: Center(
+                      child: Text('تعداد تست'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 3.0,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 9,
+            child: ListView.builder(
+              itemCount: getep.length,
+              itemBuilder: (context, index){
+                return Card(
+                  child: Container(
+                    height: 70.0,
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      children: <Widget>[
+                        Expanded(
+                          child: Center(
+                            child: Text('${getep[index].title}'),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.0,
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text('75'),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.0,
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text('60'),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.0,
+                        ),
+                        Expanded(
+                          child: Center(
+                            child: Text('40'),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.0,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      )),
+    );
+  }
+}
+
 class zoodeh extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
