@@ -8,7 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class getimageSlider {
   static Future<Map> getimages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     final response = await http.post(api.siteName + '/api/get_home',
         body: {"token": prefs.getString('myIp_token')});
     print(response.statusCode);

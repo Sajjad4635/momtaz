@@ -1,27 +1,33 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 import 'package:mmtaz/planningOfficeChilds/Weekly_Schedule.dart';
+import 'package:mmtaz/planningOfficeChilds/fechSavadData.dart';
 import 'package:mmtaz/planningOfficeChilds/fech_edu_Plan.dart';
-import 'package:mmtaz/planningOfficeChilds/khodnevisi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 List<Lesson_Model> getep = new List();
 String date;
 String day;
+List<getLessonModle> getSData = [];
+
 
 class planning_Office extends StatefulWidget {
   @override
   _planning_OfficeState createState() => _planning_OfficeState();
+}
 
-  planning_Office(){
+class _planning_OfficeState extends State<planning_Office> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
     saveData();
   }
 
-  saveData() async{
+  saveData() async {
     var response = await get_Edu_Plan.get_edu_plan();
     getep.clear();
     getep.addAll(response['getLesson']);
@@ -29,11 +35,10 @@ class planning_Office extends StatefulWidget {
     day = response['day'];
     print(getep);
   }
-}
 
-class _planning_OfficeState extends State<planning_Office> {
   @override
   Widget build(BuildContext context) {
+
     var aa = 2;
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
@@ -47,7 +52,8 @@ class _planning_OfficeState extends State<planning_Office> {
             InkWell(
               onTap: () {
 //                gggg();
-                sendDataToServer();
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => DaysOfWeek()));
               },
               child: Container(
                   decoration: BoxDecoration(
@@ -133,12 +139,6 @@ class _planning_OfficeState extends State<planning_Office> {
     ));
   }
 
-  sendDataToServer() async {
-
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => DaysOfWeek()));
-  }
-
   gggg() async {
     SharedPreferences shared = await SharedPreferences.getInstance();
 
@@ -151,8 +151,8 @@ class DaysOfWeek extends StatefulWidget {
   @override
   _DaysOfWeekState createState() => _DaysOfWeekState();
 }
-
 class _DaysOfWeekState extends State<DaysOfWeek> {
+
   @override
   Widget build(BuildContext context) {
     var numOfDay;
@@ -180,11 +180,18 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
       'پنج شنبه',
       'جمعه',
     ];
+
     var hafteNum = [0, 1, 2, 3, 4, 5, 6];
 
     return
-      getep.isEmpty?
-        new CircularProgressIndicator():
+//      getSData.isEmpty?
+//        Material(
+//          child: Container(
+//            child: Center(
+//              child: CircularProgressIndicator(),
+//            ),
+//          ),
+//        ):
         new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -222,7 +229,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                       onTap: () {
                         if ((numOfDay - hafteNum[index] == 0) ||
                             (numOfDay - hafteNum[index] == 1)) {
-                          sendToken(numOfDay, hafteNum[index]);
+                          getSavedData(numOfDay, hafteNum[index]);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -234,7 +241,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                               MaterialPageRoute(
                                   builder: (context) => zoodeh()));
                         } else if (numOfDay - hafteNum[index] >= 2) {
-                          sendToken(numOfDay, hafteNum[index]);
+                          get_Saved_Data.get_saved_data(numOfDay, hafteNum[index]);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -345,25 +352,15 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
     );
   }
 
-  sendToken(int numOfDay1, int clickedDay) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    var token = prefs.getString('myIp_token');
-    var res = await http.post(api.siteName + '/api/get_edu', body: {
-      "toDay": '${numOfDay1}',
-      "clickDay": '${clickedDay}',
-      "token": '${token}'
+  getSavedData(int numOfDay1, int clickedDay) async{
+    var response = await get_Saved_Data.get_saved_data(numOfDay1, clickedDay);
+    setState(() {
+      getSData.addAll(response['getLesson']);
+      print(getSData);
     });
-    print(res.statusCode);
-    var response = json.decode(res.body);
-    List<getLessonModle> getdata = [];
-    response['edu'].forEach((item) {
-      getdata.add(getLessonModle.fromJson(item));
-    });
-    return {
-      "getLesson": getdata,
-    };
   }
+
+
 }
 
 int row = getep.length;
@@ -377,7 +374,7 @@ var twoDList2 = List.generate(row2, (i) => List(col2), growable: false);
 class Khodnevisi1 extends StatefulWidget {
   int toDay, clickDay;
 
-  Khodnevisi1(this.toDay, this.clickDay);
+  Khodnevisi1(this.toDay, this.clickDay,);
 
   @override
   _Khodnevisi1State createState() => _Khodnevisi1State(toDay, clickDay);
@@ -386,131 +383,127 @@ class Khodnevisi1 extends StatefulWidget {
 class _Khodnevisi1State extends State<Khodnevisi1> {
   int toDay, clickDay;
 
-  _Khodnevisi1State(this.toDay, this.clickDay);
+  _Khodnevisi1State(this.toDay, this.clickDay,);
+
+  List<getLessonModle> testGd = [];
 
   @override
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
-    return getep.isEmpty
-        ? CircularProgressIndicator()
-        : MaterialApp(
-            debugShowMaterialGrid: false,
-            home: Scaffold(
-                appBar: AppBar(
-                  title: Text('وارد کردن ساعات مطالعاتی'),
-                  centerTitle: true,
-                ),
-                body: Column(
+    return
+//      getSData.isEmpty
+//        ? CircularProgressIndicator() :
+      MaterialApp(
+      debugShowMaterialGrid: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('وارد کردن ساعات مطالعاتی'),
+            centerTitle: true,
+          ),
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Row(
+                  textDirection: TextDirection.rtl,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Row(
-                        textDirection: TextDirection.rtl,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text('نام درس'),
-                          Text('ساعت مطالعه'),
-                          Text('ساعت تست'),
-                          Text('تعداد تست'),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                        flex: 8,
-                        child: ListView.builder(
-                          itemCount: getep.length,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              child: Container(
-                                  width: pageWidth - 5.0,
-                                  height: pageHeight / 9,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    textDirection: TextDirection.rtl,
+                    Text('نام درس'),
+                    Text('ساعت مطالعه'),
+                    Text('ساعت تست'),
+                    Text('تعداد تست'),
+                  ],
+                ),
+              ),
+              Expanded(
+                  flex: 8,
+                  child: ListView.builder(
+                    itemCount: getep.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: Container(
+                            width: pageWidth - 5.0,
+                            height: pageHeight / 9,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.center,
+                              textDirection: TextDirection.rtl,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Center(
+                                    child: Text('${getep[index].title}'),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 3.0,
+                                ),
+                                Expanded(
+                                  flex: 8,
+                                  child: ListView(
+                                    scrollDirection: Axis.horizontal,
+                                    reverse: true,
                                     children: <Widget>[
-                                      Expanded(
-                                        flex: 2,
+                                      Container(
+                                        width: 120.0,
                                         child: Center(
-                                          child: Text('${getep[index].title}'),
+                                          child: hours(
+                                            id: index,
+                                            n_Dd: 1,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(
                                         width: 3.0,
                                       ),
-                                      Expanded(
-                                        flex: 8,
-                                        child: ListView(
-                                          scrollDirection: Axis.horizontal,
-                                          reverse: true,
-                                          children: <Widget>[
-                                            Container(
-                                              width: 120.0,
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Center(
-                                                    child: Text('15'),
-                                                  ),
-                                                  Center(
-                                                    child: hours(
-                                                      id: index,
-                                                      n_Dd: 1,
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.0,
-                                            ),
-                                            Container(
-                                              width: 120.0,
-                                              child: Center(
-                                                child: hours(
-                                                  id: index,
-                                                  n_Dd: 2,
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.0,
-                                            ),
-                                            Container(
-                                              width: 120.0,
-                                              child: Center(
-                                                child: numTest(
-                                                  id: index,
-                                                  n_Dd: 3,
-                                                ),
-                                              ),
-                                            )
-                                          ],
+                                      Container(
+                                        width: 120.0,
+                                        child: Center(
+                                          child: hours(
+                                            id: index,
+                                            n_Dd: 2,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3.0,
+                                      ),
+                                      Container(
+                                        width: 120.0,
+                                        child: Center(
+                                          child: numTest(
+                                            id: index,
+                                            n_Dd: 3,
+                                          ),
                                         ),
                                       )
                                     ],
-                                  )),
-                            );
-                          },
-                        )),
-                    Expanded(
-                      flex: 1,
-                      child: InkWell(
-                        onTap: () {
-                          sendDataToServer();
-                        },
-                        child: Container(
-                          child: Center(
-                            child: Text('تایید'),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                )),
-          );
+                                  ),
+                                )
+                              ],
+                            )),
+                      );
+                    },
+                  )),
+              Expanded(
+                flex: 1,
+                child: InkWell(
+                  onTap: () {
+                    sendDataToServer();
+                  },
+                  child: Container(
+                    child: Center(
+                      child: Text('تایید'),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 
   sendDataToServer() async {
@@ -524,7 +517,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
 
     var token = prefs.getString('myIp_token');
     var response =
-        await http.post('http://192.168.1.103:8080/api/send_edu', body: {
+    await http.post(api.siteName + '/api/send_edu', body: {
       "data": twoDList.toString(),
       "token": '${token}',
       "time": (new DateTime.now().millisecondsSinceEpoch / 1000).toString(),
@@ -805,101 +798,114 @@ class _khodnevisiDisableState extends State<khodnevisiDisable> {
       debugShowMaterialGrid: false,
       home: Scaffold(
           body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: Row(
-                textDirection: TextDirection.rtl,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text('نام درس'),
-                    ),
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    children: <Widget>[
+                      Expanded(
+                        child: Center(
+                          child: Text('نام درس'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.0,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text('ساعت مطالعاتی'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.0,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text('ساعت تست'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.0,
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text('تعداد تست'),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.0,
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت مطالعاتی'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('تعداد تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-          Expanded(
-            flex: 9,
-            child: ListView.builder(
-              itemCount: getep.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Container(
-                    height: 70.0,
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Expanded(
-                          child: Center(
-                            child: Text('${getep[index].title}'),
-                          ),
+              Expanded(
+                flex: 9,
+                child: ListView.builder(
+                  itemCount: getep.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: Container(
+                        height: 70.0,
+                        child: Row(
+                          textDirection: TextDirection.rtl,
+                          children: <Widget>[
+                            Expanded(
+                              child: Center(
+                                child: Text('${getep[index].title}'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.0,
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text('75'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.0,
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text('60'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.0,
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Text('40'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.0,
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('75'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('60'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('40'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          )
-        ],
-      )),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          )),
+    );
+  }
+}
+
+class zoodeh extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text('امروز هنوز نیومده!!!', textDirection: TextDirection.rtl,),
+        ),
+      ),
     );
   }
 }
