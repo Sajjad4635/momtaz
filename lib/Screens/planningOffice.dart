@@ -38,105 +38,117 @@ class _planning_OfficeState extends State<planning_Office> {
 
   @override
   Widget build(BuildContext context) {
-
     var aa = 2;
-    var pageHeight = MediaQuery.of(context).size.height;
-    var pageWidth = MediaQuery.of(context).size.width;
+    var pageHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var pageWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     return MaterialApp(
         home: Scaffold(
-      body: Container(
-        height: pageHeight,
-        width: pageWidth,
-        child: ListView(
-          children: <Widget>[
-            InkWell(
-              onTap: () {
+          body: Container(
+            height: pageHeight,
+            width: pageWidth,
+            child: ListView(
+              children: <Widget>[
+                InkWell(
+                  onTap: () {
 //                gggg();
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => DaysOfWeek()));
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("images/3333.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      border: Border.all(width: 0.5, color: Colors.black)),
-                  width: pageWidth,
-                  height: pageHeight / 2,
-                  child: Stack(
-                    children: <Widget>[
-//                      Image.asset('images/6.jpg', fit: BoxFit.cover,),
-                      Container(
-                        margin: const EdgeInsets.only(
-                            top: 100.0, right: 80.0, left: 80.0, bottom: 100.0),
-                        color: Colors.black.withOpacity(0.3),
-                        child: Center(
-                          child: Text(
-                            'دفتر برنامه ریزی',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 22.0,
-                                color: Colors.white),
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => DaysOfWeek()));
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/3333.jpg"),
+                            fit: BoxFit.cover,
                           ),
-                        ),
-                      )
-                    ],
-                  )),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            InkWell(
-              onTap: () {
-                if (aa == 1) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Weekly_Schedule()));
-                }
-                if (aa == 2) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Weekly_Schedule()));
-                }
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("images/55555.webp"),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      border: Border.all(width: 0.5, color: Colors.black)),
-                  width: pageWidth,
-                  height: pageHeight / 2,
-                  child: Stack(
-                    children: <Widget>[
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          border: Border.all(width: 0.5, color: Colors.black)),
+                      width: pageWidth,
+                      height: pageHeight / 2,
+                      child: Stack(
+                        children: <Widget>[
 //                      Image.asset('images/6.jpg', fit: BoxFit.cover,),
-                      Container(
-                        margin: const EdgeInsets.only(
-                            top: 100.0, right: 80.0, left: 80.0, bottom: 100.0),
-                        color: Colors.black.withOpacity(0.3),
-                        child: Center(
-                          child: Text(
-                            'برنامه این هفته من',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 22.0,
-                                color: Colors.white),
+                          Container(
+                            margin: const EdgeInsets.only(
+                                top: 100.0,
+                                right: 80.0,
+                                left: 80.0,
+                                bottom: 100.0),
+                            color: Colors.black.withOpacity(0.3),
+                            child: Center(
+                              child: Text(
+                                'دفتر برنامه ریزی',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22.0,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                InkWell(
+                  onTap: () {
+                    if (aa == 1) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Weekly_Schedule()));
+                    }
+                    if (aa == 2) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Weekly_Schedule()));
+                    }
+                  },
+                  child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("images/55555.webp"),
+                            fit: BoxFit.cover,
                           ),
-                        ),
-                      )
-                    ],
-                  )),
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          border: Border.all(width: 0.5, color: Colors.black)),
+                      width: pageWidth,
+                      height: pageHeight / 2,
+                      child: Stack(
+                        children: <Widget>[
+//                      Image.asset('images/6.jpg', fit: BoxFit.cover,),
+                          Container(
+                            margin: const EdgeInsets.only(
+                                top: 100.0,
+                                right: 80.0,
+                                left: 80.0,
+                                bottom: 100.0),
+                            color: Colors.black.withOpacity(0.3),
+                            child: Center(
+                              child: Text(
+                                'برنامه این هفته من',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 22.0,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 
   gggg() async {
@@ -151,6 +163,7 @@ class DaysOfWeek extends StatefulWidget {
   @override
   _DaysOfWeekState createState() => _DaysOfWeekState();
 }
+
 class _DaysOfWeekState extends State<DaysOfWeek> {
 
   @override
@@ -192,85 +205,97 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 //            ),
 //          ),
 //        ):
-        new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.deepPurple, primarySwatch: Colors.deepPurple),
-      home: Scaffold(
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: Row(
-                textDirection: TextDirection.rtl,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text('${day}'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('${date}'),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 8,
-              child: ListView.builder(
-                itemCount: 7,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, left: 20.0, right: 20.0, bottom: 10.0),
-                    child: InkWell(
-                      onTap: () {
-                        if ((numOfDay - hafteNum[index] == 0) ||
-                            (numOfDay - hafteNum[index] == 1)) {
-                          getSavedData(numOfDay, hafteNum[index]);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => new Khodnevisi1(
-                                      numOfDay, hafteNum[index])));
-                        } else if (hafteNum[index] > numOfDay) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => zoodeh()));
-                        } else if (numOfDay - hafteNum[index] >= 2) {
-                          get_Saved_Data.get_saved_data(numOfDay, hafteNum[index]);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      new khodnevisiDisable()));
-                        }
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: MediaQuery.of(context).size.width / 7,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            gradient: LinearGradient(
-                                colors: [Color(0xff77C9EB), Color(0xff93F8E9)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight)),
-                        child: Center(
-                          child: Text('${hafte[index]}'),
-                        ),
+      new MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: Colors.deepPurple, primarySwatch: Colors.deepPurple),
+        home: Scaffold(
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: Row(
+                  textDirection: TextDirection.rtl,
+                  children: <Widget>[
+                    Expanded(
+                      child: Center(
+                        child: Text('${day}'),
                       ),
                     ),
-                  );
-                },
+                    Expanded(
+                      child: Center(
+                        child: Text('${date}'),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            )
-          ],
+              Expanded(
+                flex: 8,
+                child: ListView.builder(
+                  itemCount: 7,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.only(
+                          top: 0.0, left: 20.0, right: 20.0, bottom: 10.0),
+                      child: InkWell(
+                        onTap: () {
+                          if ((numOfDay - hafteNum[index] == 0) ||
+                              (numOfDay - hafteNum[index] == 1)) {
+                            print(twoDList);
+                            getSavedData(numOfDay, hafteNum[index]);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    new Khodnevisi1(
+                                        numOfDay, hafteNum[index])));
+                          } else if (hafteNum[index] > numOfDay) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => zoodeh()));
+                          } else if (numOfDay - hafteNum[index] >= 2) {
+                            get_Saved_Data.get_saved_data(
+                                numOfDay, hafteNum[index]);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    new khodnevisiDisable()));
+                          }
+                        },
+                        child: Container(
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width / 2,
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .width / 7,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(10.0)),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    Color(0xff77C9EB),
+                                    Color(0xff93F8E9)
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)),
+                          child: Center(
+                            child: Text('${hafte[index]}'),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         ),
-      ),
 //      home: DefaultTabController(
 //        length: 7,
 //        child: Scaffold(
@@ -349,18 +374,33 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 //              ],
 //            )),
 //      ),
-    );
+      );
   }
 
-  getSavedData(int numOfDay1, int clickedDay) async{
+  getSavedData(int numOfDay1, int clickedDay) async {
     var response = await get_Saved_Data.get_saved_data(numOfDay1, clickedDay);
     setState(() {
+      getSData.clear();
       getSData.addAll(response['getLesson']);
-      print(getSData);
     });
+    setintwodlist();
   }
 
-
+  setintwodlist() {
+    print(twoDList);
+    for (int i = 0; i < getep.length; i++) {
+      twoDList[i][0] = getep[i].id;
+    }
+    print(twoDList);
+    for (int i = 0; i < getep.length; i++) {
+        if (twoDList[i][0] == getSData[i].l_id) {
+          twoDList[i][1] = getSData[i].study_time;
+          twoDList[i][2] = getSData[i].test_time;
+          twoDList[i][3] = getSData[i].test_count;
+      }
+    }
+    print(twoDList);
+  }
 }
 
 int row = getep.length;
@@ -385,131 +425,142 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
 
   _Khodnevisi1State(this.toDay, this.clickDay,);
 
-  List<getLessonModle> testGd = [];
-
   @override
   Widget build(BuildContext context) {
-    var pageHeight = MediaQuery.of(context).size.height;
-    var pageWidth = MediaQuery.of(context).size.width;
+    var pageHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var pageWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     return
-//      getSData.isEmpty
-//        ? CircularProgressIndicator() :
-      MaterialApp(
-      debugShowMaterialGrid: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('وارد کردن ساعات مطالعاتی'),
-            centerTitle: true,
+      getSData.isEmpty
+          ? Material(
+        child: Container(
+          child: Center(
+            child: CircularProgressIndicator(),
           ),
-          body: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Row(
-                  textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text('نام درس'),
-                    Text('ساعت مطالعه'),
-                    Text('ساعت تست'),
-                    Text('تعداد تست'),
-                  ],
-                ),
-              ),
-              Expanded(
-                  flex: 8,
-                  child: ListView.builder(
-                    itemCount: getep.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                            width: pageWidth - 5.0,
-                            height: pageHeight / 9,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.center,
-                              textDirection: TextDirection.rtl,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 2,
-                                  child: Center(
-                                    child: Text('${getep[index].title}'),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Expanded(
-                                  flex: 8,
-                                  child: ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    reverse: true,
-                                    children: <Widget>[
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: hours(
-                                            id: index,
-                                            n_Dd: 1,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.0,
-                                      ),
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: hours(
-                                            id: index,
-                                            n_Dd: 2,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.0,
-                                      ),
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: numTest(
-                                            id: index,
-                                            n_Dd: 3,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )),
-                      );
-                    },
-                  )),
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  onTap: () {
-                    sendDataToServer();
-                  },
-                  child: Container(
-                    child: Center(
-                      child: Text('تایید'),
-                    ),
+        ),
+      ) :
+      MaterialApp(
+        debugShowMaterialGrid: false,
+        home: Scaffold(
+            appBar: AppBar(
+              title: Text('وارد کردن ساعات مطالعاتی'),
+              centerTitle: true,
+            ),
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text('نام درس'),
+                      Text('ساعت مطالعه'),
+                      Text('ساعت تست'),
+                      Text('تعداد تست'),
+                    ],
                   ),
                 ),
-              )
-            ],
-          )),
-    );
+                Expanded(
+                    flex: 8,
+                    child: ListView.builder(
+                      itemCount: getep.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Container(
+                              width: pageWidth - 5.0,
+                              height: pageHeight / 9,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.center,
+                                textDirection: TextDirection.rtl,
+                                children: <Widget>[
+                                  Expanded(
+                                    flex: 2,
+                                    child: Center(
+                                      child: Text('${getep[index].title}'),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Expanded(
+                                    flex: 8,
+                                    child: ListView(
+                                      scrollDirection: Axis.horizontal,
+                                      reverse: true,
+                                      children: <Widget>[
+                                        Container(
+                                          width: 120.0,
+                                          child: Center(
+                                            child: hours(
+                                              id: index,
+                                              n_Dd: 1,
+                                              title: '${twoDList[index][1]}',
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.0,
+                                        ),
+                                        Container(
+                                          width: 120.0,
+                                          child: Center(
+                                            child: hoursTest(
+                                              id: index,
+                                              n_Dd: 2,
+                                              title: '${twoDList[index][2]}',
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 3.0,
+                                        ),
+                                        Container(
+                                          width: 120.0,
+                                          child: Center(
+                                            child: numTest(
+                                              id: index,
+                                              n_Dd: 3,
+                                              title: '${twoDList[index][3]}',
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )),
+                        );
+                      },
+                    )),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      print(twoDList);
+                      sendDataToServer();
+                    },
+                    child: Container(
+                      child: Center(
+                        child: Text('تایید'),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )),
+      );
   }
 
   sendDataToServer() async {
-    for (int i = 0; i < getep.length; i++) {
-      twoDList[i][0] = getep[i].id;
-    }
     print(twoDList);
     print('${widget.toDay}');
     print('${widget.clickDay}');
@@ -532,18 +583,20 @@ class hours extends StatefulWidget {
 //  hours({Key key}) : super(key: key);
   int id;
   int n_Dd;
+  String title;
 
-  hours({Key key, this.id, this.n_Dd}) : super(key: key);
+  hours({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
 
   @override
-  _hoursState createState() => _hoursState(id, n_Dd);
+  _hoursState createState() => _hoursState(id, n_Dd, title);
 }
 
 class _hoursState extends State<hours> {
   int id;
   int n_Dd;
+  String title;
 
-  _hoursState(this.id, this.n_Dd);
+  _hoursState(this.id, this.n_Dd, this.title);
 
   int dropdownValue1 = null;
 
@@ -557,7 +610,7 @@ class _hoursState extends State<hours> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text('0'),
+                hint: Text('${widget.title}'),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -604,18 +657,20 @@ class hoursTest extends StatefulWidget {
 //  hours({Key key}) : super(key: key);
   int id;
   int n_Dd;
+  String title;
 
-  hoursTest({Key key, this.id, this.n_Dd}) : super(key: key);
+  hoursTest({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
 
   @override
-  _hoursTestState createState() => _hoursTestState(id, n_Dd);
+  _hoursTestState createState() => _hoursTestState(id, n_Dd, title);
 }
 
 class _hoursTestState extends State<hoursTest> {
   int id;
   int n_Dd;
+  String title;
 
-  _hoursTestState(this.id, this.n_Dd);
+  _hoursTestState(this.id, this.n_Dd, this.title);
 
   int dropdownValue1 = null;
 
@@ -629,7 +684,7 @@ class _hoursTestState extends State<hoursTest> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text('0'),
+                hint: Text('${widget.title}'),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -676,18 +731,20 @@ class numTest extends StatefulWidget {
 //  hours({Key key}) : super(key: key);
   int id;
   int n_Dd;
+  String title;
 
-  numTest({Key key, this.id, this.n_Dd}) : super(key: key);
+  numTest({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
 
   @override
-  _numTestState createState() => _numTestState(id, n_Dd);
+  _numTestState createState() => _numTestState(id, n_Dd, title);
 }
 
 class _numTestState extends State<numTest> {
   int id;
   int n_Dd;
+  String title;
 
-  _numTestState(this.id, this.n_Dd);
+  _numTestState(this.id, this.n_Dd, this.title);
 
   int dropdownValue1 = null;
 
@@ -701,7 +758,7 @@ class _numTestState extends State<numTest> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text('0'),
+                hint: Text('${widget.title}'),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -903,7 +960,8 @@ class zoodeh extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-          child: Text('امروز هنوز نیومده!!!', textDirection: TextDirection.rtl,),
+          child: Text(
+            'امروز هنوز نیومده!!!', textDirection: TextDirection.rtl,),
         ),
       ),
     );
