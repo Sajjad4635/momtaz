@@ -48,6 +48,9 @@ dev_dependencies:
   cached_network_image: ^2.2.0+1
   shared_preferences: ^0.5.7+3
   connectivity: ^0.4.8+6
+  font_awesome_flutter: ^8.8.1
+  line_awesome_flutter: ^1.0.1
+  flutter_svg: ^0.17.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -94,7 +97,30 @@ flutter:
     - images/phone_number.png
     - images/verification_code.png
     - images/register.png
-
+    - images/1.jpg
+    - images/2.jpg
+    - images/list.png
+    - images/bac1.jpg
+    - images/bac2.jpg
+    - images/bac3.jpg
+    - images/bac4.png
+    - images/bac.png
+    - images/back.png
+    - images/Group_Chat.gif
+    - images/Security.gif
+    - images/Schedule.gif
+    - images/Lastplans.gif
+    - images/Market_launch.gif
+    - images/Visual_data.gif
+#----------------svg-----------------
+    - svg/group-chat-animate.svg
+  fonts:
+    - family: Aviny
+      fonts:
+        - asset: fonts/aviny.ttf
+    - family: iran
+      fonts:
+        - asset: fonts/iran.ttf
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:mmtaz/Screens/HomePage.dart';
 import 'package:mmtaz/Screens/MessageBox.dart';
 import 'package:mmtaz/Screens/Planning.dart';
 import 'package:mmtaz/Screens/Reporting.dart';
 import 'package:mmtaz/Screens/planningOffice.dart';
 import 'package:mmtaz/widgets/DrawerMenu.dart';
-import 'package:mmtaz/widgets/Wallet.dart';
-
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FirstScreen extends StatefulWidget {
   @override
@@ -18,8 +17,6 @@ class FirstScreen extends StatefulWidget {
 class _FirstScreenState extends State<FirstScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     MessageBox(),
@@ -36,81 +33,157 @@ class _FirstScreenState extends State<FirstScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      appBar: GradientAppBar(
-        gradient: LinearGradient(
-          colors: [Color(0xFFB06ADA), Color(0xFFD9BCF6)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight
-        ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => wallet()));
-            },
-            icon: Icon(
-              Icons.shopping_basket,
-              color: Colors.deepPurple,
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Color(0xffEAEAEA),
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height/8,),
+            child: AppBar(
+              elevation: 0.0,
+              backgroundColor: Color(0xff00d170),
+              actions: <Widget>[
+                Container(
+                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  margin: const EdgeInsets.only(top: 15.0),
+                  padding:
+                  const EdgeInsets.only(right: 25.0, left: 25.0),
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              'ممتاز',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontFamily: 'Aviny',
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.shopping_basket, color: Colors.white),
+                    ],
+                  ),
+                )
+              ],
             ),
-          )
-        ],
-        centerTitle: true,
-        leading: new IconButton(
-            icon: new Icon(
-              Icons.dehaze,
-              color: Colors.deepPurple,
-            ),
-            onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
-      ),
-      endDrawer: LightDrawerPage(),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color(0xffCFA7F9),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.deepPurple,
-            ),
-            title: Text('صفحه اصلی'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat,
-              color: Colors.deepPurple,
+          key: _scaffoldKey,
+          body: Container(
+            decoration: BoxDecoration(color: Color(0xff00d170)),
+            child: Container(
+//              margin: const EdgeInsets.only(top: 30.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                    topLeft: Radius.circular(25.0)),
+                color: Color(0xffEAEAEA),
+              ),
+              child: _widgetOptions.elementAt(_selectedIndex),
             ),
-            title: Text('صندوق پیام'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.playlist_add_check,
-              color: Colors.deepPurple,
-            ),
-            title: Text('دفتر برنامه ریزی'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.apps,
-              color: Colors.deepPurple,
-            ),
-            title: Text('برنامه'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.report,
-              color: Colors.deepPurple,
-            ),
-            title: Text('گزارش ها'),
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        onTap: _onItemTapped,
-      ),
+          endDrawer: LightDrawerPage(),
+          bottomNavigationBar: Container(
+//        margin: const EdgeInsets.only(top: 10.0),
+              height: MediaQuery.of(context).size.height / 10,
+//        margin: const EdgeInsets.only(right: 3.0, left: 3.0),
+              decoration: BoxDecoration(
+//          color: Color(0xffEAEAEA),
+//          borderRadius: BorderRadius.only(
+//            topLeft: Radius.circular(45.0),
+//            topRight: Radius.circular(45.0)
+//          )
+                  ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(45.0),
+                    topRight: Radius.circular(45.0)),
+                child: BottomNavigationBar(
+                  elevation: 0.0,
+                  items: [
+                    new BottomNavigationBarItem(
+                      backgroundColor: Colors.white,
+                      icon: _selectedIndex == 0
+                          ? Icon(Icons.home)
+                          : Icon(LineAwesomeIcons.home),
+                      title: Text(
+                        'صفحه اصلی',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 12.0,fontFamily: 'Aviny',
+//              color: Colors.black45,
+                            ),
+                      ),
+                    ),
+                    BottomNavigationBarItem(
+                      backgroundColor: Colors.white,
+                      icon: _selectedIndex == 1
+                          ? Icon(Icons.mail)
+                          : Icon(Icons.mail_outline),
+                      title: Text(
+                        'صندوق پیام',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+//              color: Colors.black45,
+                            ),
+                      ),
+                    ),
+                    BottomNavigationBarItem(
+                      backgroundColor: Colors.white,
+                      icon: _selectedIndex == 2
+                          ? FaIcon(FontAwesomeIcons.book)
+                          : Icon(LineAwesomeIcons.book),
+                      title: Text(
+                        'دفتر برنامه ریزی',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+//              color: Colors.black45,
+                            ),
+                      ),
+                    ),
+                    BottomNavigationBarItem(
+                      backgroundColor: Colors.white,
+                      icon: _selectedIndex == 3
+                          ? FaIcon(FontAwesomeIcons.fileContract)
+                          : Icon(LineAwesomeIcons.file_contract),
+                      title: Text(
+                        'برنامه',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+//              color: Colors.black45,
+                            ),
+                      ),
+                    ),
+                    BottomNavigationBarItem(
+                      backgroundColor: Colors.white,
+                      icon: _selectedIndex == 4
+                          ? FaIcon(FontAwesomeIcons.solidChartBar)
+                          : FaIcon(FontAwesomeIcons.chartBar),
+                      title: Text(
+                        'گزارش ها',
+                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+//              color: Colors.black45,
+                            ),
+                      ),
+                    ),
+                  ],
+                  currentIndex: _selectedIndex,
+                  unselectedItemColor: Color(0xffAAAAAA),
+                  selectedItemColor: Color(0xff00d170),
+//        selectedLabelStyle: ,
+                  onTap: _onItemTapped,
+                ),
+              ))),
     );
   }
 }

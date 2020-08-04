@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/assets.dart' as assets;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -34,89 +35,100 @@ class _studentaChatPageState extends State<studentaChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width*0.8;
-    return Scaffold(
-        resizeToAvoidBottomPadding: false,
-      body: Material(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height-80.0,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(height: 10.0);
-                  },
-                  reverse: true,
-                  itemCount: messages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    Message m = messages[index];
-                    if (m.user == 0) return _buildMessageRow(m, current: true);
-                    return _buildMessageRow(m, current: false);
-                  },
-                ),
+    return SafeArea(
+      child: Scaffold(
+          resizeToAvoidBottomPadding: false,
+          body: Material(
+            child: Container(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue
+                      ),
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 8,
+                    child: ListView.separated(
+                      physics: BouncingScrollPhysics(),
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: 10.0);
+                      },
+                      reverse: true,
+                      itemCount: messages.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        Message m = messages[index];
+                        if (m.user == 0) return _buildMessageRow(m, current: true);
+                        return _buildMessageRow(m, current: false);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height/35,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: _buildBottomBar(context),
+                  )
+                ],
               ),
-              _buildBottomBar(context),
-            ],
-          ),
-        ),
-      )
+            ),
+          )
+      ),
     );
   }
 
   Container _buildBottomBar(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 16.0,
-      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(30.0),
-        border: Border.all(
-          width: 1.5,
-          color: Color(0xff4EAFF2)
-        )
       ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 20.0,
-      ),
-      child: Row(
+      child: Column(
         children: <Widget>[
-          Expanded(
-            child: TextField(
-              textInputAction: TextInputAction.send,
-              controller: _controller,
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 20.0,
+          Container(
+            height: 1.0,
+              color: Colors.blue
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  textInputAction: TextInputAction.send,
+                  controller: _controller,
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 20.0,
+                    ),
+//                    border: OutlineInputBorder(
+//                        borderRadius: BorderRadius.circular(20.0)),
+                    fillColor: Colors.blue,
+                    hintText: "متن پیام",
                   ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  fillColor: Color(0xff4EAFF2),
-                  hintText: "متن پیام",
+                  onEditingComplete: _save,
+                ),
               ),
-              onEditingComplete: _save,
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.attach_file),
-            color: Colors.blue,
-            onPressed: (){
+              IconButton(
+                icon: Icon(Icons.attach_file),
+                color: Colors.blue,
+                onPressed: (){
 
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.send),
-            color: Colors.blue,
-            onPressed: _save,
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.send),
+                color: Colors.blue,
+                onPressed: _save,
+              ),
+            ],
           ),
         ],
-      ),
+      )
     );
   }
 
@@ -150,8 +162,13 @@ class _studentaChatPageState extends State<studentaChatPage> {
         Container(
           constraints: BoxConstraints(minWidth: c_width/5, maxWidth: c_width/2),
           decoration: BoxDecoration(
-              color: current ? Theme.of(context).primaryColor : Colors.white,
-              borderRadius: BorderRadius.circular(10.0)),
+              color: current ? Theme.of(context).primaryColor : Color(0xffEEEEEE),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(10.0),
+                topLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0),
+                bottomLeft: Radius.circular(10.0)
+              )),
           child: Container (
             padding: const EdgeInsets.all(9.0),
             child: Text(
@@ -330,7 +347,6 @@ class _parentChatPageState extends State<parentChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width*0.8;
     return Scaffold(
       body: Column(
         children: <Widget>[
