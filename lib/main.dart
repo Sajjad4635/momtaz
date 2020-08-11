@@ -1,48 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/Reporting/charts.dart';
 import 'package:mmtaz/Screens/FirstScreen.dart';
 import 'package:mmtaz/widgets/login.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 void main() async{
   runApp(new MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: new FirstScreen(),
     routes: <String, WidgetBuilder>{
       '/phoneNumber': (BuildContext context) => new phoneNumber(),
       '/verificationCode': (BuildContext context) => new verificationCode(),
       '/register': (BuildContext context) => new register(),
       '/FirstScreen': (BuildContext context) => new FirstScreen(),
-
     },
   ));
 }
-//import 'dart:async';
-//import 'dart:convert';
-//
-//import 'package:flutter/material.dart';
-//import 'package:http/http.dart' as http;
-//
-//void main() async {
-//  List aaa = await sendDataToServer();
-//  runApp(MaterialApp(
-//    home: Material(
-//      child: Scaffold(
-//        body: Container(
-//            child: ListView.builder(
-//          itemCount: aaa.length,
-//          itemBuilder: (contex, index) {
-//            return Card(
-//              child: Image.network(
-//                'http://192.168.1.107:8080/images/' + '${aaa[index]['vlaue']}',
-//              ),
-//            );
-//          },
-//        )),
-//      ),
-//    ),
-//  ));
-//}
-//
-//Future<List> sendDataToServer() async {
-//  final response = await http.get('http://192.168.1.107:8080/get_imag_slide');
-//  print(response.statusCode);
-//  return json.decode(response.body);
-//}
+
+
+class SimpleBarChart extends StatelessWidget {
+  final List<charts.Series> seriesList;
+  final bool animate;
+
+  SimpleBarChart(this.seriesList, {this.animate});
+
+  /// Creates a [BarChart] with sample data and no transition.
+  factory SimpleBarChart.withSampleData() {
+    return new SimpleBarChart(
+      _createSampleData(),
+      // Disable animations for image tests.
+      animate: false,
+    );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return new charts.BarChart(
+      seriesList,
+      animate: animate,
+    );
+  }
+
+  /// Create one series with sample hard coded data.
+  static List<charts.Series<OrdinalSales, String>> _createSampleData() {
+    final data = [
+      new OrdinalSales('2014', 5),
+      new OrdinalSales('2015', 25),
+      new OrdinalSales('2016', 100),
+      new OrdinalSales('2017', 75),
+    ];
+
+    return [
+      new charts.Series<OrdinalSales, String>(
+        id: 'Sales',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (OrdinalSales sales, _) => sales.year,
+        measureFn: (OrdinalSales sales, _) => sales.sales,
+        data: data,
+      )
+    ];
+  }
+}
+
+/// Sample ordinal data type.
+class OrdinalSales {
+  final String year;
+  final int sales;
+
+  OrdinalSales(this.year, this.sales);
+}

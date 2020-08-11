@@ -14,15 +14,19 @@ class _zang1State extends State<zang1> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('زنگ اول'),
+        hint: Text('زنگ اول',
+        style: TextStyle(
+          fontFamily: 'Aviny',
+          fontSize: 16.0,
+          color: Colors.black54
+        ),),
         value: dropdownValue,
 //        icon: Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(color: Colors.black54, fontFamily: 'Aviny', fontSize: 18.0),
         underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+
         ),
         onChanged: (String newValue) {
           setState(() {
@@ -47,7 +51,6 @@ class _zang1State extends State<zang1> {
     );
   }
 }
-
 
 class zang2 extends StatefulWidget {
   zang2({Key key}) : super(key: key);
@@ -55,7 +58,7 @@ class zang2 extends StatefulWidget {
   _zang2State createState() => _zang2State();
 }
 
-class _zang2State extends State<zang2> {
+class _zang2State extends State<zang1> {
   String dropdownValue = null;
 
   @override
@@ -63,15 +66,19 @@ class _zang2State extends State<zang2> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('زنگ دوم'),
+        hint: Text('زنگ دوم',
+          style: TextStyle(
+              fontFamily: 'Aviny',
+              fontSize: 16.0,
+              color: Colors.black54
+          ),),
         value: dropdownValue,
 //        icon: Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(color: Colors.black54, fontFamily: 'Aviny', fontSize: 18.0),
         underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+
         ),
         onChanged: (String newValue) {
           setState(() {
@@ -96,7 +103,6 @@ class _zang2State extends State<zang2> {
     );
   }
 }
-
 
 class zang3 extends StatefulWidget {
   zang3({Key key}) : super(key: key);
@@ -112,15 +118,19 @@ class _zang3State extends State<zang3> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('زنگ سوم'),
+        hint: Text('زنگ سوم',
+          style: TextStyle(
+              fontFamily: 'Aviny',
+              fontSize: 16.0,
+              color: Colors.black54
+          ),),
         value: dropdownValue,
 //        icon: Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(color: Colors.black54, fontFamily: 'Aviny', fontSize: 18.0),
         underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+
         ),
         onChanged: (String newValue) {
           setState(() {
@@ -146,7 +156,6 @@ class _zang3State extends State<zang3> {
   }
 }
 
-
 class zang4 extends StatefulWidget {
   zang4({Key key}) : super(key: key);
   @override
@@ -161,15 +170,19 @@ class _zang4State extends State<zang4> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('زنگ چهارم'),
+        hint: Text('زنگ چهارم',
+          style: TextStyle(
+              fontFamily: 'Aviny',
+              fontSize: 16.0,
+              color: Colors.black54
+          ),),
         value: dropdownValue,
 //        icon: Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(color: Colors.black54, fontFamily: 'Aviny', fontSize: 18.0),
         underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+
         ),
         onChanged: (String newValue) {
           setState(() {
@@ -209,15 +222,19 @@ class _zang5State extends State<zang5> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('زنگ پنجم'),
+        hint: Text('زنگ پنجم',
+          style: TextStyle(
+              fontFamily: 'Aviny',
+              fontSize: 16.0,
+              color: Colors.black54
+          ),),
         value: dropdownValue,
 //        icon: Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(color: Colors.black54, fontFamily: 'Aviny', fontSize: 18.0),
         underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
+
         ),
         onChanged: (String newValue) {
           setState(() {

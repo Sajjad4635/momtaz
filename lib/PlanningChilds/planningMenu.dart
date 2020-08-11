@@ -14,8 +14,7 @@ class _planningMenuState extends State<planningMenu> {
           color: Color(0xff00d170),
 //          color: Color(0xffEAEAEA),
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(25.0),
-              topLeft: Radius.circular(25.0))),
+              topRight: Radius.circular(25.0), topLeft: Radius.circular(25.0))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,7 +27,7 @@ class _planningMenuState extends State<planningMenu> {
                 decoration: BoxDecoration(
                     color: Color(0xff00d170),
                     borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(45.0))),
+                        BorderRadius.only(bottomLeft: Radius.circular(45.0))),
                 child: Center(
                   child: Text(
                     'با برنامه درس بخون!',
@@ -49,7 +48,7 @@ class _planningMenuState extends State<planningMenu> {
               decoration: BoxDecoration(
                 color: Color(0xffEAEAEA),
                 borderRadius:
-                BorderRadius.only(topRight: Radius.circular(45.0)),
+                    BorderRadius.only(topRight: Radius.circular(45.0)),
               ),
               child: Column(
                 children: <Widget>[
@@ -65,15 +64,15 @@ class _planningMenuState extends State<planningMenu> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            barname_amade()));
+                                        builder: (context) => barname_amade()));
                               },
                               child: Container(
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
                                   child: Image(
-                                    image: new AssetImage('images/Market_launch.gif'),
-                                  )),
+                                image:
+                                    new AssetImage('images/Market_launch.gif'),
+                              )),
                             ),
                           ),
                           Expanded(
@@ -113,8 +112,8 @@ class _planningMenuState extends State<planningMenu> {
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
                                   child: Image(
-                                    image: new AssetImage('images/Visual_data.gif'),
-                                  )),
+                                image: new AssetImage('images/Visual_data.gif'),
+                              )),
                             ),
                           ),
                           Expanded(

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mmtaz/MessageChilds/ChatPage.dart';
+import 'package:mmtaz/MessageChilds/ChatPageChild.dart';
 
 class MessageBox extends StatefulWidget {
   @override
@@ -97,7 +97,7 @@ class _MessageBoxState extends State<MessageBox>
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ChatPage()));
+                                              studentaChatPage1()));
                                 },
                                 child: Container(
 //                width: MediaQuery.of(context).size.width,
@@ -138,7 +138,7 @@ class _MessageBoxState extends State<MessageBox>
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              ChatPagesec()));
+                                              studentaChatPage2()));
                                 },
                                 child: Container(
 //                width: MediaQuery.of(context).size.width,

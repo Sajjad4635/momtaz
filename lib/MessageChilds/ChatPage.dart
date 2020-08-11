@@ -17,7 +17,7 @@ class _ChatPageState extends State<ChatPage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
           resizeToAvoidBottomPadding: false,
-          body: studentaChatPage(),
+          body: studentaChatPage1(),
         ),
 
     );

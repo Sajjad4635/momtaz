@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/models/lessonModel.dart';
@@ -6,6 +7,19 @@ import 'package:mmtaz/planningOfficeChilds/fech_edu_Plan.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+var week = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var date1 = [
+  '5/1',
+  '5/8',
+  '5/15',
+  '5/22',
+  '5/29',
+  '6/6',
+  '6/13',
+  '6/20',
+  '6/27',
+  '7/4'
+];
 List<Lesson_Model> getep = new List();
 String date;
 String day;
@@ -89,8 +103,7 @@ class _planning_OfficeState extends State<planning_Office> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            planning_Office()));
+                                        builder: (context) => DaysOfWeek()));
                               },
                               child: Container(
 //                width: MediaQuery.of(context).size.width,
@@ -130,8 +143,7 @@ class _planning_OfficeState extends State<planning_Office> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              planning_Office()));
+                                          builder: (context) => MyPlans()));
                                 },
                                 child: Container(
 //                width: MediaQuery.of(context).size.width,
@@ -162,82 +174,6 @@ class _planning_OfficeState extends State<planning_Office> {
               ),
             ),
           ),
-
-//          InkWell(
-//            onTap: () {
-//              Navigator.push(
-//                  context, MaterialPageRoute(builder: (context) => ChatPage()));
-//            },
-//            child: Container(
-//                decoration: BoxDecoration(
-//                  color: Color(0xff00d170),
-//                    image: DecorationImage(
-//                        colorFilter: new ColorFilter.mode(
-//                            Color(0xff00d170).withOpacity(0.7),
-//                            BlendMode.dstATop),
-//                        image: AssetImage('images/back.png'),
-//                        fit: BoxFit.cover),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/1111.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                ),
-//                margin: const EdgeInsets.only(right: 25.0, left: 25.0),
-//                width: pageWidth,
-//                height: pageHeight / 4,
-//                child: Stack(
-//                  children: <Widget>[
-//                    Container(
-//                      margin: const EdgeInsets.only(
-//                          top: 10.0, right: 20.0, left: 20.0, bottom: 10.0),
-//
-//                    )
-//                  ],
-//                )),
-//          ),
-//            InkWell(
-//              onTap: () {
-//                Navigator.push(context,
-//                    MaterialPageRoute(builder: (context) => ChatPagesec()));
-//              },
-//              child: Container(
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [Color(0xff365de7), Color(0xffB97CF5)],
-//                      begin: Alignment.centerLeft,
-//                      end: Alignment.centerRight,
-//                    ),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/2222.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                  ),
-//                  width: pageWidth / 2,
-//                  height: pageHeight / 5,
-//                  child: Container(
-//                    decoration: BoxDecoration(
-//                        image: DecorationImage(
-//                            image: AssetImage('images/bac4.png'))),
-//                    child: Column(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: <Widget>[
-//                        Text(
-//                          'پیام خصوصی',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                        Text(
-//                          'به مشاور',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                      ],
-//                    ),
-//                  )),
-//            ),
         ],
       ),
     );
@@ -257,6 +193,8 @@ class DaysOfWeek extends StatefulWidget {
 }
 
 class _DaysOfWeekState extends State<DaysOfWeek> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     var numOfDay;
@@ -296,87 +234,326 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 //            ),
 //          ),
 //        ):
-        new MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.deepPurple, primarySwatch: Colors.deepPurple),
-      home: Scaffold(
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: Row(
-                textDirection: TextDirection.rtl,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text('${day}'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('${date}'),
-                    ),
-                  )
-                ],
-              ),
+        new SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / 8,
             ),
-            Expanded(
-              flex: 8,
-              child: ListView.builder(
-                itemCount: 7,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.only(
-                        top: 0.0, left: 20.0, right: 20.0, bottom: 10.0),
-                    child: InkWell(
-                      onTap: () {
-                        if ((numOfDay - hafteNum[index] == 0) ||
-                            (numOfDay - hafteNum[index] == 1)) {
-                          print(twoDList);
-                          getSavedData(numOfDay, hafteNum[index]);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => new Khodnevisi1(
-                                      numOfDay, hafteNum[index])));
-                        } else if (hafteNum[index] > numOfDay) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => zoodeh()));
-                        } else if (numOfDay - hafteNum[index] >= 2) {
-                          get_Saved_Data.get_saved_data(
-                              numOfDay, hafteNum[index]);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      new khodnevisiDisable()));
-                        }
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        height: MediaQuery.of(context).size.width / 7,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
-                            gradient: LinearGradient(
-                                colors: [Color(0xff77C9EB), Color(0xff93F8E9)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight)),
-                        child: Center(
-                          child: Text('${hafte[index]}'),
+            child: AppBar(
+              elevation: 0.0,
+              backgroundColor: Color(0xff00d170),
+              actions: <Widget>[
+                Container(
+                  decoration: BoxDecoration(color: Color(0xff00d170)),
+//                  margin: EdgeInsets.only(
+//                      top: MediaQuery.of(context).size.height / 40),
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
                         ),
                       ),
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              'ممتاز',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontFamily: 'Aviny',
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.shopping_basket, color: Colors.white),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            key: _scaffoldKey,
+          ),
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                  decoration: BoxDecoration(color: Color(0xffEAEAEA)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xff00d170),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(45.0))),
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'امروز :',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny', color: Colors.white),
+                        ),
+                        Text(
+                          '99/5/16',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny', color: Colors.white),
+                        ),
+                        Text(
+                          'پنجشنبه',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny', color: Colors.white),
+                        ),
+                      ],
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
-            )
-          ],
+              Expanded(
+                flex: 9,
+                child: Container(
+                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xffEAEAEA),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(45.0))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            textDirection: TextDirection.rtl,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              khodnevisiDisable()));
+                                },
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'شنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Khodnevisi1(0, 0)));
+                                },
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'یکشنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'دوشنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'سه شنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'چهارشنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'پنج شنبه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  height:
+                                      MediaQuery.of(context).size.height / 8,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff00d170),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0))),
+                                  child: Center(
+                                    child: Text(
+                                      'جمعه',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                          fontFamily: 'Aviny',
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 10,
+                child: Center(
+                  child: Text(
+                    'فراموش نکن برنامتو حتمی تا ساعت 9 شب برای مشاورت ارسال کن!',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontFamily: 'Aviny',
+                      color: Colors.black54,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
-      ),
 //      home: DefaultTabController(
 //        length: 7,
 //        child: Scaffold(
@@ -455,6 +632,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 //              ],
 //            )),
 //      ),
+      ),
     );
   }
 
@@ -526,118 +704,262 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
 //          ),
 //        ),
 //      ) :
-        MaterialApp(
-      debugShowMaterialGrid: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('وارد کردن ساعات مطالعاتی'),
-            centerTitle: true,
-          ),
-          body: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Row(
-                  textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text('نام درس'),
-                    Text('ساعت مطالعه'),
-                    Text('ساعت تست'),
-                    Text('تعداد تست'),
-                  ],
-                ),
-              ),
-              Expanded(
-                  flex: 8,
-                  child: ListView.builder(
-                    itemCount: getep.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Container(
-                            width: pageWidth - 5.0,
-                            height: pageHeight / 9,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              textDirection: TextDirection.rtl,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 2,
-                                  child: Center(
-                                    child: Text('${getep[index].title}'),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Expanded(
-                                  flex: 8,
-                                  child: ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    reverse: true,
-                                    children: <Widget>[
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: hours(
-                                            id: index,
-                                            n_Dd: 1,
-                                            title: '${twoDList[index][1]}',
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.0,
-                                      ),
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: hoursTest(
-                                            id: index,
-                                            n_Dd: 2,
-                                            title: '${twoDList[index][2]}',
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.0,
-                                      ),
-                                      Container(
-                                        width: 120.0,
-                                        child: Center(
-                                          child: numTest(
-                                            id: index,
-                                            n_Dd: 3,
-                                            title: '${twoDList[index][3]}',
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )),
-                      );
-                    },
-                  )),
-              Expanded(
-                flex: 1,
-                child: InkWell(
-                  onTap: () {
-                    print(twoDList);
-                    sendDataToServer();
-                  },
+        SafeArea(
+      child: MaterialApp(
+        debugShowMaterialGrid: false,
+        home: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Color(0xffEAEAEA),
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
                   child: Container(
-                    child: Center(
-                      child: Text('تایید'),
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.height / 32,
+                          left: MediaQuery.of(context).size.height / 32),
+                      decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(45.0),
+                              bottomRight: Radius.circular(45.0))),
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            'شنبه',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny', color: Colors.white),
+                          ),
+                          Text(
+                            '99/2/14',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny', color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              )
-            ],
-          )),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 50),
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(45.0))),
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'نام درس',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'ساعت مطالعاتی',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'ساعت تست',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'تعداد تست',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 7,
+                    child: ListView.builder(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          children: <Widget>[
+                            Container(
+                              decoration:
+                                  BoxDecoration(color: Color(0xffEAEAEA)),
+                              child: Container(
+                                  width: pageWidth - 5.0,
+                                  height: pageHeight / 9,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    textDirection: TextDirection.rtl,
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 2,
+                                        child: Center(
+                                          child: Text(
+                                            'ریاضی',
+                                            textDirection: TextDirection.rtl,
+                                            style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                fontSize: 19.0,
+                                                color: Colors.black54),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 3.0,
+                                      ),
+                                      Expanded(
+                                        flex: 8,
+                                        child: ListView(
+                                          scrollDirection: Axis.horizontal,
+                                          reverse: true,
+                                          children: <Widget>[
+                                            Container(
+                                              width: pageWidth / 4,
+                                              child: Center(
+                                                child: hours(
+                                                  id: index,
+                                                  n_Dd: 1,
+                                                  title: '0',
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 3.0,
+                                            ),
+                                            Container(
+                                              width: pageWidth / 4,
+                                              child: Center(
+                                                child: hoursTest(
+                                                  id: index,
+                                                  n_Dd: 2,
+                                                  title: '0',
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 3.0,
+                                            ),
+                                            Container(
+                                              width: pageWidth / 4,
+                                              child: Center(
+                                                child: numTest(
+                                                  id: index,
+                                                  n_Dd: 3,
+                                                  title: '0',
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width / 12,
+                                right: MediaQuery.of(context).size.width / 12,
+                              ),
+                              height: 0.5,
+                              color: Color(0xff00d170),
+                            )
+                          ],
+                        );
+                      },
+                    )),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+//                  width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(color: Color(0xffEAEAEA)),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            top: MediaQuery.of(context).size.height / 50,
+                            bottom: MediaQuery.of(context).size.height / 50),
+                        width: MediaQuery.of(context).size.width / 5,
+                        decoration: BoxDecoration(
+                            color: Color(0xff00d170),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(45.0))),
+                        child: InkWell(
+                          onTap: () {
+                            print(twoDList);
+//                    sendDataToServer();
+                          },
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                'تایید',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+                )
+              ],
+            )),
+      ),
     );
   }
 
@@ -686,11 +1008,17 @@ class _hoursState extends State<hours> {
         textDirection: TextDirection.rtl,
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.deepPurple),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text(getSData.isEmpty ? '0' : '${widget.title}'),
+                hint: Text(
+                  getSData.isEmpty ? '0' : '${widget.title}',
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: 'Aviny',
+                      fontSize: 19.0,
+                      color: Colors.black54),
+                ),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -760,11 +1088,17 @@ class _hoursTestState extends State<hoursTest> {
         textDirection: TextDirection.rtl,
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.deepPurple),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text(getSData.isEmpty ? '0' : '${widget.title}'),
+                hint: Text(
+                  getSData.isEmpty ? '0' : '${widget.title}',
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: 'Aviny',
+                      fontSize: 19.0,
+                      color: Colors.black54),
+                ),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -834,11 +1168,17 @@ class _numTestState extends State<numTest> {
         textDirection: TextDirection.rtl,
         child: Container(
             decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.deepPurple),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: Center(
               child: DropdownButton<int>(
-                hint: Text(getSData.isEmpty ? '0' : '${widget.title}'),
+                hint: Text(
+                  getSData.isEmpty ? '0' : '${widget.title}',
+                  textDirection: TextDirection.rtl,
+                  style: TextStyle(
+                      fontFamily: 'Aviny',
+                      fontSize: 19.0,
+                      color: Colors.black54),
+                ),
                 value: dropdownValue1,
                 iconSize: 24,
                 elevation: 16,
@@ -931,105 +1271,225 @@ class khodnevisiDisable extends StatefulWidget {
 class _khodnevisiDisableState extends State<khodnevisiDisable> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowMaterialGrid: false,
-      home: Scaffold(
-          body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              child: Row(
-                textDirection: TextDirection.rtl,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text('نام درس'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت مطالعاتی'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('ساعت تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text('تعداد تست'),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 3.0,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 9,
-            child: ListView.builder(
-              itemCount: getep.length,
-              itemBuilder: (context, index) {
-                return Card(
+    return SafeArea(
+      child: MaterialApp(
+        debugShowMaterialGrid: false,
+        home: Scaffold(
+            backgroundColor: Color(0xffEAEAEA),
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
                   child: Container(
-                    height: 70.0,
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Expanded(
-                          child: Center(
-                            child: Text('${getep[index].title}'),
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.height / 32,
+                          left: MediaQuery.of(context).size.height / 32),
+                      decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(45.0),
+                              bottomRight: Radius.circular(45.0))),
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('75'),
+                          Text(
+                            'شنبه',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny', color: Colors.white),
                           ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('60'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                        Expanded(
-                          child: Center(
-                            child: Text('40'),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.0,
-                        ),
-                      ],
+                          Text(
+                            '99/2/14',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny', color: Colors.white),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                );
-              },
-            ),
-          )
-        ],
-      )),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding:
+                        EdgeInsets.all(MediaQuery.of(context).size.width / 50),
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(45.0))),
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'نام درس',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'ساعت مطالعاتی',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'ساعت تست',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: Text(
+                                'تعداد تست',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny', color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 8,
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        color: Color(0xffEAEAEA),
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: MediaQuery.of(context).size.height / 10,
+                              child: Row(
+                                textDirection: TextDirection.rtl,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        'ریاضی',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontFamily: 'Aviny',
+                                            fontSize: 19.0,
+                                            color: Colors.black54),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        '75',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontFamily: 'Aviny',
+                                            fontSize: 19.0,
+                                            color: Colors.black54),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        '60',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontFamily: 'Aviny',
+                                            fontSize: 19.0,
+                                            color: Colors.black54),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Expanded(
+                                    child: Center(
+                                      child: Text(
+                                        '40',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontFamily: 'Aviny',
+                                            fontSize: 19.0,
+                                            color: Colors.black54),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(
+                                left: MediaQuery.of(context).size.width / 12,
+                                right: MediaQuery.of(context).size.width / 12,
+                              ),
+                              height: 0.5,
+                              color: Color(0xff00d170),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            )),
+      ),
     );
   }
 }
@@ -1047,5 +1507,316 @@ class zoodeh extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyPlans extends StatefulWidget {
+  @override
+  _MyPlansState createState() => _MyPlansState();
+}
+
+class _MyPlansState extends State<MyPlans> {
+  var flag = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    if (flag == 0) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(
+                MediaQuery.of(context).size.height / 8,
+              ),
+              child: AppBar(
+                elevation: 0.0,
+                backgroundColor: Color(0xff00d170),
+                actions: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(color: Color(0xff00d170)),
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 40),
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.height / 32,
+                        left: MediaQuery.of(context).size.height / 32),
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 6,
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                'ممتاز',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.shopping_basket, color: Colors.white),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            body: Container(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xffEAEAEA),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff00d170),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(45.0))),
+                          child: Center(
+                            child: Text('برای پیشرفت نیاز به برنامه داری!',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xffEAEAEA),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(45.0))),
+                          child: Container(
+                            child: Center(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Text('هنوز برنامه ای نداری!',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 22.0,
+                                      color: Color(0xff00d170),
+                                    )),
+                                Text(
+                                    'هنوز برنامه ای نداری برای گرفتن برنامه وارد بخش (برنامه) شو',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 22.0,
+                                      color: Color(0xff00d170),
+                                    )),
+                                Text('و برنامه مخصوص خودت رو دریافت کن!',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 22.0,
+                                      color: Color(0xff00d170),
+                                    )),
+                              ],
+                            )),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+      );
+    } else if (flag == 1) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(
+                MediaQuery.of(context).size.height / 8,
+              ),
+              child: AppBar(
+                elevation: 0.0,
+                backgroundColor: Color(0xff00d170),
+                actions: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(color: Color(0xff00d170)),
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 40),
+                    padding: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.height / 32,
+                        left: MediaQuery.of(context).size.height / 32),
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Expanded(
+                          flex: 6,
+                          child: Container(
+                            child: Center(
+                              child: Text(
+                                'ممتاز',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white,
+                                  fontSize: 25.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Icon(Icons.shopping_basket, color: Colors.white),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            body: Container(
+              decoration: BoxDecoration(
+                color: Color(0xff00d170)
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xffEAEAEA),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff00d170),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(45.0))),
+                          child: Center(
+                            child: Text('همه برنامه هایی که قبلا گرفتی اینجاست!',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        padding: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEAEAEA),
+                          borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(45.0)),
+                        ),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffEAEAEA),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(45.0))),
+                            child: GridView.builder(
+                              itemCount: week.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 4.0,
+                                      mainAxisSpacing: 4.0),
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                  onTap: () {
+//                                    Navigator.push(
+//                                        context,
+//                                        MaterialPageRoute(
+//                                            builder: (context) =>
+//                                                pieChartHome()));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff00d170),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0))),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Center(
+                                          child: Text(
+                                            'هفته ' +
+                                                '${week[index].toString()}',
+                                            textDirection: TextDirection.rtl,
+                                            style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                fontSize: 20.0,
+                                                color: Color(0xffEAEAEA)),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Text(
+                                            '${date1[index].toString()}',
+                                            style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                fontSize: 20.0,
+                                                color: Color(0xffEAEAEA)),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            )),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            )),
+      );
+    }
   }
 }

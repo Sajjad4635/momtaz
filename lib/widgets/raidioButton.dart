@@ -31,25 +31,30 @@ class CustomRadioState extends State<CustomRadio> {
 //      appBar: new AppBar(
 //        title: new Text("ListItem"),
 //      ),
-        body: Directionality(
-      textDirection: TextDirection.rtl,
-      child: new ListView.builder(
-        itemCount: sampleData.length,
-        itemBuilder: (BuildContext context, int index) {
-          return new InkWell(
-            //highlightColor: Colors.red,
-            splashColor: Colors.deepPurple,
-            onTap: () {
-              setState(() {
-                sampleData.forEach((element) => element.isSelected = false);
-                sampleData[index].isSelected = true;
-              });
-            },
-            child: new RadioItem(sampleData[index]),
-          );
-        },
-      ),
-    ));
+
+        body: Container(
+          child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: new Container(
+                child: ListView.builder(
+                  itemCount: sampleData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return new InkWell(
+                      //highlightColor: Colors.red,
+                      splashColor: Color(0xff00d170),
+                      onTap: () {
+                        setState(() {
+                          sampleData.forEach((element) => element.isSelected = false);
+                          sampleData[index].isSelected = true;
+                        });
+                      },
+                      child: new RadioItem(sampleData[index]),
+                    );
+                  },
+                ),
+              )
+          ),
+        ));
   }
 }
 
@@ -79,11 +84,11 @@ class RadioItem extends StatelessWidget {
                 ),
                 decoration: new BoxDecoration(
                   color:
-                      _item.isSelected ? Color(0xFFBC94F6) : Colors.transparent,
+                      _item.isSelected ? Color(0xff00d170) : Colors.transparent,
                   border: new Border.all(
                       width: 1.0,
                       color:
-                          _item.isSelected ? Color(0xFFBC94F6) : Colors.grey),
+                          _item.isSelected ? Color(0xff00d170) : Colors.grey),
                   borderRadius:
                       const BorderRadius.all(const Radius.circular(2.0)),
                 ),

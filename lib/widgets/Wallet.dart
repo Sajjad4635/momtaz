@@ -9,104 +9,188 @@ class wallet extends StatefulWidget {
 class _walletState extends State<wallet> {
   @override
   Widget build(BuildContext context) {
-    var myStyle = TextStyle(
-        fontFamily: 'vazir', fontSize: 15.0, fontWeight: FontWeight.w500);
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: Container(
-                  margin: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 5.0, color: Colors.deepPurple),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      gradient: LinearGradient(
-                          colors: [Color(0xFFBC94F6), Colors.white])),
-                  child: Center(
-                      child: Directionality(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / 8,
+            ),
+            child: AppBar(
+              elevation: 0.0,
+              backgroundColor: Color(0xff00d170),
+              actions: <Widget>[
+                Container(
+                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 40),
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
                     textDirection: TextDirection.rtl,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      textDirection: TextDirection.rtl,
-                      children: <Widget>[
-                        Text(
-                          'موجودی شما',
-                          style: myStyle,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
                         ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Container(
-                            width: 50.0,
-                            height: 40.0,
-                            padding: const EdgeInsets.all(5.0),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  width: 0.5, color: Colors.deepPurple),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              'ممتاز',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontFamily: 'Aviny',
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
                             ),
-                            child: Center(
-                              child: Text('5000'),
-                            )),
-                        SizedBox(
-                          width: 10.0,
+                          ),
                         ),
-                        Text(
-                          'تومان',
-                          style: myStyle,
-                        )
-                      ],
-                    ),
-                  )),
-                ),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              Expanded(
-                flex: 6,
-                child: CustomRadio(),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(width: 1.0, color: Colors.deepPurple),
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.deepPurple,
-                          Color(0xFFBC94F6),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      )),
-                  child: Center(
-                    child: Text(
-                      'پرداخت',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700, fontFamily: 'vazir', fontSize: 18.0),
-                    ),
+                      ),
+                      Icon(Icons.shopping_basket, color: Colors.white),
+                    ],
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
-        ),
-      ),
+          body: Container(
+            decoration: BoxDecoration(color: Color(0xff00d170)),
+            child: Center(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xffEAEAEA),
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff00d170),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(45.0))),
+                          child: Center(
+                            child: Text(
+                                'کیف پولتو شارژ کن تا همیشه برنامه داشته باشی!',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white,
+                                )),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 9,
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width / 20),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Color(0xffEAEAEA),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(45.0)),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xffEAEAEA),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(45.0))),
+                            child: Column(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      margin: EdgeInsets.only(
+                                        left:
+                                            MediaQuery.of(context).size.width /
+                                                50.0,
+                                        right:
+                                            MediaQuery.of(context).size.width /
+                                                50.0,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff00d170),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(45.0))),
+                                      child: Row(
+                                        textDirection: TextDirection.rtl,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Text('موجودی شما',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                fontSize: 18.0,
+                                                color: Colors.white,
+                                              )),
+                                          Text('20000  تومان',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                fontSize: 18.0,
+                                                color: Colors.white,
+                                              )),
+                                        ],
+                                      )),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 50.0,
+                                ),
+                                Expanded(
+                                  flex: 8,
+                                  child: CustomRadio(),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height / 50.0,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(
+                                    width:
+                                        MediaQuery.of(context).size.width / 4,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff00d170),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(45.0))),
+                                    child: Center(
+                                      child: Text('پرداخت',
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                            fontFamily: 'Aviny',
+                                            fontSize: 20.0,
+                                            color: Colors.white,
+                                          )),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ))
+                  ]),
+            ),
+          )),
     );
   }
 }

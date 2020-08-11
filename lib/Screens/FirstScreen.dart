@@ -8,6 +8,7 @@ import 'package:mmtaz/Screens/planningOffice.dart';
 import 'package:mmtaz/widgets/DrawerMenu.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mmtaz/widgets/Wallet.dart';
 
 class FirstScreen extends StatefulWidget {
   @override
@@ -37,24 +38,31 @@ class _FirstScreenState extends State<FirstScreen> {
       child: Scaffold(
           backgroundColor: Color(0xffEAEAEA),
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height/8,),
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / 8,
+            ),
             child: AppBar(
               elevation: 0.0,
               backgroundColor: Color(0xff00d170),
               actions: <Widget>[
                 Container(
                   decoration: BoxDecoration(color: Color(0xff00d170)),
-                  margin: const EdgeInsets.only(top: 15.0),
-                  padding:
-                  const EdgeInsets.only(right: 25.0, left: 25.0),
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
                   width: MediaQuery.of(context).size.width,
                   child: Row(
                     textDirection: TextDirection.rtl,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Icon(
-                        Icons.menu,
-                        color: Colors.white,
+                      InkWell(
+                        onTap: () {
+                          _scaffoldKey.currentState.openEndDrawer();
+                        },
+                        child: Icon(
+                          Icons.menu,
+                          color: Colors.white,
+                        ),
                       ),
                       Expanded(
                         flex: 6,
@@ -72,7 +80,16 @@ class _FirstScreenState extends State<FirstScreen> {
                           ),
                         ),
                       ),
-                      Icon(Icons.shopping_basket, color: Colors.white),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => wallet(),
+                              ));
+                        },
+                        child: Icon(Icons.shopping_basket, color: Colors.white),
+                      )
                     ],
                   ),
                 )
@@ -85,11 +102,10 @@ class _FirstScreenState extends State<FirstScreen> {
             child: Container(
 //              margin: const EdgeInsets.only(top: 30.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.0),
-                    topLeft: Radius.circular(25.0)),
-                color: Color(0xffEAEAEA),
-              ),
+                  color: Color(0xffEAEAEA),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(45.0),
+                      topRight: Radius.circular(45.0))),
               child: _widgetOptions.elementAt(_selectedIndex),
             ),
           ),
@@ -100,10 +116,7 @@ class _FirstScreenState extends State<FirstScreen> {
 //        margin: const EdgeInsets.only(right: 3.0, left: 3.0),
               decoration: BoxDecoration(
 //          color: Color(0xffEAEAEA),
-//          borderRadius: BorderRadius.only(
-//            topLeft: Radius.circular(45.0),
-//            topRight: Radius.circular(45.0)
-//          )
+
                   ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
@@ -120,9 +133,10 @@ class _FirstScreenState extends State<FirstScreen> {
                       title: Text(
                         'صفحه اصلی',
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 12.0,fontFamily: 'Aviny',
+                        style: TextStyle(
+                          fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
-                            ),
+                        ),
                       ),
                     ),
                     BottomNavigationBarItem(
@@ -133,9 +147,10 @@ class _FirstScreenState extends State<FirstScreen> {
                       title: Text(
                         'صندوق پیام',
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+                        style: TextStyle(
+                          fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
-                            ),
+                        ),
                       ),
                     ),
                     BottomNavigationBarItem(
@@ -146,9 +161,10 @@ class _FirstScreenState extends State<FirstScreen> {
                       title: Text(
                         'دفتر برنامه ریزی',
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+                        style: TextStyle(
+                          fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
-                            ),
+                        ),
                       ),
                     ),
                     BottomNavigationBarItem(
@@ -159,9 +175,10 @@ class _FirstScreenState extends State<FirstScreen> {
                       title: Text(
                         'برنامه',
                         textDirection: TextDirection.rtl,
-                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+                        style: TextStyle(
+                          fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
-                            ),
+                        ),
                       ),
                     ),
                     BottomNavigationBarItem(
@@ -171,9 +188,10 @@ class _FirstScreenState extends State<FirstScreen> {
                           : FaIcon(FontAwesomeIcons.chartBar),
                       title: Text(
                         'گزارش ها',
-                        style: TextStyle(fontSize: 12.0, fontFamily: 'Aviny',
+                        style: TextStyle(
+                          fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
-                            ),
+                        ),
                       ),
                     ),
                   ],

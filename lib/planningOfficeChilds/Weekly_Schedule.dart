@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -38,10 +36,10 @@ class _Weekly_ScheduleState extends State<Weekly_Schedule> {
     var request = await HttpClient().getUrl(Uri.parse(url));
     var response = await request.close();
     var bytes = await consolidateHttpClientResponseBytes(response);
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    File file = new File('$dir/$filename');
-    await file.writeAsBytes(bytes);
-    return file;
+//    String dir = (await getApplicationDocumentsDirectory()).path;
+//    File file = new File('$dir/$filename');
+//    await file.writeAsBytes(bytes);
+//    return file;
   }
 
   @override
@@ -67,17 +65,17 @@ class PDFScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PDFViewerScaffold(
-        appBar: AppBar(
-          title: Text("Document"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              onPressed: () {},
-            ),
-          ],
-        ),
-        path: pathPDF);
+//    return PDFViewerScaffold(
+//        appBar: AppBar(
+//          title: Text("Document"),
+//          actions: <Widget>[
+//            IconButton(
+//              icon: Icon(Icons.share),
+//              onPressed: () {},
+//            ),
+//          ],
+//        ),
+//        path: pathPDF);
   }
 
 }

@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                           blurRadius: 5.0,
                         ),
                       ],
-                      borderRadius: BorderRadius.all(Radius.circular(35.0))),
+                      borderRadius: BorderRadius.all(Radius.circular(45.0))),
                   child: MarqueeMeethode(),
                 ),
               )
@@ -46,8 +46,8 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25.0),
-                    topRight: Radius.circular(25.0)
+                    topLeft: Radius.circular(45.0),
+                    topRight: Radius.circular(45.0)
                   ),
                   gradient: LinearGradient(
                     colors: [Color(0xffEAEAEA), Color(0xffEAEAEA)]

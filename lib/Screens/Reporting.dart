@@ -1,9 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:circle_wheel_scroll/circle_wheel_render.dart';
-import 'package:circle_wheel_scroll/circle_wheel_scroll_view.dart';
-import 'package:mmtaz/Reporting/pieCharts/pieChart.dart';
 import 'package:mmtaz/Reporting/pieChartMenu.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 class Reporting extends StatefulWidget {
   @override
@@ -27,42 +24,87 @@ class _ReportingState extends State<Reporting> {
       '7/4'
     ];
     return Container(
-        padding: EdgeInsets.all(16.0),
-        child: GridView.builder(
-          itemCount: week.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 4.0,
-              mainAxisSpacing: 4.0),
-          itemBuilder: (BuildContext context, int index) {
-            return InkWell(
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => pieChartHome()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF64B3EA), Color(0xffA9DAFC)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Center(
-                      child: Text('هفته ' + '${week[index].toString()}'),
-                    ),
-                    Center(
-                      child: Text('${date[index].toString()}'),
-                    )
-                  ],
-                ),
+        child: Column(children: <Widget>[
+      Expanded(
+        flex: 1,
+        child: Container(
+          decoration: BoxDecoration(
+              color: Color(0xff00d170),
+              borderRadius:
+                  BorderRadius.only(bottomLeft: Radius.circular(45.0))),
+          child: Container(
+            child: Center(
+              child: Text(
+                'مسیر پیشرفتت رو رصد کن!',
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                    fontSize: 25.0, color: Colors.white, fontFamily: 'Aviny'),
               ),
-            );
-          },
-        ));
+            ),
+          ),
+        ),
+      ),
+      Expanded(
+        flex: 9,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color(0xff00d170),
+          ),
+          child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
+              decoration: BoxDecoration(
+                color: Color(0xffEAEAEA),
+                borderRadius:
+                    BorderRadius.only(topRight: Radius.circular(45.0)),
+              ),
+              child: GridView.builder(
+                itemCount: week.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 4.0,
+                    mainAxisSpacing: 4.0),
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => pieChartHome()));
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color(0xff00d170),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Center(
+                            child: Text('هفته ' + '${week[index].toString()}',
+                            textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                              fontFamily: 'Aviny',
+                              fontSize: 20.0,
+                              color: Color(0xffEAEAEA)
+                            ),),
+                          ),
+                          Center(
+                            child: Text('${date[index].toString()}',
+                              style: TextStyle(
+                                  fontFamily: 'Aviny',
+                                  fontSize: 20.0,
+                                  color: Color(0xffEAEAEA)
+                              ),),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              )),
+        ),
+      ),
+    ]));
   }
 }
