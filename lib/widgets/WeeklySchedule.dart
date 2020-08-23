@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/Wallet.dart';
 import 'package:mmtaz/widgets/zangHa.dart';
 
@@ -27,11 +28,11 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
             ),
             child: AppBar(
               elevation: 0.0,
-              backgroundColor: Color(0xff00d170),
+              backgroundColor: color,
               actions: <Widget>[
                 Container(
                   decoration: BoxDecoration(
-                    color: Color(0xff00d170),
+                    color: color,
                   ),
                   padding: EdgeInsets.only(
                       right: MediaQuery.of(context).size.height / 32,
@@ -92,7 +93,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                     decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(45.0),
                               bottomRight: Radius.circular(45.0))),
@@ -136,7 +137,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -176,7 +177,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -197,7 +198,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -218,7 +219,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -239,7 +240,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -260,7 +261,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -296,7 +297,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -336,7 +337,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -357,7 +358,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -378,7 +379,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -399,7 +400,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -420,7 +421,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -456,7 +457,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -496,7 +497,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -517,7 +518,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -538,7 +539,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -559,7 +560,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -580,7 +581,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -616,7 +617,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -656,7 +657,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -677,7 +678,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -698,7 +699,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -719,7 +720,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -740,7 +741,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -776,7 +777,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -816,7 +817,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -837,7 +838,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -858,7 +859,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -879,7 +880,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -900,7 +901,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -936,7 +937,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                                 flex: 2,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(45.0),
                                         bottomRight: Radius.circular(45.0)),
@@ -976,7 +977,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -997,7 +998,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -1018,7 +1019,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -1039,7 +1040,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -1060,7 +1061,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
 //                                    color: Color(0xff00d170),
                                           border: Border.all(
                                             width: 2.0,
-                                            color: Color(0xff00d170),
+                                            color: color,
                                           ),
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0)),
@@ -1087,7 +1088,7 @@ class _WeeklyScheduleState extends State<WeeklySchedule> {
                         top: MediaQuery.of(context).size.height / 50,
                         bottom: MediaQuery.of(context).size.height / 50),
                     decoration: BoxDecoration(
-                        color: Color(0xff00d170),
+                        color: color,
                         borderRadius: BorderRadius.all(Radius.circular(45.0))),
                     child: InkWell(
                       onTap: () {},

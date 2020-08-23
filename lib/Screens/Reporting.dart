@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/Reporting/pieChartMenu.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class Reporting extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _ReportingState extends State<Reporting> {
         flex: 1,
         child: Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170),
+              color: color,
               borderRadius:
                   BorderRadius.only(bottomLeft: Radius.circular(45.0))),
           child: Container(
@@ -48,7 +49,7 @@ class _ReportingState extends State<Reporting> {
         flex: 9,
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xff00d170),
+            color: color,
           ),
           child: Container(
               padding: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
@@ -73,7 +74,7 @@ class _ReportingState extends State<Reporting> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius:
                               BorderRadius.all(Radius.circular(10.0))),
                       child: Column(

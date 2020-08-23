@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/login.dart';
 
 class Enter_page extends StatefulWidget {
@@ -23,7 +24,7 @@ class _Enter_pageState extends State<Enter_page> {
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xff00d170),
+                        color: color,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(45.0),
                             bottomRight: Radius.circular(45.0)),

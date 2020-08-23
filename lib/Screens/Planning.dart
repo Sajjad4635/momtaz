@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/widgets/EnterPage.dart';
 import 'package:mmtaz/PlanningChilds/planningMenu.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class Planning extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _PlanningState extends State<Planning> {
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color(0xff00d170),
+                        color: color,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(45.0)
                         )
@@ -45,7 +46,7 @@ class _PlanningState extends State<Planning> {
                       .size
                       .width,
                   decoration: BoxDecoration(
-                    color: Color(0xff00d170),
+                    color: color,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
@@ -80,7 +81,7 @@ class _PlanningState extends State<Planning> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(25.0)),
-                                color: Color(0xff00d170)
+                                color: color
                             ),
                             child: Center(
                               child: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/PlanningChilds/WeekOfAzmons.dart';
 import 'package:mmtaz/PlanningChilds/nameOFAzmoon.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class barname_moshaver extends StatefulWidget {
   @override
@@ -173,10 +174,10 @@ class _barname_amadeState extends State<barname_amade> {
           ),
           child: AppBar(
             elevation: 0.0,
-            backgroundColor: Color(0xff00d170),
+            backgroundColor: color,
             actions: <Widget>[
               Container(
-                decoration: BoxDecoration(color: Color(0xff00d170)),
+                decoration: BoxDecoration(color: color),
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 40),
                 padding: EdgeInsets.only(
@@ -221,7 +222,7 @@ class _barname_amadeState extends State<barname_amade> {
         ),
         body: Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170),
+              color: color,
 //          color: Color(0xffEAEAEA),
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(25.0),
@@ -236,7 +237,7 @@ class _barname_amadeState extends State<barname_amade> {
                   decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color(0xff00d170),
+                        color: color,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(45.0))),
                     child: Center(
@@ -290,7 +291,7 @@ class _barname_amadeState extends State<barname_amade> {
                                       'برنامه براساس برنامه هفتگی',
                                       style: TextStyle(
                                           fontSize: 20.0,
-                                          color: Color(0xff00d170),
+                                          color: color,
                                           fontFamily: 'Aviny'),
                                     ),
                                   ),
@@ -332,7 +333,7 @@ class _barname_amadeState extends State<barname_amade> {
                                       'برنامه براساس آزمونها',
                                       style: TextStyle(
                                           fontSize: 20.0,
-                                          color: Color(0xff00d170),
+                                          color: color,
                                           fontFamily: 'Aviny'),
                                     ),
                                   ),

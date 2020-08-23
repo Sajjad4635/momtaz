@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/PlanningChilds/ReadyWeeklySchedule.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class planningMenu extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _planningMenuState extends State<planningMenu> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color(0xff00d170),
+          color: color,
 //          color: Color(0xffEAEAEA),
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(25.0), topLeft: Radius.circular(25.0))),
@@ -25,7 +26,7 @@ class _planningMenuState extends State<planningMenu> {
               decoration: BoxDecoration(color: Color(0xffEAEAEA)),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xff00d170),
+                    color: color,
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(45.0))),
                 child: Center(
@@ -83,7 +84,7 @@ class _planningMenuState extends State<planningMenu> {
                                   'دریافت برنامه آماده',
                                   style: TextStyle(
                                       fontSize: 20.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                       fontFamily: 'Aviny'),
                                 ),
                               ),
@@ -124,7 +125,7 @@ class _planningMenuState extends State<planningMenu> {
                                   'دریافت برنامه از مشاور',
                                   style: TextStyle(
                                       fontSize: 20.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                       fontFamily: 'Aviny'),
                                 ),
                               ),

@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mmtaz/Screens/FirstScreen.dart';
 import 'package:mmtaz/models/api.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RaisedGradientButton extends StatelessWidget {
@@ -75,316 +77,275 @@ class Consts {
 class _phoneNumberState extends State<phoneNumber> {
   @override
   Widget build(BuildContext context) {
-    sendDataToServer() async {
-      final response = await http
-          .post(api.siteName + '/api/mobile', body: {"mobile": '${aa.text}'});
-      print(response.statusCode);
-      var status = json.decode(response.body)['status'];
-      stu_id = json.decode(response.body)['stu_id'];
-      if (status == 0) {
-        Navigator.pushReplacementNamed(context, '/verificationCode');
-      } else if (status == 1) {
-        Navigator.pushReplacementNamed(context, '/register');
-      } else if (status == 2) {
-        Navigator.pushReplacementNamed(context, '/FirstScreen');
-      }
-    }
-
+    var pageWith = MediaQuery.of(context).size.width;
+    var pageHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Scaffold(
-            body: new Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )),
+            resizeToAvoidBottomPadding: false,
+            body: Container(
+              width: pageWith,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    height: 120.0,
-                    width: 120.0,
+                    height: pageHeight / 4,
+                    width: pageWith / 2,
                     decoration: new BoxDecoration(
                       image: DecorationImage(
-                        image: new AssetImage('images/owl.png'),
+                        image: new AssetImage('images/phoneNumber.png'),
                         fit: BoxFit.fill,
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 40.0,
-                  ),
                   Container(
-                    margin: const EdgeInsets.only(right: 15.0, left: 15.0),
-                    child: Directionality(
-                        textDirection: TextDirection.rtl,
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 11,
-                          controller: myController,
-                          textAlign: TextAlign.right,
-                          decoration: new InputDecoration(
-                              labelText: "شماره همراه",
-                              hintStyle: TextStyle(fontSize: 18.0),
-                              suffixIcon: Icon(Icons.phone_android),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(32.0))),
-                        )),
-                  ),
-                  SizedBox(
-                    height: 40.0,
-                  ),
-                  Container(
-                    height: 45.0,
-                    width: 75.0,
-                    child: RaisedButton(
-                      onPressed: () {
-                        if ((myController.text.length == 11) &&
-                            ('${myController.text[0]}' == '0') &&
-                            ('${myController.text[1]}' == '9')) {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
-                                  //this right here
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                      top: Consts.avatarRadius + Consts.padding,
-                                      bottom: Consts.padding,
-                                      left: Consts.padding,
-                                      right: Consts.padding,
-                                    ),
-                                    decoration: new BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFFA8EC46),
-                                          Color(0xFF5DC2F6)
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      shape: BoxShape.rectangle,
-                                      borderRadius:
-                                      BorderRadius.circular(Consts.padding),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black26,
-                                          blurRadius: 10.0,
-                                          offset: const Offset(0.0, 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      // To make the card compact
-                                      children: <Widget>[
-                                        Text(
-                                          "${myController.text}",
-                                          style: TextStyle(
-                                            fontSize: 24.0,
-                                            fontFamily: 'vazir',
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                        SizedBox(height: 16.0),
-                                        Text(
-                                          'با تایید شماره همراه پیامی حاوی کد فعال سازی برای شما ارسال میگردد',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'vazir',
-                                            fontSize: 18.0,
-                                          ),
-                                        ),
-                                        SizedBox(height: 24.0),
-                                        Row(
-                                          children: <Widget>[
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  new BorderRadius.circular(
-                                                      18.0),
-                                                ),
-                                                onPressed: () {
-                                                  sendDataToServer();
-                                                },
-                                                child: Container(
-                                                  width: 75.0,
-                                                  height: 45.0,
-                                                  decoration: BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xff365de7),
-                                                          Color(0xffB97CF5)
-                                                        ],
-                                                        begin: Alignment.centerLeft,
-                                                        end: Alignment.centerRight,
-                                                      ),
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0)),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'تایید',
-                                                      style: TextStyle(
-                                                          fontFamily: 'vazir',
-                                                          fontSize: 18.0,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              });
-                        } else{
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
-                                  //this right here
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      bottom: Consts.padding,
-                                      left: Consts.padding,
-                                      right: Consts.padding,
-                                    ),
-                                    decoration: new BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFFA8EC46),
-                                          Color(0xFF5DC2F6)
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      shape: BoxShape.rectangle,
-                                      borderRadius:
-                                      BorderRadius.circular(Consts.padding),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black26,
-                                          blurRadius: 10.0,
-                                          offset: const Offset(0.0, 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      // To make the card compact
-                                      children: <Widget>[
-                                        Container(
-                                          width:150.0,
-                                          height: 150.0,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage('images/false-sign-png-4.png')
-                                              )
-                                          ),
-                                        ),
-                                        SizedBox(height: 10.0,),
-                                        Text(
-                                          'فرمت شماره موبایل نادرست است',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'vazir',
-                                            fontSize: 18.0,
-                                          ),
-                                        ),
-                                        SizedBox(height: 24.0),
-                                        Row(
-                                          children: <Widget>[
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  new BorderRadius.circular(
-                                                      18.0),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  width: 75.0,
-                                                  height: 45.0,
-                                                  decoration: BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xff365de7),
-                                                          Color(0xffB97CF5)
-                                                        ],
-                                                        begin: Alignment.centerLeft,
-                                                        end: Alignment.centerRight,
-                                                      ),
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0)),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'تایید',
-                                                      style: TextStyle(
-                                                          fontFamily: 'vazir',
-                                                          fontSize: 18.0,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              });
-                        }
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      padding: EdgeInsets.all(0.0),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xff365de7), Color(0xffB97CF5)],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Container(
-                          constraints:
-                          BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                          alignment: Alignment.center,
-                          child: Text(
-                            "ادامه",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: 'vazir',
-                                fontSize: 18.0,
-                                color: Colors.black),
-                          ),
+                      width: pageWith / 1.5,
+                      height: pageHeight / 12,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          color: Color(0xffeaeaea)),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        maxLength: 11,
+                        controller: myController,
+                        textAlign: TextAlign.center,
+                        decoration: new InputDecoration(
+                            counter: Offstage(),
+                            contentPadding: EdgeInsets.all(5.0),
+                            hintText: "شماره همراه",
+                            hintStyle:
+                                TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                            suffixIcon: Icon(Icons.phone_android),
+                            prefixIcon: Icon(Icons.arrow_back,
+                                color: Color(0xffeaeaea)),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(32.0))),
+                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => verificationCode()));
+//                      _PhoneNumIsIncorrectFormat();
+                    },
+                    child: Container(
+                      width: pageWith / 1.5,
+                      height: pageHeight / 12,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          color: color),
+                      child: Center(
+                        child: Text(
+                          'ادامه',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              fontFamily: 'Aviny',
+                              color: Colors.white),
                         ),
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             )));
+  }
+
+  _PhoneNumIsIncorrectFormat() {
+    if ((myController.text.length == 11) &&
+        ('${myController.text[0]}' == '0') &&
+        ('${myController.text[1]}' == '9')) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              //this right here
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: Consts.avatarRadius + Consts.padding,
+                  bottom: Consts.padding,
+                  left: Consts.padding,
+                  right: Consts.padding,
+                ),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(Consts.padding),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10.0,
+                      offset: const Offset(0.0, 10.0),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  // To make the card compact
+                  children: <Widget>[
+                    Text(
+                      "${myController.text}",
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontFamily: 'vazir',
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 16.0),
+                    Text(
+                      'با تایید شماره همراه پیامی حاوی کد فعال سازی برای شما ارسال میگردد',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Aviny',
+                          fontSize: 20.0,
+                          color: Colors.black54),
+                    ),
+                    SizedBox(height: 24.0),
+                    Row(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(18.0),
+                            ),
+                            onPressed: () {
+                              sendDataToServer();
+                            },
+                            child: Container(
+                              width: 75.0,
+                              height: 45.0,
+                              decoration: BoxDecoration(
+                                  color: color,
+                                  borderRadius: BorderRadius.circular(18.0)),
+                              child: Center(
+                                child: Text(
+                                  'تایید',
+                                  style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 20.0,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    } else {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              //this right here
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: 15.0,
+                  bottom: Consts.padding,
+                  left: Consts.padding,
+                  right: Consts.padding,
+                ),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(Consts.padding),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10.0,
+                      offset: const Offset(0.0, 10.0),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  // To make the card compact
+                  children: <Widget>[
+                    Container(
+                      width: 150.0,
+                      height: 150.0,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('images/Warning-rafiki.png'))),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'فرمت شماره موبایل نادرست است!',
+                      textDirection: TextDirection.rtl,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Aviny',
+                          fontSize: 20.0,
+                          color: Colors.black54),
+                    ),
+                    SizedBox(height: 24.0),
+                    Row(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.center,
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(45.0),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: 75.0,
+                              height: 45.0,
+                              decoration: BoxDecoration(
+                                  color: color,
+                                  borderRadius: BorderRadius.circular(18.0)),
+                              child: Center(
+                                child: Text(
+                                  'تایید',
+                                  style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 20.0,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            );
+          });
+    }
+  }
+
+  sendDataToServer() async {
+    final response = await http
+        .post(api.siteName + '/api/mobile', body: {"mobile": '${aa.text}'});
+    print(response.statusCode);
+    var status = json.decode(response.body)['status'];
+    stu_id = json.decode(response.body)['stu_id'];
+    if (status == 0) {
+      Navigator.pushReplacementNamed(context, '/verificationCode');
+    } else if (status == 1) {
+      Navigator.pushReplacementNamed(context, '/register');
+    } else if (status == 2) {
+      Navigator.pushReplacementNamed(context, '/FirstScreen');
+    }
   }
 }
 
@@ -398,210 +359,187 @@ class _verificationCodeState extends State<verificationCode> {
 
   @override
   Widget build(BuildContext context) {
-    sendDataToServer() async {
-      final response = await http.post(api.siteName + '/api/ok_code',
-          body: {"random": '${myController.text}', 'stu_id': '${stu_id}'});
-      print(response.statusCode);
-      var type = json.decode(response.body)['type'];
-      if (type == 0) {
-        print('err');
-      } else if (type == 1) {
-        Navigator.pushReplacementNamed(context, '/register');
-      } else if (type == -2) {
-        print('error!!!');
-      }
-    }
-
+    var pageWidth = MediaQuery.of(context).size.width;
+    var pageHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new Material(
             child: new Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )
+          decoration: BoxDecoration(color: Colors.white),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: pageWidth / 2,
+                height: pageHeight / 4,
+                decoration: new BoxDecoration(
+                  image: DecorationImage(
+                    image: new AssetImage('images/Confirmed.png'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
               ),
-              padding: const EdgeInsets.only(
-                  top: 150.0, left: 45.0, right: 45.0, bottom: 20.0),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    height: 120.0,
-                    width: 120.0,
-                    decoration: new BoxDecoration(
-                      image: DecorationImage(
-                        image: new AssetImage('images/verification_code.png'),
-                        fit: BoxFit.fill,
-                      ),
+              Container(
+                  width: pageWidth / 1.5,
+                  height: pageHeight / 12,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: color),
+                      borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                      color: Color(0xffeaeaea)),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    maxLength: 6,
+                    controller: myController,
+                    textAlign: TextAlign.center,
+                    decoration: new InputDecoration(
+                        counter: Offstage(),
+                        contentPadding: EdgeInsets.all(5.0),
+                        hintText: "کد تایید",
+                        hintStyle:
+                            TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                        suffixIcon: Icon(Icons.sms),
+                        prefixIcon:
+                            Icon(Icons.arrow_back, color: Color(0xffeaeaea)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(32.0))),
+                  )),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => register()));
+//                      _RegisterCodeIsIncorrectFormat();
+                },
+                child: Container(
+                  width: pageWidth / 1.5,
+                  height: pageHeight / 12,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                      color: color),
+                  child: Center(
+                    child: Text(
+                      'ادامه',
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Aviny',
+                          color: Colors.white),
                     ),
                   ),
-                  SizedBox(
-                    height: 40.0,
-                  ),
-                  Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        maxLength: 6,
-                        controller: myController,
-                        textAlign: TextAlign.right,
-                        decoration: new InputDecoration(
-                            labelText: "کد تایید",
-                            hintStyle: TextStyle(fontSize: 18.0),
-                            suffixIcon: Icon(Icons.sms),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(32.0))),
-                      )),
-                  SizedBox(
-                    height: 40.0,
-                  ),
-                  Container(
-                    height: 45.0,
-                    width: 75.0,
-                    child: RaisedButton(
-                      onPressed: () {
-                        if(myController.text.length < 6){
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20.0)),
-                                  //this right here
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                      top: 15.0,
-                                      bottom: Consts.padding,
-                                      left: Consts.padding,
-                                      right: Consts.padding,
-                                    ),
-                                    decoration: new BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Color(0xFFA8EC46),
-                                          Color(0xFF5DC2F6)
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight,
-                                      ),
-                                      shape: BoxShape.rectangle,
-                                      borderRadius:
-                                      BorderRadius.circular(Consts.padding),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black26,
-                                          blurRadius: 10.0,
-                                          offset: const Offset(0.0, 10.0),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      // To make the card compact
-                                      children: <Widget>[
-                                        Container(
-                                          width:150.0,
-                                          height: 150.0,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: AssetImage('images/false-sign-png-4.png')
-                                              )
-                                          ),
-                                        ),
-                                        SizedBox(height: 10.0,),
-                                        Text(
-                                          'کد تایید باید شش رقم باشد',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'vazir',
-                                            fontSize: 18.0,
-                                          ),
-                                        ),
-                                        SizedBox(height: 24.0),
-                                        Row(
-                                          children: <Widget>[
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  new BorderRadius.circular(
-                                                      18.0),
-                                                ),
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Container(
-                                                  width: 75.0,
-                                                  height: 45.0,
-                                                  decoration: BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color(0xff365de7),
-                                                          Color(0xffB97CF5)
-                                                        ],
-                                                        begin: Alignment.centerLeft,
-                                                        end: Alignment.centerRight,
-                                                      ),
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0)),
-                                                  child: Center(
-                                                    child: Text(
-                                                      'تایید',
-                                                      style: TextStyle(
-                                                          fontFamily: 'vazir',
-                                                          fontSize: 18.0,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              });
-                        }else{
-                          sendDataToServer();
-                        }
+                ),
+              ),
+            ],
+          ),
+        )));
+  }
 
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0)),
-                      padding: EdgeInsets.all(0.0),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Color(0xff365de7), Color(0xffB97CF5)],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30.0)),
-                        child: Container(
-                          constraints:
-                          BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+  sendDataToServer() async {
+    final response = await http.post(api.siteName + '/api/ok_code',
+        body: {"random": '${myController.text}', 'stu_id': '${stu_id}'});
+    print(response.statusCode);
+    var type = json.decode(response.body)['type'];
+    if (type == 0) {
+      print('err');
+    } else if (type == 1) {
+      Navigator.pushReplacementNamed(context, '/register');
+    } else if (type == -2) {
+      print('error!!!');
+    }
+  }
+
+  _RegisterCodeIsIncorrectFormat() {
+    if (myController.text.length < 6) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              //this right here
+              child: Container(
+                padding: EdgeInsets.only(
+                  top: 15.0,
+                  bottom: Consts.padding,
+                  left: Consts.padding,
+                  right: Consts.padding,
+                ),
+                decoration: new BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(Consts.padding),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10.0,
+                      offset: const Offset(0.0, 10.0),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  // To make the card compact
+                  children: <Widget>[
+                    Container(
+                      width: 150.0,
+                      height: 150.0,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('images/Warning-rafiki.png'))),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      'کد تایید باید شش رقم باشد!',
+                      textDirection: TextDirection.rtl,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontFamily: 'Aviny',
+                          fontSize: 20.0,
+                          color: Colors.black54),
+                    ),
+                    SizedBox(height: 24.0),
+                    Row(
+                      children: <Widget>[
+                        Align(
                           alignment: Alignment.center,
-                          child: Text(
-                            "ادامه",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontFamily: 'vazir',
-                                fontSize: 18.0,
-                                color: Colors.black),
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(18.0),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: 75.0,
+                              height: 45.0,
+                              decoration: BoxDecoration(
+                                  color: color,
+                                  borderRadius: BorderRadius.circular(18.0)),
+                              child: Center(
+                                child: Text(
+                                  'تایید',
+                                  textDirection: TextDirection.rtl,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      fontSize: 20.0,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
-            )));
+            );
+          });
+    } else {
+      sendDataToServer();
+    }
   }
 }
 
@@ -611,299 +549,204 @@ class register extends StatefulWidget {
 }
 
 class _registerState extends State<register> {
-  final myControllerName = TextEditingController();
-  final myControllerPass1 = TextEditingController();
-  final myControllerPass2 = TextEditingController();
   String ip_token;
   var text = '';
 
+  final myControllerName = TextEditingController();
+  final myControllerPass1 = TextEditingController();
+  final myControllerPass2 = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    sendDataToServer() async {
-      final response = await http.post(api.siteName + '/api/register', body: {
-        "stu_id": '${stu_id}',
-        "name": '${myControllerName.text}',
-        "base": '${base_stu_n.toString()}',
-        "major": '${major_stu_n.toString()}',
-        "pass": '${myControllerPass1.text}',
-      });
-
-      print(response.statusCode);
-      var status = json.decode(response.body)['status'];
-      if (status == 1) {
-        await saveIpToken(json.decode(response.body)['token']);
-        Navigator.pushReplacementNamed(context, '/FirstScreen');
-      }
-
-    }
-
+    var pageWidth = MediaQuery.of(context).size.width;
+    var pageHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: new Material(
-            child: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-//                gradient: LinearGradient(
-//              colors: [Color(0xFFA8EC46), Color(0xFF5DC2F6)],
-//              begin: Alignment.topLeft,
-//              end: Alignment.bottomRight,
-//            )
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 40.0,
-                ),
-                Container(
-                  height: 120.0,
-                  width: 120.0,
-                  decoration: new BoxDecoration(
-                    image: DecorationImage(
-                      image: new AssetImage('images/register.png'),
-                      fit: BoxFit.fill,
+        home: Scaffold(
+            body: Container(
+          child: SingleChildScrollView(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              padding:
+                  EdgeInsets.only(right: pageWidth / 30, left: pageWidth / 30),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: pageWidth / 2,
+                    height: pageHeight / 4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Confirmed.png'),
+                            fit: BoxFit.cover)),
+                  ),
+                  Container(
+                      width: pageWidth,
+                      height: pageHeight / 11,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                        ),
+                        child: Center(
+                          child: TextField(
+                            controller: myControllerName,
+                            textAlign: TextAlign.center,
+                            decoration: new InputDecoration(
+                                counter: Offstage(),
+                                contentPadding: EdgeInsets.all(5.0),
+                                hintText: "نام و نام خانوادگی",
+                                hintStyle: TextStyle(
+                                    fontSize: 18.0, fontFamily: 'Aviny'),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(32.0))),
+                          ),
+                        ),
+                      )),
+                  Container(
+                    child: Row(
+                      textDirection: TextDirection.rtl,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                            width: pageWidth / 3,
+                            padding: const EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: color),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(45.0)),
+                                color: Color(0xffeaeaea)),
+                            child: Center(
+                              child: base(),
+                            )),
+                        Container(
+                            width: pageWidth / 3,
+                            padding: const EdgeInsets.all(4.0),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: color),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(45.0)),
+                                color: Color(0xffeaeaea)),
+                            child: Center(
+                              child: major(),
+                            )),
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextField(
-                        controller: myControllerName,
-                        textAlign: TextAlign.right,
-                        decoration: new InputDecoration(
-                            labelText: "نام و نام خانوادگی",
-                            hintStyle: TextStyle(fontSize: 18.0),
-                            suffixIcon: Icon(Icons.assignment_ind),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15.0))),
-                      )),
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: base()),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Container(
-                    padding: const EdgeInsets.all(4.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 0.5,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                    child: major()),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextField(
-                        obscureText: true,
-                        controller: myControllerPass1,
-                        textAlign: TextAlign.right,
-                        decoration: new InputDecoration(
-                            labelText: "کلمه عبور",
-                            hintStyle: TextStyle(fontSize: 18.0),
-                            suffixIcon: Icon(Icons.remove_red_eye),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15.0))),
-                      )),
-                ),
-                SizedBox(
-                  height: 15.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(right: 10.0, left: 10.0),
-                  child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: TextField(
-                        obscureText: true,
-                        controller: myControllerPass2,
-                        textAlign: TextAlign.right,
-                        decoration: new InputDecoration(
-                            labelText: "تکرار کلمه عبور",
-                            hintStyle: TextStyle(fontSize: 18.0),
-                            suffixIcon: Icon(Icons.remove_red_eye),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15.0))),
-                      )),
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-                Container(
-                  height: 45.0,
-                  width: 75.0,
-                  child: RaisedButton(
-                    onPressed: () {
-                      if (base_stu_n == 3){
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return Dialog(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.0)),
-                                //this right here
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                    top: 15.0,
-                                    bottom: Consts.padding,
-                                    left: Consts.padding,
-                                    right: Consts.padding,
-                                  ),
-                                  decoration: new BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color(0xFFA8EC46),
-                                        Color(0xFF5DC2F6)
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                    ),
-                                    shape: BoxShape.rectangle,
-                                    borderRadius:
-                                    BorderRadius.circular(Consts.padding),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black26,
-                                        blurRadius: 10.0,
-                                        offset: const Offset(0.0, 10.0),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    // To make the card compact
-                                    children: <Widget>[
-                                      Container(
-                                        width:150.0,
-                                        height: 150.0,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage('images/false-sign-png-4.png')
-                                            )
-                                        ),
-                                      ),
-                                      SizedBox(height: 10.0,),
-                                      Text(
-                                        'دانش آموز پایه نهم هستید؟',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'vazir',
-                                          fontSize: 18.0,
-                                        ),
-                                      ),
-                                      Text(
-                                        'آیا در فیلد انتخاب رشته گزینه "بدون رشته" را انتخاب کرده اید؟',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontFamily: 'vazir',
-                                          fontSize: 18.0,
-                                        ),
-                                      ),
-                                      SizedBox(height: 24.0),
-                                      Row(
-                                        children: <Widget>[
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: FlatButton(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                new BorderRadius.circular(
-                                                    18.0),
-                                              ),
-                                              onPressed: () {
-                                                sendDataToServer();
-                                              },
-                                              child: Container(
-                                                width: 75.0,
-                                                height: 45.0,
-                                                decoration: BoxDecoration(
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Color(0xff365de7),
-                                                        Color(0xffB97CF5)
-                                                      ],
-                                                      begin: Alignment.centerLeft,
-                                                      end: Alignment.centerRight,
-                                                    ),
-                                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                        18.0)),
-                                                child: Center(
-                                                  child: Text(
-                                                    'بله',
-                                                    style: TextStyle(
-                                                        fontFamily: 'vazir',
-                                                        fontSize: 18.0,
-                                                        color: Colors.black),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                      }else{
-                        sendDataToServer();
-                      }
-
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Color(0xff365de7), Color(0xffB97CF5)],
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                          ),
-                          borderRadius: BorderRadius.circular(30.0)),
+                  Container(
+                      width: pageWidth,
+                      height: pageHeight / 11,
                       child: Container(
-                        constraints:
-                            BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                        ),
+                        child: Center(
+                          child: TextField(
+                            controller: myControllerPass1,
+                            textAlign: TextAlign.center,
+                            decoration: new InputDecoration(
+                              counter: Offstage(),
+                              contentPadding: EdgeInsets.all(5.0),
+                              hintText: "کلمه عبور",
+                              hintStyle: TextStyle(
+                                  fontSize: 18.0, fontFamily: 'Aviny'),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              suffixIcon: Icon(
+                                Icons.remove_red_eye,
+                                color: Color(0xffeaeaea),
+                              ),
+                              prefixIcon: Icon(Icons.remove_red_eye),
+                            ),
+                          ),
+                        ),
+                      )),
+                  Container(
+                      width: pageWidth,
+                      height: pageHeight / 11,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                        ),
+                        child: Center(
+                          child: TextField(
+                            controller: myControllerPass2,
+                            textAlign: TextAlign.center,
+                            decoration: new InputDecoration(
+                              counter: Offstage(),
+                              contentPadding: EdgeInsets.all(5.0),
+                              hintText: "تکرار کلمه عبور",
+                              hintStyle: TextStyle(
+                                  fontSize: 18.0, fontFamily: 'Aviny'),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              suffixIcon: Icon(
+                                Icons.remove_red_eye,
+                                color: Color(0xffeaeaea),
+                              ),
+                              prefixIcon: Icon(Icons.remove_red_eye),
+                            ),
+                          ),
+                        ),
+                      )),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FirstScreen()));
+//                      sendDataToServer();
+                    },
+                    child: Container(
+                      width: pageWidth / 3,
+                      height: pageHeight / 11,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                          color: color),
+                      child: Center(
                         child: Text(
-                          "ادامه",
-                          textAlign: TextAlign.center,
+                          'تایید',
+                          textDirection: TextDirection.rtl,
                           style: TextStyle(
-                              fontFamily: 'vazir',
-                              fontSize: 18.0,
-                              color: Colors.black),
+                              fontFamily: 'Aviny',
+                              fontSize: 20.0,
+                              color: Colors.white),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         )));
+  }
+
+  sendDataToServer() async {
+    final response = await http.post(api.siteName + '/api/register', body: {
+      "stu_id": '${stu_id}',
+      "name": '${myControllerName.text}',
+      "base": '${base_stu_n.toString()}',
+      "major": '${major_stu_n.toString()}',
+      "pass": '${myControllerPass1.text}',
+    });
+
+    print(response.statusCode);
+    var status = json.decode(response.body)['status'];
+    if (status == 1) {
+      await saveIpToken(json.decode(response.body)['token']);
+      Navigator.pushReplacementNamed(context, '/FirstScreen');
+    }
   }
 
   saveIpToken(String token) async {
@@ -928,11 +771,16 @@ class _baseState extends State<base> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('پایه تحصیلی'),
+        hint: Text(
+          'پایه تحصیلی',
+          textDirection: TextDirection.rtl,
+          style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+        ),
         value: dropdownValueBase,
+        underline: Container(),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
         onChanged: (String newValue) {
           setState(() {
             dropdownValueBase = newValue;
@@ -979,11 +827,16 @@ class _majorState extends State<major> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: DropdownButton<String>(
-        hint: Text('رشته'),
+        hint: Text(
+          'رشته',
+          textDirection: TextDirection.rtl,
+          style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+        ),
         value: dropdownValueMajor,
+        underline: Container(),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
+        style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
         onChanged: (String newValue) {
           setState(() {
             dropdownValueMajor = newValue;
@@ -994,7 +847,7 @@ class _majorState extends State<major> {
               major_stu_n = 1;
             } else if (major_stu == 'علوم انسانی') {
               major_stu_n = 2;
-            }else if (major_stu == 'بدون رشته') {
+            } else if (major_stu == 'بدون رشته') {
               major_stu_n = 3;
             }
           });

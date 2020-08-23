@@ -8,6 +8,7 @@ import 'package:mmtaz/Screens/planningOffice.dart';
 import 'package:mmtaz/widgets/DrawerMenu.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/Wallet.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -43,10 +44,10 @@ class _FirstScreenState extends State<FirstScreen> {
             ),
             child: AppBar(
               elevation: 0.0,
-              backgroundColor: Color(0xff00d170),
+              backgroundColor: color,
               actions: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  decoration: BoxDecoration(color: color),
                   padding: EdgeInsets.only(
                       right: MediaQuery.of(context).size.height / 32,
                       left: MediaQuery.of(context).size.height / 32),
@@ -98,14 +99,12 @@ class _FirstScreenState extends State<FirstScreen> {
           ),
           key: _scaffoldKey,
           body: Container(
-            decoration: BoxDecoration(color: Color(0xff00d170)),
+            decoration: BoxDecoration(color: color),
             child: Container(
 //              margin: const EdgeInsets.only(top: 30.0),
               decoration: BoxDecoration(
                   color: Color(0xffEAEAEA),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(45.0),
-                      topRight: Radius.circular(45.0))),
+                  ),
               child: _widgetOptions.elementAt(_selectedIndex),
             ),
           ),
@@ -197,7 +196,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   ],
                   currentIndex: _selectedIndex,
                   unselectedItemColor: Color(0xffAAAAAA),
-                  selectedItemColor: Color(0xff00d170),
+                  selectedItemColor: color,
 //        selectedLabelStyle: ,
                   onTap: _onItemTapped,
                 ),

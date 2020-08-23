@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity/connectivity.dart';
 
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.limeAccent,
+      backgroundColor: color,
       body: new Center(
         child: new Image.asset('images/owl.png'),
       ),
@@ -57,14 +58,22 @@ var token;
           _scaffoldKey.currentState.hideCurrentSnackBar();
           chekLogin();
         },
-        child: new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          textDirection: TextDirection.rtl,
-          children: <Widget>[
-            Text('از اتصال دستگاه به اینترنت اطمینان حاصل کنید'),
-            Icon(Icons.perm_scan_wifi, color: Colors.white,)
-          ],
-        ),
+        child: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            textDirection: TextDirection.rtl,
+            children: <Widget>[
+              Text('شما آفلاین هستید برای تلاش مجدد کلیک کنید!',
+              textDirection: TextDirection.rtl,
+              style: TextStyle(
+                fontFamily: 'Aviny',
+                fontSize: 18.0
+              ),
+              ),
+              Icon(Icons.signal_wifi_off, color: Colors.white,)
+            ],
+          ),
+        )
       )));
     }
   }

@@ -4,26 +4,18 @@ import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 import 'package:mmtaz/planningOfficeChilds/fechSavadData.dart';
 import 'package:mmtaz/planningOfficeChilds/fech_edu_Plan.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 var week = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-var date1 = [
-  '5/1',
-  '5/8',
-  '5/15',
-  '5/22',
-  '5/29',
-  '6/6',
-  '6/13',
-  '6/20',
-  '6/27',
-  '7/4'
-];
 List<Lesson_Model> getep = new List();
 String date;
 String day;
 List<getLessonModle> getSData = [];
+
+var LessonsD = List.generate(7, (i) => List(5), growable: false);
 
 class planning_Office extends StatefulWidget {
   @override
@@ -51,7 +43,7 @@ class _planning_OfficeState extends State<planning_Office> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color(0xff00d170),
+          color: color,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(25.0), topLeft: Radius.circular(25.0))),
       child: Column(
@@ -64,7 +56,7 @@ class _planning_OfficeState extends State<planning_Office> {
               decoration: BoxDecoration(color: Color(0xffEAEAEA)),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Color(0xff00d170),
+                    color: color,
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(45.0))),
                 child: Center(
@@ -121,7 +113,7 @@ class _planning_OfficeState extends State<planning_Office> {
                                   'دفتر برنامه ریزی',
                                   style: TextStyle(
                                       fontSize: 20.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                       fontFamily: 'Aviny'),
                                 ),
                               ),
@@ -161,7 +153,7 @@ class _planning_OfficeState extends State<planning_Office> {
                                     'برنامه های من',
                                     style: TextStyle(
                                         fontSize: 20.0,
-                                        color: Color(0xff00d170),
+                                        color: color,
                                         fontFamily: 'Aviny'),
                                   ),
                                 ),
@@ -244,10 +236,10 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
             ),
             child: AppBar(
               elevation: 0.0,
-              backgroundColor: Color(0xff00d170),
+              backgroundColor: color,
               actions: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  decoration: BoxDecoration(color: color),
 //                  margin: EdgeInsets.only(
 //                      top: MediaQuery.of(context).size.height / 40),
                   padding: EdgeInsets.only(
@@ -299,7 +291,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                   decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color(0xff00d170),
+                        color: color,
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(45.0))),
                     child: Row(
@@ -333,7 +325,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
               Expanded(
                 flex: 9,
                 child: Container(
-                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  decoration: BoxDecoration(color: color),
                   child: Container(
                     decoration: BoxDecoration(
                         color: Color(0xffEAEAEA),
@@ -360,7 +352,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -387,7 +386,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -416,7 +422,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -437,7 +450,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -466,7 +486,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -487,7 +514,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -516,7 +550,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                                   height:
                                       MediaQuery.of(context).size.height / 8,
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          offset: Offset(1.0, 3.0),
+                                          blurRadius: 5.0,
+                                        ),
+                                      ],
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(25.0))),
                                   child: Center(
@@ -542,7 +583,7 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
                 height: MediaQuery.of(context).size.height / 10,
                 child: Center(
                   child: Text(
-                    'فراموش نکن برنامتو حتمی تا ساعت 9 شب برای مشاورت ارسال کن!',
+                    'فراموش نکن برنامتو حتمی تا ساعت 11 شب برای مشاورت ارسال کن!',
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
                       fontFamily: 'Aviny',
@@ -554,84 +595,6 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
             ],
           ),
         ),
-//      home: DefaultTabController(
-//        length: 7,
-//        child: Scaffold(
-//            appBar: GradientAppBar(
-//              gradient: LinearGradient(
-//                  colors: [Color(0xff102ECC), Color(0xffBFE1F9)]),
-//              centerTitle: true,
-//              bottom: PreferredSize(
-//                  child: TabBar(
-//                      isScrollable: true,
-//                      unselectedLabelColor: Colors.white.withOpacity(0.3),
-//                      indicatorColor: Colors.white,
-//                      tabs: [
-//                        Tab(
-//                          child: Text(
-//                            'شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'یک شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'دو شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'سه شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'چهار شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'پنج شنبه',
-//                            style: myStyle,
-//                          ),
-//                        ),
-//                        Tab(
-//                          child: Text(
-//                            'جمعه',
-//                            style: myStyle,
-//                          ),
-//                        )
-//                      ]),
-//                  preferredSize: Size.fromHeight(30.0)),
-//              actions: <Widget>[
-//                Padding(
-//                  padding: const EdgeInsets.only(right: 16.0, left: 16.0),
-//                  child: Center(
-//                    child: Text('${date}'),
-//                  ),
-//                ),
-//              ],
-//            ),
-//            body: TabBarView(
-//              children: <Widget>[
-//                khodnevisi(),
-//                khodnevisi(),
-//                khodnevisi(),
-//                khodnevisi(),
-//                khodnevisi(),
-//                khodnevisi(),
-//                khodnevisi(),
-//              ],
-//            )),
-//      ),
       ),
     );
   }
@@ -670,6 +633,8 @@ var twoDList = List.generate(row, (i) => List(col), growable: false);
 int row2 = getep.length;
 int col2 = 4;
 var twoDList2 = List.generate(row2, (i) => List(col2), growable: false);
+DateTime h_Test = DateTime(0);
+DateTime h_Read = DateTime(0);
 
 class Khodnevisi1 extends StatefulWidget {
   int toDay, clickDay;
@@ -695,6 +660,21 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
+    LessonsD[0][0] = 'ریاضی';
+    LessonsD[1][0] = 'فیزیک';
+    LessonsD[2][0] = 'شیمی';
+    LessonsD[3][0] = 'ادبیات';
+    LessonsD[4][0] = 'عربی';
+    LessonsD[5][0] = 'انگلیسی';
+    LessonsD[6][0] = 'دین و زندگی';
+
+    LessonsD[0][1] = 0;
+    LessonsD[1][1] = 1;
+    LessonsD[2][1] = 2;
+    LessonsD[3][1] = 3;
+    LessonsD[4][1] = 4;
+    LessonsD[5][1] = 5;
+    LessonsD[6][1] = 6;
     return
 //      getSData.isEmpty
 //          ? Material(
@@ -706,7 +686,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
 //      ) :
         SafeArea(
       child: MaterialApp(
-        debugShowMaterialGrid: false,
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
             resizeToAvoidBottomInset: false,
             backgroundColor: Color(0xffEAEAEA),
@@ -723,7 +703,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                           right: MediaQuery.of(context).size.height / 32,
                           left: MediaQuery.of(context).size.height / 32),
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(45.0),
                               bottomRight: Radius.circular(45.0))),
@@ -767,7 +747,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius:
                               BorderRadius.all(Radius.circular(45.0))),
                       child: Row(
@@ -830,100 +810,125 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                     ),
                   ),
                 ),
+                Container(
+                    child: Center(
+                      child: Text(
+                        'برای تغییر دادن هر آیتم روش کلیک کن!',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            fontFamily: 'Aviny', color: Colors.black54,fontSize: 18.0),
+                      ),
+                    )
+                ),
                 Expanded(
                     flex: 7,
-                    child: ListView.builder(
-                      itemCount: 10,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: <Widget>[
-                            Container(
-                              decoration:
-                                  BoxDecoration(color: Color(0xffEAEAEA)),
-                              child: Container(
-                                  width: pageWidth - 5.0,
-                                  height: pageHeight / 9,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    textDirection: TextDirection.rtl,
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 2,
-                                        child: Center(
-                                          child: Text(
-                                            'ریاضی',
-                                            textDirection: TextDirection.rtl,
-                                            style: TextStyle(
-                                                fontFamily: 'Aviny',
-                                                fontSize: 19.0,
-                                                color: Colors.black54),
+                    child: Container(
+                      child: ListView.builder(
+                        itemCount: LessonsD.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: <Widget>[
+                              Container(
+                                decoration:
+                                BoxDecoration(color: Color(0xffEAEAEA)),
+                                child: Container(
+                                  padding: EdgeInsets.all(0.0),
+                                    margin: EdgeInsets.all(0.0),
+                                    width: pageWidth - 5.0,
+                                    height: pageHeight / 9,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      textDirection: TextDirection.rtl,
+                                      children: <Widget>[
+                                        Expanded(
+                                          flex: 2,
+                                          child: Center(
+                                            child: Text(
+                                              '${LessonsD[index][0]}',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontFamily: 'Aviny',
+                                                  fontSize: 19.0,
+                                                  color: Colors.black54),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 3.0,
-                                      ),
-                                      Expanded(
-                                        flex: 8,
-                                        child: ListView(
-                                          scrollDirection: Axis.horizontal,
-                                          reverse: true,
-                                          children: <Widget>[
-                                            Container(
-                                              width: pageWidth / 4,
-                                              child: Center(
-                                                child: hours(
-                                                  id: index,
-                                                  n_Dd: 1,
-                                                  title: '0',
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.0,
-                                            ),
-                                            Container(
-                                              width: pageWidth / 4,
-                                              child: Center(
-                                                child: hoursTest(
-                                                  id: index,
-                                                  n_Dd: 2,
-                                                  title: '0',
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 3.0,
-                                            ),
-                                            Container(
-                                              width: pageWidth / 4,
-                                              child: Center(
-                                                child: numTest(
-                                                  id: index,
-                                                  n_Dd: 3,
-                                                  title: '0',
-                                                ),
-                                              ),
-                                            )
-                                          ],
+                                        SizedBox(
+                                          width: 3.0,
                                         ),
-                                      )
-                                    ],
-                                  )),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                left: MediaQuery.of(context).size.width / 12,
-                                right: MediaQuery.of(context).size.width / 12,
+                                        Expanded(
+                                          flex: 8,
+                                          child: ListView(
+                                            scrollDirection: Axis.horizontal,
+                                            reverse: true,
+                                            children: <Widget>[
+                                              InkWell(
+                                                onTap: () {
+                                                  H_Read(index);
+                                                },
+                                                child: Container(
+                                                  width: pageWidth / 4,
+                                                  child: Center(
+                                                      child: Text(LessonsD[index]
+                                                      [2] ==
+                                                          null
+                                                          ? '0:00'
+                                                          : '${LessonsD[index][2]}')),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 3.0,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  H_Test(index);
+                                                },
+                                                child: Container(
+                                                  width: pageWidth / 4,
+                                                  child: Center(
+                                                      child: Text(LessonsD[index]
+                                                      [3] ==
+                                                          null
+                                                          ? '0:00'
+                                                          : '${LessonsD[index][3]}')),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 3.0,
+                                              ),
+                                              Container(
+                                                width: pageWidth / 4,
+                                                child: Center(
+                                                  child: numTest(
+                                                    id: index,
+                                                    title: LessonsD[index]
+                                                    [4] ==
+                                                        null
+                                                        ? '0'
+                                                        : '${LessonsD[index][4]}',
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    )),
                               ),
-                              height: 0.5,
-                              color: Color(0xff00d170),
-                            )
-                          ],
-                        );
-                      },
+                              Container(
+                                margin: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width / 12,
+                                  right: MediaQuery.of(context).size.width / 12,
+                                ),
+                                height: 0.5,
+                                color: color,
+                              )
+                            ],
+                          );
+                        },
+                      ),
                     )),
                 Expanded(
                   flex: 1,
@@ -936,12 +941,12 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                             bottom: MediaQuery.of(context).size.height / 50),
                         width: MediaQuery.of(context).size.width / 5,
                         decoration: BoxDecoration(
-                            color: Color(0xff00d170),
+                            color: color,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(45.0))),
                         child: InkWell(
                           onTap: () {
-                            print(twoDList);
+                            print(LessonsD);
 //                    sendDataToServer();
                           },
                           child: Container(
@@ -979,186 +984,242 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
     });
     print(response.statusCode);
   }
-}
 
-class hours extends StatefulWidget {
-//  hours({Key key}) : super(key: key);
-  int id;
-  int n_Dd;
-  String title;
-
-  hours({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
-
-  @override
-  _hoursState createState() => _hoursState(id, n_Dd, title);
-}
-
-class _hoursState extends State<hours> {
-  int id;
-  int n_Dd;
-  String title;
-
-  _hoursState(this.id, this.n_Dd, this.title);
-
-  int dropdownValue1 = null;
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            child: Center(
-              child: DropdownButton<int>(
-                hint: Text(
-                  getSData.isEmpty ? '0' : '${widget.title}',
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: 'Aviny',
-                      fontSize: 19.0,
-                      color: Colors.black54),
-                ),
-                value: dropdownValue1,
-                iconSize: 24,
-                elevation: 16,
-                style: TextStyle(color: Colors.deepPurple),
-                underline: SizedBox(),
-                onChanged: (int newValue) {
-                  setState(() {
-                    dropdownValue1 = newValue;
-                    sendValue(widget.id, widget.n_Dd);
-                  });
-                },
-                items: <int>[
-                  15,
-                  30,
-                  45,
-                  60,
-                  75,
-                  90,
-                  105,
-                  120,
-                ].map<DropdownMenuItem<int>>((int value) {
-                  return DropdownMenuItem<int>(
-                    value: value,
-                    child: Text(value.toString()),
-                  );
-                }).toList(),
+  H_Read(int id) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
               ),
-            )));
-  }
-
-  sendValue(var tit, var nDd) {
-    print(dropdownValue1);
-    print('${getep[tit].id}');
-    print(tit);
-    print(nDd);
-    setState(() {
-      twoDList[tit][nDd] = dropdownValue1;
-      twoDList[tit][0] = getep[tit].id;
-    });
-  }
-}
-
-class hoursTest extends StatefulWidget {
-//  hours({Key key}) : super(key: key);
-  int id;
-  int n_Dd;
-  String title;
-
-  hoursTest({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
-
-  @override
-  _hoursTestState createState() => _hoursTestState(id, n_Dd, title);
-}
-
-class _hoursTestState extends State<hoursTest> {
-  int id;
-  int n_Dd;
-  String title;
-
-  _hoursTestState(this.id, this.n_Dd, this.title);
-
-  int dropdownValue1 = null;
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.rtl,
-        child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(20.0))),
-            child: Center(
-              child: DropdownButton<int>(
-                hint: Text(
-                  getSData.isEmpty ? '0' : '${widget.title}',
-                  textDirection: TextDirection.rtl,
-                  style: TextStyle(
-                      fontFamily: 'Aviny',
-                      fontSize: 19.0,
-                      color: Colors.black54),
-                ),
-                value: dropdownValue1,
-                iconSize: 24,
-                elevation: 16,
-                style: TextStyle(color: Colors.deepPurple),
-                underline: SizedBox(),
-                onChanged: (int newValue) {
-                  setState(() {
-                    dropdownValue1 = newValue;
-                    sendValue(widget.id, widget.n_Dd);
-                  });
-                },
-                items: <int>[
-                  15,
-                  30,
-                  45,
-                  60,
-                  75,
-                  90,
-                  105,
-                  120,
-                ].map<DropdownMenuItem<int>>((int value) {
-                  return DropdownMenuItem<int>(
-                    value: value,
-                    child: Text(value.toString()),
-                  );
-                }).toList(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'ساعت',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: color,
+                            fontSize: 25.0,
+                          ),
+                        ),
+                        Text(
+                          'دقیقه',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: color,
+                            fontSize: 25.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    color: Color(0xffeaeaea),
+                    child: Center(
+                      child: TimePickerSpinner(
+                        is24HourMode: true,
+                        normalTextStyle:
+                            TextStyle(fontSize: 24, color: Colors.black54),
+                        highlightedTextStyle:
+                            TextStyle(fontSize: 24, color: color),
+                        spacing: 50,
+                        itemHeight: 80,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setState(() {
+                            h_Read = time;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                      child: Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 50,
+                        bottom: MediaQuery.of(context).size.height / 50),
+                    width: MediaQuery.of(context).size.width / 5,
+                    decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.all(Radius.circular(45.0))),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          LessonsD[id][2] =
+                              '${h_Read.hour}' + ':' + '${h_Read.minute}';
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            'تایید',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny',
+                                fontSize: 17.0,
+                                color: Colors.black54),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                ],
               ),
-            )));
+            ),
+          );
+        });
   }
 
-  sendValue(var tit, var nDd) {
-    print(dropdownValue1);
-    print('${getep[tit].id}');
-    print(tit);
-    print(nDd);
-    setState(() {
-      twoDList[tit][nDd] = dropdownValue1;
-      twoDList[tit][0] = getep[tit].id;
-    });
+  H_Test(int id) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'ساعت',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: color,
+                            fontSize: 25.0,
+                          ),
+                        ),
+                        Text(
+                          'دقیقه',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: color,
+                            fontSize: 25.0,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    color: Color(0xffeaeaea),
+                    child: Center(
+                      child: TimePickerSpinner(
+                        is24HourMode: true,
+                        normalTextStyle:
+                            TextStyle(fontSize: 24, color: Colors.black54),
+                        highlightedTextStyle:
+                            TextStyle(fontSize: 24, color: color),
+                        spacing: 50,
+                        itemHeight: 80,
+                        isForce2Digits: true,
+                        onTimeChange: (time) {
+                          setState(() {
+                            h_Test = time;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                      child: Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height / 50,
+                        bottom: MediaQuery.of(context).size.height / 50),
+                    width: MediaQuery.of(context).size.width / 5,
+                    decoration: BoxDecoration(
+                        color: color,
+                        borderRadius: BorderRadius.all(Radius.circular(45.0))),
+                    child: InkWell(
+                      onTap: () {
+                        setState(() {
+                          LessonsD[id][3] =
+                              '${h_Test.hour}' + ':' + '${h_Test.minute}';
+                        });
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            'تایید',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontFamily: 'Aviny',
+                                fontSize: 17.0,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ))
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
 
 class numTest extends StatefulWidget {
 //  hours({Key key}) : super(key: key);
   int id;
-  int n_Dd;
   String title;
 
-  numTest({Key key, this.id, this.n_Dd, this.title}) : super(key: key);
+  numTest({Key key, this.id, this.title}) : super(key: key);
 
   @override
-  _numTestState createState() => _numTestState(id, n_Dd, title);
+  _numTestState createState() => _numTestState(id, title);
 }
 
 class _numTestState extends State<numTest> {
   int id;
-  int n_Dd;
   String title;
 
-  _numTestState(this.id, this.n_Dd, this.title);
+  _numTestState(this.id, this.title);
 
   int dropdownValue1 = null;
 
@@ -1172,22 +1233,21 @@ class _numTestState extends State<numTest> {
             child: Center(
               child: DropdownButton<int>(
                 hint: Text(
-                  getSData.isEmpty ? '0' : '${widget.title}',
+                  widget.title,
                   textDirection: TextDirection.rtl,
                   style: TextStyle(
                       fontFamily: 'Aviny',
                       fontSize: 19.0,
                       color: Colors.black54),
                 ),
-                value: dropdownValue1,
+                value: LessonsD[id][4],
                 iconSize: 24,
                 elevation: 16,
-                style: TextStyle(color: Colors.deepPurple),
+                style: TextStyle(color: Colors.black54),
                 underline: SizedBox(),
                 onChanged: (int newValue) {
                   setState(() {
-                    dropdownValue1 = newValue;
-                    sendValue(widget.id, widget.n_Dd);
+                    LessonsD[id][4] = newValue;
                   });
                 },
                 items: <int>[
@@ -1240,7 +1300,260 @@ class _numTestState extends State<numTest> {
                   47,
                   48,
                   49,
-                  50
+                  50,
+                  50,
+                  51,
+                  52,
+                  53,
+                  54,
+                  55,
+                  56,
+                  57,
+                  58,
+                  59,
+                  60,
+                  61,
+                  62,
+                  63,
+                  64,
+                  65,
+                  66,
+                  67,
+                  68,
+                  69,
+                  70,
+                  71,
+                  72,
+                  73,
+                  74,
+                  75,
+                  76,
+                  77,
+                  78,
+                  79,
+                  80,
+                  81,
+                  82,
+                  83,
+                  84,
+                  85,
+                  86,
+                  87,
+                  88,
+                  89,
+                  90,
+                  91,
+                  92,
+                  93,
+                  94,
+                  95,
+                  96,
+                  97,
+                  98,
+                  99,
+                  100,
+                  101,
+                  102,
+                  103,
+                  104,
+                  105,
+                  106,
+                  107,
+                  108,
+                  109,
+                  110,
+                  111,
+                  112,
+                  113,
+                  114,
+                  115,
+                  116,
+                  117,
+                  118,
+                  119,
+                  120,
+                  121,
+                  122,
+                  123,
+                  124,
+                  125,
+                  126,
+                  127,
+                  128,
+                  129,
+                  130,
+                  131,
+                  132,
+                  133,
+                  134,
+                  135,
+                  136,
+                  137,
+                  138,
+                  139,
+                  140,
+                  141,
+                  142,
+                  143,
+                  144,
+                  145,
+                  146,
+                  147,
+                  148,
+                  149,
+                  150,
+                  150,
+                  151,
+                  152,
+                  153,
+                  154,
+                  155,
+                  156,
+                  157,
+                  158,
+                  159,
+                  160,
+                  161,
+                  162,
+                  163,
+                  164,
+                  165,
+                  166,
+                  167,
+                  168,
+                  169,
+                  170,
+                  171,
+                  172,
+                  173,
+                  174,
+                  175,
+                  176,
+                  177,
+                  178,
+                  179,
+                  180,
+                  181,
+                  182,
+                  183,
+                  184,
+                  185,
+                  186,
+                  187,
+                  188,
+                  189,
+                  190,
+                  191,
+                  192,
+                  193,
+                  194,
+                  195,
+                  196,
+                  197,
+                  198,
+                  199,
+                  200,
+                  201,
+                  202,
+                  203,
+                  204,
+                  205,
+                  206,
+                  207,
+                  208,
+                  209,
+                  210,
+                  211,
+                  212,
+                  213,
+                  214,
+                  215,
+                  216,
+                  217,
+                  218,
+                  219,
+                  220,
+                  221,
+                  222,
+                  223,
+                  224,
+                  225,
+                  226,
+                  227,
+                  228,
+                  229,
+                  230,
+                  231,
+                  232,
+                  233,
+                  234,
+                  235,
+                  236,
+                  237,
+                  238,
+                  239,
+                  240,
+                  241,
+                  242,
+                  243,
+                  244,
+                  245,
+                  246,
+                  247,
+                  248,
+                  249,
+                  250,
+                  250,
+                  251,
+                  252,
+                  253,
+                  254,
+                  255,
+                  256,
+                  257,
+                  258,
+                  259,
+                  260,
+                  261,
+                  262,
+                  263,
+                  264,
+                  265,
+                  266,
+                  267,
+                  268,
+                  269,
+                  270,
+                  271,
+                  272,
+                  273,
+                  274,
+                  275,
+                  276,
+                  277,
+                  278,
+                  279,
+                  280,
+                  281,
+                  282,
+                  283,
+                  284,
+                  285,
+                  286,
+                  287,
+                  288,
+                  289,
+                  290,
+                  291,
+                  292,
+                  293,
+                  294,
+                  295,
+                  296,
+                  297,
+                  298,
+                  299,
+                  300
                 ].map<DropdownMenuItem<int>>((int value) {
                   return DropdownMenuItem<int>(
                     value: value,
@@ -1249,17 +1562,6 @@ class _numTestState extends State<numTest> {
                 }).toList(),
               ),
             )));
-  }
-
-  sendValue(var tit, var nDd) {
-    print(dropdownValue1);
-    print('${getep[tit].id}');
-    print(tit);
-    print(nDd);
-    setState(() {
-      twoDList[tit][nDd] = dropdownValue1;
-      twoDList[tit][0] = getep[tit].id;
-    });
   }
 }
 
@@ -1289,7 +1591,7 @@ class _khodnevisiDisableState extends State<khodnevisiDisable> {
                           right: MediaQuery.of(context).size.height / 32,
                           left: MediaQuery.of(context).size.height / 32),
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(45.0),
                               bottomRight: Radius.circular(45.0))),
@@ -1333,7 +1635,7 @@ class _khodnevisiDisableState extends State<khodnevisiDisable> {
                     ),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius:
                               BorderRadius.all(Radius.circular(45.0))),
                       child: Row(
@@ -1479,7 +1781,7 @@ class _khodnevisiDisableState extends State<khodnevisiDisable> {
                                 right: MediaQuery.of(context).size.width / 12,
                               ),
                               height: 0.5,
-                              color: Color(0xff00d170),
+                              color: color,
                             )
                           ],
                         ),
@@ -1489,22 +1791,6 @@ class _khodnevisiDisableState extends State<khodnevisiDisable> {
                 )
               ],
             )),
-      ),
-    );
-  }
-}
-
-class zoodeh extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            'امروز هنوز نیومده!!!',
-            textDirection: TextDirection.rtl,
-          ),
-        ),
       ),
     );
   }
@@ -1530,10 +1816,10 @@ class _MyPlansState extends State<MyPlans> {
               ),
               child: AppBar(
                 elevation: 0.0,
-                backgroundColor: Color(0xff00d170),
+                backgroundColor: color,
                 actions: <Widget>[
                   Container(
-                    decoration: BoxDecoration(color: Color(0xff00d170)),
+                    decoration: BoxDecoration(color: color),
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height / 40),
                     padding: EdgeInsets.only(
@@ -1590,7 +1876,7 @@ class _MyPlansState extends State<MyPlans> {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff00d170),
+                              color: color,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(45.0))),
                           child: Center(
@@ -1609,7 +1895,7 @@ class _MyPlansState extends State<MyPlans> {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                         ),
                         child: Container(
                           decoration: BoxDecoration(
@@ -1627,7 +1913,7 @@ class _MyPlansState extends State<MyPlans> {
                                     style: TextStyle(
                                       fontFamily: 'Aviny',
                                       fontSize: 22.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                     )),
                                 Text(
                                     'هنوز برنامه ای نداری برای گرفتن برنامه وارد بخش (برنامه) شو',
@@ -1635,14 +1921,14 @@ class _MyPlansState extends State<MyPlans> {
                                     style: TextStyle(
                                       fontFamily: 'Aviny',
                                       fontSize: 22.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                     )),
                                 Text('و برنامه مخصوص خودت رو دریافت کن!',
                                     textDirection: TextDirection.rtl,
                                     style: TextStyle(
                                       fontFamily: 'Aviny',
                                       fontSize: 22.0,
-                                      color: Color(0xff00d170),
+                                      color: color,
                                     )),
                               ],
                             )),
@@ -1665,10 +1951,10 @@ class _MyPlansState extends State<MyPlans> {
               ),
               child: AppBar(
                 elevation: 0.0,
-                backgroundColor: Color(0xff00d170),
+                backgroundColor: color,
                 actions: <Widget>[
                   Container(
-                    decoration: BoxDecoration(color: Color(0xff00d170)),
+                    decoration: BoxDecoration(color: color),
                     margin: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height / 40),
                     padding: EdgeInsets.only(
@@ -1712,9 +1998,7 @@ class _MyPlansState extends State<MyPlans> {
               ),
             ),
             body: Container(
-              decoration: BoxDecoration(
-                color: Color(0xff00d170)
-              ),
+              decoration: BoxDecoration(color: color),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1728,16 +2012,17 @@ class _MyPlansState extends State<MyPlans> {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff00d170),
+                              color: color,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(45.0))),
                           child: Center(
-                            child: Text('همه برنامه هایی که قبلا گرفتی اینجاست!',
-                                textDirection: TextDirection.rtl,
-                                style: TextStyle(
-                                  fontFamily: 'Aviny',
-                                  color: Colors.white,
-                                )),
+                            child:
+                                Text('همه برنامه هایی که قبلا گرفتی اینجاست!',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontFamily: 'Aviny',
+                                      color: Colors.white,
+                                    )),
                           ),
                         ),
                       ),
@@ -1745,12 +2030,13 @@ class _MyPlansState extends State<MyPlans> {
                     Expanded(
                       flex: 9,
                       child: Container(
-                        padding: EdgeInsets.all(MediaQuery.of(context).size.width / 20),
+                        padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width / 20),
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: Color(0xffEAEAEA),
-                          borderRadius:
-                          BorderRadius.only(topRight: Radius.circular(45.0)),
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(45.0)),
                         ),
                         child: Container(
                             decoration: BoxDecoration(
@@ -1775,7 +2061,7 @@ class _MyPlansState extends State<MyPlans> {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Color(0xff00d170),
+                                        color: color,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(10.0))),
                                     child: Column(
@@ -1797,7 +2083,7 @@ class _MyPlansState extends State<MyPlans> {
                                         ),
                                         Center(
                                           child: Text(
-                                            '${date1[index].toString()}',
+                                            '${date[index].toString()}',
                                             style: TextStyle(
                                                 fontFamily: 'Aviny',
                                                 fontSize: 20.0,
@@ -1818,5 +2104,30 @@ class _MyPlansState extends State<MyPlans> {
             )),
       );
     }
+  }
+}
+
+class Zoodeh extends StatefulWidget {
+  @override
+  _ZoodehState createState() => _ZoodehState();
+}
+
+class _ZoodehState extends State<Zoodeh> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Container(
+            child: Center(
+              child: Text(
+                'این روز هنوز نیومده!!!',
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                    fontFamily: 'Aviny', fontSize: 20.0, color: color),
+              ),
+            ),
+          ),
+        ));
   }
 }

@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:mmtaz/widgets/SelfKnowledge.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/barnameha.dart';
 import 'package:mmtaz/widgets/profile.dart';
 import 'package:mmtaz/Reporting/pieChartMenu.dart';
-import 'package:mmtaz/widgets/EnterPage.dart';
 import 'package:mmtaz/widgets/Wallet.dart';
-import 'package:mmtaz/widgets/feauter.dart';
 
 class LightDrawerPage extends StatelessWidget {
   static final String path = "lib/src/pages/navigation/drawer2.dart";
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   final Color primary = Colors.white;
-  final Color active = Color(0xff00d170);
+  final Color active = color;
   final Color activeT = Colors.black87;
   final Color divider = Colors.white;
 
@@ -112,25 +111,7 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             Container(
                               height: 1.0,
-                              color: Color(0xff00d170),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => feauter()));
-                              },
-                              child: _buildRow(
-                                  Icons.playlist_add_check,
-                                  Text(
-                                    "آزمون تستی",
-                                    style: myStyle,
-                                  )),
-                            ),
-                            Container(
-                              height: 1.0,
-                              color: Color(0xff00d170),
+                              color: color,
                             ),
                             InkWell(
                               onTap: () {
@@ -148,7 +129,7 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             Container(
                               height: 1.0,
-                              color: Color(0xff00d170),
+                              color: color,
                             ),
                             InkWell(
                               onTap: () {
@@ -166,7 +147,7 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             Container(
                               height: 1.0,
-                              color: Color(0xff00d170),
+                              color: color,
                             ),
                             InkWell(
                               onTap: () {
@@ -184,7 +165,7 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             Container(
                               height: 1.0,
-                              color: Color(0xff00d170),
+                              color: color,
                             ),
                             InkWell(
                               onTap: () {
@@ -202,7 +183,25 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             Container(
                               height: 1.0,
-                              color: Color(0xff00d170),
+                              color: color,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Setting()));
+                              },
+                              child: _buildRow(
+                                  Icons.playlist_add_check,
+                                  Text(
+                                    "تنظیمات",
+                                    style: myStyle,
+                                  )),
+                            ),
+                            Container(
+                              height: 1.0,
+                              color: color,
                             ),
                             InkWell(
                               onTap: () {
@@ -275,93 +274,3 @@ class LightDrawerPage extends StatelessWidget {
   }
 }
 
-//import 'package:flutter/material.dart';
-//
-//class Drawer_Menu extends StatefulWidget {
-//  @override
-//  _Drawer_MenuState createState() => _Drawer_MenuState();
-//}
-//
-//class _Drawer_MenuState extends State<Drawer_Menu> {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Drawer(
-//      child: Column(
-//        children: [
-//          Expanded(
-//            flex: 1,
-//            child: Container(
-//              width: MediaQuery.of(context).size.width * 0.85,
-//              child: DrawerHeader(
-//                child: Column(
-//                  children: <Widget>[
-//                    Expanded(
-//                      flex: 3,
-//                      child: Text('نمایه شما', textDirection: TextDirection.rtl,),
-//                    ),
-//                    Expanded(
-//                      flex: 7,
-//                      child: Container(
-//                        decoration: BoxDecoration(
-//                          borderRadius: BorderRadius.circular(50.0),
-//                        ),
-//                        child: Center(
-//                          child: Image.asset('images/flutter.png'),
-//                        ),
-//                      ),
-//                    )
-//                  ],
-//                ),
-//              ),
-//            ),
-//          ),
-//          Expanded(
-//            flex: 2,
-//            child: ListView(children: [
-//              ListTile(
-//                title: Text("خود شناسی",
-//                  textDirection: TextDirection.rtl,
-//                ),
-//                onTap: () {
-////                  Navigator.push(
-////                      context,
-////                      MaterialPageRoute(
-////                          builder: (context) => HomePage()));
-//                },
-//              ),
-//              ListTile(
-//                title: Text("کیف پول",
-//                  textDirection: TextDirection.rtl,
-//                ),
-//                onTap: () {
-//                  Navigator.pop(context);},
-//              ),
-//              ListTile(
-//                title: Text("آزمون تستی",
-//                  textDirection: TextDirection.rtl,
-//                ),
-//                onTap: () {
-//                },
-//              ),
-//              ListTile(
-//                title: Text("بانک سوال",
-//                  textDirection: TextDirection.rtl,
-//                ),
-//                onTap: () {
-//                  Navigator.pop(context);
-//                },
-//              ),
-//              ListTile(
-//                title: Text("گزارش گیری",
-//                  textDirection: TextDirection.rtl,
-//                ),
-//                onTap: () {
-//                  Navigator.pop(context);},
-//              ),
-//            ]),
-//          )
-//        ],
-//      ),
-//    );
-//  }
-//}

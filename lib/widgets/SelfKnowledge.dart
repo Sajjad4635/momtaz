@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class SelfKnowledge extends StatefulWidget {
   @override
@@ -17,10 +18,10 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
             ),
             child: AppBar(
               elevation: 0.0,
-              backgroundColor: Color(0xff00d170),
+              backgroundColor: color,
               actions: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  decoration: BoxDecoration(color: color),
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 40),
                   padding: EdgeInsets.only(
@@ -64,7 +65,7 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
             ),
           ),
           body: Container(
-            decoration: BoxDecoration(color: Color(0xff00d170)),
+            decoration: BoxDecoration(color: color),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +79,7 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
                       ),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Color(0xff00d170),
+                            color: color,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(45.0))),
                         child: Center(
@@ -121,7 +122,7 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
                                       top: MediaQuery.of(context).size.height /
                                           40.0),
                                   decoration: BoxDecoration(
-                                      color: Color(0xff00d170),
+                                      color: color,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(10.0))),
                                   child: Row(

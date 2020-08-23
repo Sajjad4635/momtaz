@@ -45,6 +45,7 @@ dev_dependencies:
   line_awesome_flutter: ^1.0.1
   flutter_svg: ^0.17.0
   keyboard_visibility: ^0.5.6
+  flutter_time_picker_spinner: ^1.0.6+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -100,6 +101,10 @@ flutter:
     - images/bac4.png
     - images/bac.png
     - images/back.png
+    - images/phoneNumber.png
+    - images/Warning-rafiki.png
+    - images/Confirmed.png
+#------------Gifs-------------
     - images/Group_Chat.gif
     - images/Security.gif
     - images/Schedule.gif

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/raidioButton.dart';
 
 class wallet extends StatefulWidget {
@@ -20,10 +21,10 @@ class _walletState extends State<wallet> {
             ),
             child: AppBar(
               elevation: 0.0,
-              backgroundColor: Color(0xff00d170),
+              backgroundColor: color,
               actions: <Widget>[
                 Container(
-                  decoration: BoxDecoration(color: Color(0xff00d170)),
+                  decoration: BoxDecoration(color: color),
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 40),
                   padding: EdgeInsets.only(
@@ -67,7 +68,7 @@ class _walletState extends State<wallet> {
             ),
           ),
           body: Container(
-            decoration: BoxDecoration(color: Color(0xff00d170)),
+            decoration: BoxDecoration(color: color),
             child: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,7 +82,7 @@ class _walletState extends State<wallet> {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xff00d170),
+                              color: color,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(45.0))),
                           child: Center(
@@ -127,7 +128,7 @@ class _walletState extends State<wallet> {
                                                 50.0,
                                       ),
                                       decoration: BoxDecoration(
-                                          color: Color(0xff00d170),
+                                          color: color,
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(45.0))),
                                       child: Row(
@@ -170,7 +171,7 @@ class _walletState extends State<wallet> {
                                     width:
                                         MediaQuery.of(context).size.width / 4,
                                     decoration: BoxDecoration(
-                                        color: Color(0xff00d170),
+                                        color: color,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(45.0))),
                                     child: Center(

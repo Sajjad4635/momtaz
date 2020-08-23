@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/Reporting/charts.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class pieChartHome extends StatefulWidget {
   @override
@@ -18,10 +19,10 @@ class _pieChartHomeState extends State<pieChartHome> {
           ),
           child: AppBar(
             elevation: 0.0,
-            backgroundColor: Color(0xff00d170),
+            backgroundColor: color,
             actions: <Widget>[
               Container(
-                decoration: BoxDecoration(color: Color(0xff00d170)),
+                decoration: BoxDecoration(color: color),
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 40),
                 padding: EdgeInsets.only(
@@ -76,7 +77,7 @@ class _pieChartHomeState extends State<pieChartHome> {
                       indicator: BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
-                              color: Color(0xff00d170)
+                              color: color
                             )
                           )
 //                          color: Color(0xff00d170)
@@ -96,7 +97,7 @@ class _pieChartHomeState extends State<pieChartHome> {
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   fontFamily: 'Aviny',
-                                  color: Color(0xff00d170),
+                                  color: color,
                                   fontSize: 18.0,
                                 ),
                               ),
@@ -117,7 +118,7 @@ class _pieChartHomeState extends State<pieChartHome> {
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   fontFamily: 'Aviny',
-                                  color: Color(0xff00d170),
+                                  color: color,
                                   fontSize: 18.0,
                                 ),
                               ),
@@ -138,7 +139,7 @@ class _pieChartHomeState extends State<pieChartHome> {
                                 textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   fontFamily: 'Aviny',
-                                  color: Color(0xff00d170),
+                                  color: color,
                                   fontSize: 18.0,
                                 ),
                               ),

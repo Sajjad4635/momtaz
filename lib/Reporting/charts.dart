@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:mmtaz/widgets/Setting.dart';
 
 class Pie_chart_general extends StatefulWidget {
   @override
@@ -110,7 +111,7 @@ class _Pie_chart_dedicatedState extends State<Pie_chart_dedicated> {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,
@@ -137,7 +138,7 @@ class _Pie_chart_dedicatedState extends State<Pie_chart_dedicated> {
         ),
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,
@@ -164,7 +165,7 @@ class _Pie_chart_dedicatedState extends State<Pie_chart_dedicated> {
         ),
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,
@@ -206,7 +207,7 @@ class _Pie_chart_totalLessonsState extends State<Pie_chart_totalLessons> {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,
@@ -233,7 +234,7 @@ class _Pie_chart_totalLessonsState extends State<Pie_chart_totalLessons> {
         ),
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,
@@ -260,7 +261,7 @@ class _Pie_chart_totalLessonsState extends State<Pie_chart_totalLessons> {
         ),
         Container(
           decoration: BoxDecoration(
-              color: Color(0xff00d170)
+              color: color
           ),
           margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height/50,

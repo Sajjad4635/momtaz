@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/MessageChilds/ChatPageChild.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class MessageBox extends StatefulWidget {
   @override
@@ -39,10 +40,10 @@ class _MessageBoxState extends State<MessageBox>
 
   Widget _animationBuilder(BuildContext context, Widget child) {
     return Container(
-      decoration: BoxDecoration(color: Color(0xff00d170)),
+      decoration: BoxDecoration(color: color),
       child: Container(
         decoration: BoxDecoration(
-            color: Color(0xff00d170),
+            color: color,
 //          color: Color(0xffEAEAEA),
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(25.0),
@@ -57,7 +58,7 @@ class _MessageBoxState extends State<MessageBox>
                 decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color(0xff00d170),
+                      color: color,
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(45.0))),
                   child: Center(
@@ -85,87 +86,87 @@ class _MessageBoxState extends State<MessageBox>
                 child: Column(
                   children: <Widget>[
                     Expanded(
-                      flex: 5,
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              flex: 8,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              studentaChatPage1()));
-                                },
-                                child: Container(
+                        flex: 5,
+                        child: Container(
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 8,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                chatPageChild()));
+                                  },
+                                  child: Container(
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
-                                    child: Image(
-                                      image: new AssetImage('images/Group_Chat.gif'),
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                child: Center(
-                                  child: Text(
-                                    'ارتباط با مشاور',
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Color(0xff00d170),
-                                        fontFamily: 'Aviny'),
-                                  ),
+                                      child: Image(
+                                    image:
+                                        new AssetImage('images/Group_Chat.gif'),
+                                  )),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      )
-                    ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  child: Center(
+                                    child: Text(
+                                      'ارتباط با مشاور',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: color,
+                                          fontFamily: 'Aviny'),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )),
                     Expanded(
-                      flex: 5,
-                      child: Container(
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              flex: 8,
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              studentaChatPage2()));
-                                },
-                                child: Container(
+                        flex: 5,
+                        child: Container(
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 8,
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                chatPageParent()));
+                                  },
+                                  child: Container(
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
-                                    child: Image(
-                                      image: new AssetImage('images/Security.gif'),
-                                    )),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                child: Center(
-                                  child: Text(
-                                    'پیام خصوصی به مشاور',
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Color(0xff00d170),
-                                        fontFamily: 'Aviny'),
-                                  ),
+                                      child: Image(
+                                    image:
+                                        new AssetImage('images/Security.gif'),
+                                  )),
                                 ),
                               ),
-                            )
-                          ],
-                        ),
-                      )
-                    ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  child: Center(
+                                    child: Text(
+                                      'پیام خصوصی به مشاور',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: color,
+                                          fontFamily: 'Aviny'),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )),
                   ],
                 ),
               ),

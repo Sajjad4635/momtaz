@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/widgets/EnterPage.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/Wallet.dart';
 import 'package:mmtaz/widgets/WeeklySchedule.dart';
 
@@ -20,10 +21,10 @@ class _ProfileState extends State<Profile> {
           ),
           child: AppBar(
             elevation: 0.0,
-            backgroundColor: Color(0xff00d170),
+            backgroundColor: color,
             actions: <Widget>[
               Container(
-                decoration: BoxDecoration(color: Color(0xff00d170)),
+                decoration: BoxDecoration(color: color),
                 margin: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height / 40),
                 padding: EdgeInsets.only(
@@ -76,10 +77,10 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(color: Color(0xff00d170)),
+          decoration: BoxDecoration(color: color),
           child: Container(
             decoration: BoxDecoration(
-                color: Color(0xff00d170),
+                color: color,
 //          color: Color(0xffEAEAEA),
                 borderRadius: BorderRadius.only(
                     topRight: Radius.circular(25.0),
@@ -94,7 +95,7 @@ class _ProfileState extends State<Profile> {
                     decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xff00d170),
+                          color: color,
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(45.0))),
                       child: Center(
@@ -127,7 +128,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -161,7 +162,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -195,7 +196,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -229,7 +230,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -263,7 +264,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -297,7 +298,7 @@ class _ProfileState extends State<Profile> {
                             child: Container(
                                 height: MediaQuery.of(context).size.height / 10,
                                 decoration: BoxDecoration(
-                                    color: Color(0xff00d170),
+                                    color: color,
                                     borderRadius: BorderRadius.all(
                                         Radius.circular(10000.0))),
                                 child: Row(
@@ -344,7 +345,7 @@ class _ProfileState extends State<Profile> {
                                             MediaQuery.of(context).size.height /
                                                 10,
                                         decoration: BoxDecoration(
-                                            color: Color(0xff00d170),
+                                            color: color,
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10000.0))),
                                         child: Center(
@@ -372,7 +373,7 @@ class _ProfileState extends State<Profile> {
                                             MediaQuery.of(context).size.height /
                                                 10,
                                         decoration: BoxDecoration(
-                                            color: Color(0xff00d170),
+                                            color: color,
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10000.0))),
                                         child: Center(

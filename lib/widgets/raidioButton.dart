@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
 class CustomRadio extends StatefulWidget {
   @override
@@ -41,7 +42,7 @@ class CustomRadioState extends State<CustomRadio> {
                   itemBuilder: (BuildContext context, int index) {
                     return new InkWell(
                       //highlightColor: Colors.red,
-                      splashColor: Color(0xff00d170),
+                      splashColor: color,
                       onTap: () {
                         setState(() {
                           sampleData.forEach((element) => element.isSelected = false);
@@ -84,11 +85,11 @@ class RadioItem extends StatelessWidget {
                 ),
                 decoration: new BoxDecoration(
                   color:
-                      _item.isSelected ? Color(0xff00d170) : Colors.transparent,
+                      _item.isSelected ? color : Colors.transparent,
                   border: new Border.all(
                       width: 1.0,
                       color:
-                          _item.isSelected ? Color(0xff00d170) : Colors.grey),
+                          _item.isSelected ? color : Colors.grey),
                   borderRadius:
                       const BorderRadius.all(const Radius.circular(2.0)),
                 ),
