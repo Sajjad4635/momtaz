@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/MessageChilds/MessagesModel.dart';
+import 'package:mmtaz/MessageChilds/fechDataMessages.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+
+List<getMessagesFromServer> getChats = new List();
 
 class chatPageChild extends StatefulWidget {
   @override
@@ -17,33 +21,40 @@ class _chatPageChildState extends State<chatPageChild> {
     Message(0, "خوبی؟"),
     Message(0, "سلام"),
   ];
+
   _save() async {
     if (_controller.text.isEmpty) return;
     FocusScope.of(context).requestFocus(FocusNode());
     setState(() {
-      messages.insert(0, Message(0, _controller.text));
+      messages.insert(0, Message(1, _controller.text));
       _controller.clear();
     });
   }
+
   Row _buildMessageRow(Message message, {bool current}) {
     double c_width = MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment:
-      current ? MainAxisAlignment.end : MainAxisAlignment.start,
+          current ? MainAxisAlignment.end : MainAxisAlignment.start,
       crossAxisAlignment:
-      current ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          current ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(width: current ? 20.0 : 20.0),
         if (!current) ...[
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(100.0)),
-            child: Image.asset('images/4.jpg', width: 30.0, height: 30.0,fit: BoxFit.cover,),
+            child: Image.asset(
+              'images/11.jpg',
+              width: 30.0,
+              height: 30.0,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 5.0),
         ],
         Container(
           constraints:
-          BoxConstraints(minWidth: c_width / 5, maxWidth: c_width / 2),
+              BoxConstraints(minWidth: c_width / 5, maxWidth: c_width / 2),
           decoration: BoxDecoration(
               color: current ? Theme.of(context).primaryColor : Colors.white,
               borderRadius: BorderRadius.circular(10.0)),
@@ -64,14 +75,24 @@ class _chatPageChildState extends State<chatPageChild> {
           const SizedBox(width: 5.0),
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(100.0)),
-            child: Image.asset('images/5.jpg', width: 30.0, height: 30.0,fit: BoxFit.cover,),
-          ),],
+            child: Image.asset(
+              'images/12.jpg',
+              width: 30.0,
+              height: 30.0,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
         SizedBox(width: current ? 20.0 : 30.0),
       ],
     );
   }
+
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      getMessages();
+    });
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -107,7 +128,7 @@ class _chatPageChildState extends State<chatPageChild> {
                           width: MediaQuery.of(context).size.height / 40,
                         ),
                         CircleAvatar(
-                          backgroundImage: AssetImage('images/5.jpg'),
+                          backgroundImage: AssetImage('images/13.jpg'),
                           backgroundColor: Colors.transparent,
                         ),
                         SizedBox(
@@ -133,80 +154,82 @@ class _chatPageChildState extends State<chatPageChild> {
                   flex: 9,
                   child: Container(
                       child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(MediaQuery.of(context).size.width/30.0),
-                              child: ListView.separated(
-                                physics: BouncingScrollPhysics(),
-                                separatorBuilder: (context, index) {
-                                  return const SizedBox(height: 10.0);
-                                },
-                                reverse: true,
-                                itemCount: messages.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  Message m = messages[index];
-                                  if (m.user == 0) return _buildMessageRow(m, current: true);
-                                  return _buildMessageRow(m, current: false);
-                                },
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width / 30.0),
+                          child: ListView.separated(
+                            physics: BouncingScrollPhysics(),
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: 10.0);
+                            },
+                            reverse: true,
+                            itemCount: messages.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              Message m = messages[index];
+                              if (m.user == 0)
+                                return _buildMessageRow(m, current: true);
+                              return _buildMessageRow(m, current: false);
+                            },
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.height / 32,
+                            left: MediaQuery.of(context).size.height / 32,
+                            bottom: MediaQuery.of(context).size.height / 50),
+                        decoration: BoxDecoration(
+                            color: Color(0xffEAEAEA),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(45.0))),
+                        child: Row(
+                          textDirection: TextDirection.rtl,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: IconButton(
+                                onPressed: _save,
+                                icon: Icon(Icons.send),
+                                color: Colors.black54,
                               ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                right: MediaQuery.of(context).size.height / 32,
-                                left: MediaQuery.of(context).size.height / 32,
-                                bottom: MediaQuery.of(context).size.height / 50),
-                            decoration: BoxDecoration(
-                                color: Color(0xffEAEAEA),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(45.0))),
-                            child: Row(
-                              textDirection: TextDirection.rtl,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  child: IconButton(
-                                    onPressed: _save,
-                                    icon: Icon(Icons.send),
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.attach_file,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 7,
-                                  child: Container(
-                                    child: TextField(
-                                      controller: _controller,
-                                      textAlign: TextAlign.right,
-                                      decoration: new InputDecoration(
-                                        hintText: "پیام",
-                                        hintStyle: TextStyle(fontFamily: 'Aviny'),
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.insert_emoticon,
-                                    color: Colors.black54,
-                                  ),
-                                )
-                              ],
+                            Expanded(
+                              flex: 1,
+                              child: Icon(
+                                Icons.attach_file,
+                                color: Colors.black54,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).viewInsets.bottom),
-                        ],
-                      )),
+                            Expanded(
+                              flex: 7,
+                              child: Container(
+                                child: TextField(
+                                  controller: _controller,
+                                  textAlign: TextAlign.right,
+                                  decoration: new InputDecoration(
+                                    hintText: "پیام",
+                                    hintStyle: TextStyle(fontFamily: 'Aviny'),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Icon(
+                                Icons.insert_emoticon,
+                                color: Colors.black54,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).viewInsets.bottom),
+                    ],
+                  )),
                 ),
               ],
             ),
@@ -214,6 +237,14 @@ class _chatPageChildState extends State<chatPageChild> {
         ),
       ),
     );
+  }
+
+  getMessages() async {
+    var response = await getChatsFromServer.getchatsfromserver();
+    setState(() {
+      getChats.clear();
+      getChats.addAll(response['chats']);
+    });
   }
 }
 
@@ -240,6 +271,7 @@ class _chatPageParentState extends State<chatPageParent> {
     MessageP(0, "خوبی؟"),
     MessageP(0, "سلام"),
   ];
+
   _save() async {
     if (_controller.text.isEmpty) return;
     FocusScope.of(context).requestFocus(FocusNode());
@@ -248,25 +280,31 @@ class _chatPageParentState extends State<chatPageParent> {
       _controller.clear();
     });
   }
+
   Row _buildMessageRow(MessageP messageP, {bool current}) {
     double c_width = MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment:
-      current ? MainAxisAlignment.end : MainAxisAlignment.start,
+          current ? MainAxisAlignment.end : MainAxisAlignment.start,
       crossAxisAlignment:
-      current ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+          current ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(width: current ? 20.0 : 20.0),
         if (!current) ...[
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(100.0)),
-            child: Image.asset('images/4.jpg', width: 30.0, height: 30.0,fit: BoxFit.cover,),
+            child: Image.asset(
+              'images/4.jpg',
+              width: 30.0,
+              height: 30.0,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 5.0),
         ],
         Container(
           constraints:
-          BoxConstraints(minWidth: c_width / 5, maxWidth: c_width / 2),
+              BoxConstraints(minWidth: c_width / 5, maxWidth: c_width / 2),
           decoration: BoxDecoration(
               color: current ? Theme.of(context).primaryColor : Colors.white,
               borderRadius: BorderRadius.circular(10.0)),
@@ -287,12 +325,19 @@ class _chatPageParentState extends State<chatPageParent> {
           const SizedBox(width: 5.0),
           ClipRRect(
             borderRadius: BorderRadius.all(Radius.circular(100.0)),
-            child: Image.asset('images/5.jpg', width: 30.0, height: 30.0,fit: BoxFit.cover,),
-          ),],
+            child: Image.asset(
+              'images/5.jpg',
+              width: 30.0,
+              height: 30.0,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
         SizedBox(width: current ? 20.0 : 30.0),
       ],
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -356,80 +401,82 @@ class _chatPageParentState extends State<chatPageParent> {
                   flex: 9,
                   child: Container(
                       child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.all(MediaQuery.of(context).size.width/30.0),
-                              child: ListView.separated(
-                                physics: BouncingScrollPhysics(),
-                                separatorBuilder: (context, index) {
-                                  return const SizedBox(height: 10.0);
-                                },
-                                reverse: true,
-                                itemCount: messages.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  MessageP mp = messages[index];
-                                  if (mp.user == 0) return _buildMessageRow(mp, current: true);
-                                  return _buildMessageRow(mp, current: false);
-                                },
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width / 30.0),
+                          child: ListView.separated(
+                            physics: BouncingScrollPhysics(),
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: 10.0);
+                            },
+                            reverse: true,
+                            itemCount: messages.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              MessageP mp = messages[index];
+                              if (mp.user == 0)
+                                return _buildMessageRow(mp, current: true);
+                              return _buildMessageRow(mp, current: false);
+                            },
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.height / 32,
+                            left: MediaQuery.of(context).size.height / 32,
+                            bottom: MediaQuery.of(context).size.height / 50),
+                        decoration: BoxDecoration(
+                            color: Color(0xffEAEAEA),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(45.0))),
+                        child: Row(
+                          textDirection: TextDirection.rtl,
+                          children: <Widget>[
+                            Expanded(
+                              flex: 1,
+                              child: IconButton(
+                                onPressed: _save,
+                                icon: Icon(Icons.send),
+                                color: Colors.black54,
                               ),
                             ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                right: MediaQuery.of(context).size.height / 32,
-                                left: MediaQuery.of(context).size.height / 32,
-                                bottom: MediaQuery.of(context).size.height / 50),
-                            decoration: BoxDecoration(
-                                color: Color(0xffEAEAEA),
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(45.0))),
-                            child: Row(
-                              textDirection: TextDirection.rtl,
-                              children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  child: IconButton(
-                                    onPressed: _save,
-                                    icon: Icon(Icons.send),
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.attach_file,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 7,
-                                  child: Container(
-                                    child: TextField(
-                                      controller: _controller,
-                                      textAlign: TextAlign.right,
-                                      decoration: new InputDecoration(
-                                        hintText: "پیام",
-                                        hintStyle: TextStyle(fontFamily: 'Aviny'),
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Icon(
-                                    Icons.insert_emoticon,
-                                    color: Colors.black54,
-                                  ),
-                                )
-                              ],
+                            Expanded(
+                              flex: 1,
+                              child: Icon(
+                                Icons.attach_file,
+                                color: Colors.black54,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                              height: MediaQuery.of(context).viewInsets.bottom),
-                        ],
-                      )),
+                            Expanded(
+                              flex: 7,
+                              child: Container(
+                                child: TextField(
+                                  controller: _controller,
+                                  textAlign: TextAlign.right,
+                                  decoration: new InputDecoration(
+                                    hintText: "پیام",
+                                    hintStyle: TextStyle(fontFamily: 'Aviny'),
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Icon(
+                                Icons.insert_emoticon,
+                                color: Colors.black54,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).viewInsets.bottom),
+                    ],
+                  )),
                 ),
               ],
             ),

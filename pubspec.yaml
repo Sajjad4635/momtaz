@@ -59,62 +59,33 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/1.png
-    - images/2.png
-    - images/3.jpg
-    - images/4.jpg
-    - images/4.png
-    - images/5.jpg
-    - images/55.jpg
-    - images/6.jpg
-    - images/7.png
-    - images/8.jpg
     - images/11.jpg
     - images/12.jpg
     - images/13.jpg
-    - images/23.jpg
-    - images/24.jpg
-    - images/25.png
-    - images/111.png
-    - images/111.jpg
-    - images/222.jpg
-    - images/1111.jpg
-    - images/1111.png
-    - images/2222.png
-    - images/3333.jpg
-    - images/4444.jpg
-    - images/55555.webp
-    - images/6666.jpg
-    - images/7777.jpg
-    - images/8888.jpg
-    - images/9999.jpg
     - images/owl.png
-    - images/phone_number.png
-    - images/verification_code.png
     - images/register.png
-    - images/1.jpg
-    - images/2.jpg
-    - images/list.png
-    - images/bac1.jpg
-    - images/bac2.jpg
-    - images/bac3.jpg
-    - images/bac4.png
-    - images/bac.png
-    - images/back.png
-    - images/phoneNumber.png
-    - images/Warning-rafiki.png
-    - images/Confirmed.png
-#------------Gifs-------------
-    - images/Group_Chat.gif
-    - images/Security.gif
-    - images/Schedule.gif
-    - images/Lastplans.gif
-    - images/Market_launch.gif
-    - images/Visual_data.gif
-    - images/Azmoon.gif
-    - images/Calendar.gif
-#----------------svg-----------------
-    - svg/group-chat-animate.svg
+    - images/ghalamchi.png
+    - images/gaj.png
+    - images/gozinedo.png
+    - images/Calendar-amico.png
+    - images/Confirmed-bro.png
+    - images/CustomerSurvey-cuate.png
+    - images/Designer-rafiki.png
+    - images/Documents-amico.png
+    - images/gaj.png
+    - images/ghalamchi.png
+    - images/gozinedo.png
+    - images/GroupChat-amico.png
+    - images/Marketlaunch-pana.png
+    - images/Mention-amico.png
+    - images/Mobilelogin-bro.png
+    - images/Schedule-amico.png
+    - images/Scrumboard-rafiki.png
+    - images/Securedata-pana.png
+    - images/Timemanagement-rafiki.png
+    - images/Visualdata-pana.png
+    - images/Wallet-bro.png
+    - images/CustomerSurvey-amico.png
   fonts:
     - family: Aviny
       fonts:

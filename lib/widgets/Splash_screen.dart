@@ -37,44 +37,45 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-var token;
+
+  var token;
+
   chekLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     token = prefs.getString('myIp_token');
 
     if (await checkInternetConnection()) {
-      if(token == null){
-        navigationToPhone();
-      }else{
-        navigationToFirstScreen();
+      if (token == null) {
+        Timer(Duration(seconds: 3), navigationToPhone);
+      } else {
+        Timer(Duration(seconds: 3), navigationToFirstScreen);
       }
     } else {
-      _scaffoldKey.currentState
-          .showSnackBar(new SnackBar(
-        duration: new Duration(hours: 2),
+      _scaffoldKey.currentState.showSnackBar(new SnackBar(
+          duration: new Duration(hours: 2),
           content: new GestureDetector(
-        onTap: (){
-          _scaffoldKey.currentState.hideCurrentSnackBar();
-          chekLogin();
-        },
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            textDirection: TextDirection.rtl,
-            children: <Widget>[
-              Text('شما آفلاین هستید برای تلاش مجدد کلیک کنید!',
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                fontFamily: 'Aviny',
-                fontSize: 18.0
-              ),
-              ),
-              Icon(Icons.signal_wifi_off, color: Colors.white,)
-            ],
-          ),
-        )
-      )));
+              onTap: () {
+                _scaffoldKey.currentState.hideCurrentSnackBar();
+                chekLogin();
+              },
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  textDirection: TextDirection.rtl,
+                  children: <Widget>[
+                    Text(
+                      'شما آفلاین هستید برای تلاش مجدد کلیک کنید!',
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(fontFamily: 'Aviny', fontSize: 18.0),
+                    ),
+                    Icon(
+                      Icons.signal_wifi_off,
+                      color: Colors.white,
+                    )
+                  ],
+                ),
+              ))));
     }
   }
 

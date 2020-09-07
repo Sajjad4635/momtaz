@@ -18,13 +18,13 @@ class FirstScreen extends StatefulWidget {
 
 class _FirstScreenState extends State<FirstScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  int _selectedIndex = 0;
+  int _selectedIndex = 4;
   static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    MessageBox(),
-    planning_Office(),
+    Reporting(),
     Planning(),
-    Reporting()
+    planning_Office(),
+    MessageBox(),
+    HomePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -103,35 +103,32 @@ class _FirstScreenState extends State<FirstScreen> {
             child: Container(
 //              margin: const EdgeInsets.only(top: 30.0),
               decoration: BoxDecoration(
-                  color: Color(0xffEAEAEA),
-                  ),
+                color: Color(0xffEAEAEA),
+              ),
               child: _widgetOptions.elementAt(_selectedIndex),
             ),
           ),
           endDrawer: LightDrawerPage(),
           bottomNavigationBar: Container(
 //        margin: const EdgeInsets.only(top: 10.0),
-              height: MediaQuery.of(context).size.height / 10,
+              height: MediaQuery.of(context).size.height / 8,
 //        margin: const EdgeInsets.only(right: 3.0, left: 3.0),
               decoration: BoxDecoration(
-//          color: Color(0xffEAEAEA),
-
-                  ),
+                color: Colors.transparent,
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(45.0),
                     topRight: Radius.circular(45.0)),
                 child: BottomNavigationBar(
-                  elevation: 0.0,
                   items: [
-                    new BottomNavigationBarItem(
+                    BottomNavigationBarItem(
                       backgroundColor: Colors.white,
                       icon: _selectedIndex == 0
-                          ? Icon(Icons.home)
-                          : Icon(LineAwesomeIcons.home),
+                          ? FaIcon(FontAwesomeIcons.solidChartBar)
+                          : FaIcon(FontAwesomeIcons.chartBar),
                       title: Text(
-                        'صفحه اصلی',
-                        textDirection: TextDirection.rtl,
+                        'گزارش ها',
                         style: TextStyle(
                           fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,
@@ -141,10 +138,10 @@ class _FirstScreenState extends State<FirstScreen> {
                     BottomNavigationBarItem(
                       backgroundColor: Colors.white,
                       icon: _selectedIndex == 1
-                          ? Icon(Icons.mail)
-                          : Icon(Icons.mail_outline),
+                          ? FaIcon(FontAwesomeIcons.fileContract)
+                          : Icon(LineAwesomeIcons.file_contract),
                       title: Text(
-                        'صندوق پیام',
+                        'برنامه',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
                           fontSize: 12.0, fontFamily: 'Aviny',
@@ -169,10 +166,10 @@ class _FirstScreenState extends State<FirstScreen> {
                     BottomNavigationBarItem(
                       backgroundColor: Colors.white,
                       icon: _selectedIndex == 3
-                          ? FaIcon(FontAwesomeIcons.fileContract)
-                          : Icon(LineAwesomeIcons.file_contract),
+                          ? Icon(Icons.mail)
+                          : Icon(Icons.mail_outline),
                       title: Text(
-                        'برنامه',
+                        'صندوق پیام',
                         textDirection: TextDirection.rtl,
                         style: TextStyle(
                           fontSize: 12.0, fontFamily: 'Aviny',
@@ -183,10 +180,11 @@ class _FirstScreenState extends State<FirstScreen> {
                     BottomNavigationBarItem(
                       backgroundColor: Colors.white,
                       icon: _selectedIndex == 4
-                          ? FaIcon(FontAwesomeIcons.solidChartBar)
-                          : FaIcon(FontAwesomeIcons.chartBar),
+                          ? Icon(Icons.home)
+                          : Icon(LineAwesomeIcons.home),
                       title: Text(
-                        'گزارش ها',
+                        'صفحه اصلی',
+                        textDirection: TextDirection.rtl,
                         style: TextStyle(
                           fontSize: 12.0, fontFamily: 'Aviny',
 //              color: Colors.black45,

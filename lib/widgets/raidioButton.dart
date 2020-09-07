@@ -15,8 +15,6 @@ class CustomRadioState extends State<CustomRadio> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    sampleData.add(new RadioModel(false, '1000', 'تومان', 1000));
-    sampleData.add(new RadioModel(false, '2000', 'تومان', 2000));
     sampleData.add(new RadioModel(false, '5000', 'تومان', 5000));
     sampleData.add(new RadioModel(false, '10000', 'تومان', 10000));
     sampleData.add(new RadioModel(false, '20000', 'تومان', 20000));

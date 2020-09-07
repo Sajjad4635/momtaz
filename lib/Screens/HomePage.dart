@@ -1,7 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee_widget/marquee_widget.dart';
+import 'package:mmtaz/HomePageChilds/HomePageModel.dart';
+import 'package:mmtaz/HomePageChilds/fetchHomePage.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+
+List<imageSlider> sliderImages = new List();
+var message;
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,12 +21,16 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      getHomePage();
+    });
     return Container(
       child: Column(
         children: <Widget>[
           Expanded(
             flex: 1,
             child: Container(
+              width: MediaQuery.of(context).size.width,
               color: Color(0xffeaeaea),
               child: Container(
                 decoration: BoxDecoration(
@@ -30,16 +39,16 @@ class _HomePageState extends State<HomePage> {
                     bottomLeft: Radius.circular(45.0),
                   )
                 ),
-                child: Center(
+                child: FittedBox(
+                  fit: BoxFit.contain,
                   child: Text(
                     'موفقیت اتفاقی نیست!',
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
-                        fontSize: 25.0,
                         color: Colors.white,
                         fontFamily: 'Aviny'),
-                  )
-                ),
+                  ),
+                )
               ),
             ),
           ),
@@ -177,8 +186,19 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
             //clipBehavior: Clip.antiAlias,
             borderRadius: new BorderRadius.circular(100.0),
-            child: Image.asset('images/5.jpg', fit: BoxFit.cover)),
+            child: Image.asset('images/11.jpg', fit: BoxFit.cover)),
       )),
     );
   }
+
+  getHomePage() async{
+      var response = await getimageSlider
+          .getimages();
+      setState(() {
+        sliderImages.clear();
+        message = response['message'];
+        sliderImages.addAll(
+            response['slider']);
+      });
+    }
 }

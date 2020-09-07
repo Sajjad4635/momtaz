@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/SelfKnowledgeChilds/preExamPage.dart';
 import 'package:mmtaz/widgets/Setting.dart';
 
 class SelfKnowledge extends StatefulWidget {
@@ -113,7 +114,13 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
                             itemCount: 10,
                             itemBuilder: (BuildContext context, int index) {
                               return InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              preExamPage()));
+                                },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   height:
@@ -177,8 +184,7 @@ class _SelfKnowledgeState extends State<SelfKnowledge> {
                                           child: Center(
                                             child: Text(
                                               '20 سوال',
-                                              textDirection:
-                                              TextDirection.rtl,
+                                              textDirection: TextDirection.rtl,
                                               style: TextStyle(
                                                 fontSize: 25.0,
                                                 fontFamily: 'Aviny',

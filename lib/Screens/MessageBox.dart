@@ -55,18 +55,19 @@ class _MessageBoxState extends State<MessageBox>
             Expanded(
               flex: 1,
               child: Container(
+                width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Color(0xffEAEAEA)),
                 child: Container(
                   decoration: BoxDecoration(
                       color: color,
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(45.0))),
-                  child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.contain,
                     child: Text(
                       'با مشاورت در ارتباط باش!',
                       textDirection: TextDirection.rtl,
                       style: TextStyle(
-                          fontSize: 25.0,
                           color: Colors.white,
                           fontFamily: 'Aviny'),
                     ),
@@ -105,7 +106,7 @@ class _MessageBoxState extends State<MessageBox>
 //                height: MediaQuery.of(context).size.height / 4,
                                       child: Image(
                                     image:
-                                        new AssetImage('images/Group_Chat.gif'),
+                                        new AssetImage('images/GroupChat-amico.png'),
                                   )),
                                 ),
                               ),
@@ -146,7 +147,7 @@ class _MessageBoxState extends State<MessageBox>
 //                height: MediaQuery.of(context).size.height / 4,
                                       child: Image(
                                     image:
-                                        new AssetImage('images/Security.gif'),
+                                        new AssetImage('images/Securedata-pana.png'),
                                   )),
                                 ),
                               ),

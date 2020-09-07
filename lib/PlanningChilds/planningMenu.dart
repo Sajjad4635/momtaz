@@ -23,18 +23,19 @@ class _planningMenuState extends State<planningMenu> {
           Expanded(
             flex: 1,
             child: Container(
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Color(0xffEAEAEA)),
               child: Container(
                 decoration: BoxDecoration(
                     color: color,
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(45.0))),
-                child: Center(
+                child: FittedBox(
+                  fit: BoxFit.contain,
                   child: Text(
                     'با برنامه درس بخون!',
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
-                        fontSize: 25.0,
                         color: Colors.white,
                         fontFamily: 'Aviny'),
                   ),
@@ -72,7 +73,7 @@ class _planningMenuState extends State<planningMenu> {
 //                height: MediaQuery.of(context).size.height / 4,
                                   child: Image(
                                 image:
-                                    new AssetImage('images/Market_launch.gif'),
+                                    new AssetImage('images/Marketlaunch-pana.png'),
                               )),
                             ),
                           ),
@@ -81,7 +82,7 @@ class _planningMenuState extends State<planningMenu> {
                             child: Container(
                               child: Center(
                                 child: Text(
-                                  'دریافت برنامه آماده',
+                                  'دریافت سریع برنامه',
                                   style: TextStyle(
                                       fontSize: 20.0,
                                       color: color,
@@ -113,7 +114,7 @@ class _planningMenuState extends State<planningMenu> {
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
                                   child: Image(
-                                image: new AssetImage('images/Visual_data.gif'),
+                                image: new AssetImage('images/Visualdata-pana.png'),
                               )),
                             ),
                           ),
@@ -139,82 +140,6 @@ class _planningMenuState extends State<planningMenu> {
               ),
             ),
           ),
-
-//          InkWell(
-//            onTap: () {
-//              Navigator.push(
-//                  context, MaterialPageRoute(builder: (context) => ChatPage()));
-//            },
-//            child: Container(
-//                decoration: BoxDecoration(
-//                  color: Color(0xff00d170),
-//                    image: DecorationImage(
-//                        colorFilter: new ColorFilter.mode(
-//                            Color(0xff00d170).withOpacity(0.7),
-//                            BlendMode.dstATop),
-//                        image: AssetImage('images/back.png'),
-//                        fit: BoxFit.cover),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/1111.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                ),
-//                margin: const EdgeInsets.only(right: 25.0, left: 25.0),
-//                width: pageWidth,
-//                height: pageHeight / 4,
-//                child: Stack(
-//                  children: <Widget>[
-//                    Container(
-//                      margin: const EdgeInsets.only(
-//                          top: 10.0, right: 20.0, left: 20.0, bottom: 10.0),
-//
-//                    )
-//                  ],
-//                )),
-//          ),
-//            InkWell(
-//              onTap: () {
-//                Navigator.push(context,
-//                    MaterialPageRoute(builder: (context) => ChatPagesec()));
-//              },
-//              child: Container(
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [Color(0xff365de7), Color(0xffB97CF5)],
-//                      begin: Alignment.centerLeft,
-//                      end: Alignment.centerRight,
-//                    ),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/2222.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                  ),
-//                  width: pageWidth / 2,
-//                  height: pageHeight / 5,
-//                  child: Container(
-//                    decoration: BoxDecoration(
-//                        image: DecorationImage(
-//                            image: AssetImage('images/bac4.png'))),
-//                    child: Column(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: <Widget>[
-//                        Text(
-//                          'پیام خصوصی',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                        Text(
-//                          'به مشاور',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                      ],
-//                    ),
-//                  )),
-//            ),
         ],
       ),
     );

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/models/lessonModel.dart';
 import 'package:mmtaz/planningOfficeChilds/fechSavadData.dart';
-import 'package:mmtaz/planningOfficeChilds/fech_edu_Plan.dart';
+import 'package:mmtaz/planningOfficeChilds/fechplenningnotebook.dart';
+import 'package:mmtaz/planningOfficeChilds/planningnotebookModel.dart';
 import 'package:mmtaz/widgets/Setting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -11,9 +12,10 @@ import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 
 var week = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 List<Lesson_Model> getep = new List();
-String date;
-String day;
+var date;
+var day;
 List<getLessonModle> getSData = [];
+List<getKhodnevisiInfo> getKhodnevisiDetails = [];
 
 var LessonsD = List.generate(7, (i) => List(5), growable: false);
 
@@ -23,22 +25,6 @@ class planning_Office extends StatefulWidget {
 }
 
 class _planning_OfficeState extends State<planning_Office> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    saveData();
-  }
-
-  saveData() async {
-    var response = await get_Edu_Plan.get_edu_plan();
-    getep.clear();
-    getep.addAll(response['getLesson']);
-    date = response['date'];
-    day = response['day'];
-    print(getep);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,20 +39,19 @@ class _planning_OfficeState extends State<planning_Office> {
           Expanded(
             flex: 1,
             child: Container(
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(color: Color(0xffEAEAEA)),
               child: Container(
                 decoration: BoxDecoration(
                     color: color,
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(45.0))),
-                child: Center(
+                child: FittedBox(
+                  fit: BoxFit.contain,
                   child: Text(
                     'برنامه ریزی داشته باش!',
                     textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.white,
-                        fontFamily: 'Aviny'),
+                    style: TextStyle(color: Colors.white, fontFamily: 'Aviny'),
                   ),
                 ),
               ),
@@ -101,7 +86,7 @@ class _planning_OfficeState extends State<planning_Office> {
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
                                   child: Image(
-                                image: new AssetImage('images/Schedule.gif'),
+                                image: new AssetImage('images/Schedule-amico.png'),
                               )),
                             ),
                           ),
@@ -141,7 +126,7 @@ class _planning_OfficeState extends State<planning_Office> {
 //                width: MediaQuery.of(context).size.width,
 //                height: MediaQuery.of(context).size.height / 4,
                                     child: Image(
-                                  image: new AssetImage('images/Lastplans.gif'),
+                                  image: new AssetImage('images/Documents-amico.png'),
                                 )),
                               ),
                             ),
@@ -189,6 +174,9 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      getDaysInfo();
+    });
     var numOfDay;
     if (day == 'شنبه') {
       numOfDay = 0;
@@ -624,6 +612,14 @@ class _DaysOfWeekState extends State<DaysOfWeek> {
     }
     print(twoDList);
   }
+
+  getDaysInfo() async{
+    var response = await get_Days_Info.get_days_info();
+    setState(() {
+      day = response['day'];
+      date = response['date'];
+    });
+  }
 }
 
 int row = getep.length;
@@ -660,6 +656,11 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
     var pageWidth = MediaQuery.of(context).size.width;
+    
+    setState(() {
+      getKhodnevisiDetail();
+    });
+    
     LessonsD[0][0] = 'ریاضی';
     LessonsD[1][0] = 'فیزیک';
     LessonsD[2][0] = 'شیمی';
@@ -727,7 +728,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                                 fontFamily: 'Aviny', color: Colors.white),
                           ),
                           Text(
-                            '99/2/14',
+                            '99/2/13',
                             textDirection: TextDirection.rtl,
                             style: TextStyle(
                                 fontFamily: 'Aviny', color: Colors.white),
@@ -812,14 +813,15 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                 ),
                 Container(
                     child: Center(
-                      child: Text(
-                        'برای تغییر دادن هر آیتم روش کلیک کن!',
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            fontFamily: 'Aviny', color: Colors.black54,fontSize: 18.0),
-                      ),
-                    )
-                ),
+                  child: Text(
+                    'برای تغییر دادن هر آیتم روش کلیک کن!',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                        fontFamily: 'Aviny',
+                        color: Colors.black54,
+                        fontSize: 18.0),
+                  ),
+                )),
                 Expanded(
                     flex: 7,
                     child: Container(
@@ -830,16 +832,17 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                             children: <Widget>[
                               Container(
                                 decoration:
-                                BoxDecoration(color: Color(0xffEAEAEA)),
+                                    BoxDecoration(color: Color(0xffEAEAEA)),
                                 child: Container(
-                                  padding: EdgeInsets.all(0.0),
+                                    padding: EdgeInsets.all(0.0),
                                     margin: EdgeInsets.all(0.0),
                                     width: pageWidth - 5.0,
                                     height: pageHeight / 9,
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.center,
+                                          CrossAxisAlignment.center,
                                       textDirection: TextDirection.rtl,
                                       children: <Widget>[
                                         Expanded(
@@ -871,9 +874,9 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                                                 child: Container(
                                                   width: pageWidth / 4,
                                                   child: Center(
-                                                      child: Text(LessonsD[index]
-                                                      [2] ==
-                                                          null
+                                                      child: Text(LessonsD[
+                                                                  index][2] ==
+                                                              null
                                                           ? '0:00'
                                                           : '${LessonsD[index][2]}')),
                                                 ),
@@ -888,9 +891,9 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                                                 child: Container(
                                                   width: pageWidth / 4,
                                                   child: Center(
-                                                      child: Text(LessonsD[index]
-                                                      [3] ==
-                                                          null
+                                                      child: Text(LessonsD[
+                                                                  index][3] ==
+                                                              null
                                                           ? '0:00'
                                                           : '${LessonsD[index][3]}')),
                                                 ),
@@ -903,9 +906,8 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                                                 child: Center(
                                                   child: numTest(
                                                     id: index,
-                                                    title: LessonsD[index]
-                                                    [4] ==
-                                                        null
+                                                    title: LessonsD[index][4] ==
+                                                            null
                                                         ? '0'
                                                         : '${LessonsD[index][4]}',
                                                   ),
@@ -1040,6 +1042,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                     color: Color(0xffeaeaea),
                     child: Center(
                       child: TimePickerSpinner(
+                        time: DateTime(0),
                         is24HourMode: true,
                         normalTextStyle:
                             TextStyle(fontSize: 24, color: Colors.black54),
@@ -1081,7 +1084,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                             style: TextStyle(
                                 fontFamily: 'Aviny',
                                 fontSize: 17.0,
-                                color: Colors.black54),
+                                color: Colors.white),
                           ),
                         ),
                       ),
@@ -1149,6 +1152,7 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
                     color: Color(0xffeaeaea),
                     child: Center(
                       child: TimePickerSpinner(
+                        time: DateTime(0),
                         is24HourMode: true,
                         normalTextStyle:
                             TextStyle(fontSize: 24, color: Colors.black54),
@@ -1201,6 +1205,14 @@ class _Khodnevisi1State extends State<Khodnevisi1> {
             ),
           );
         });
+  }
+
+  getKhodnevisiDetail() async{
+    var response = await get_Khodnevisi_Info.get_khodnevisi_info();
+    setState(() {
+      getKhodnevisiDetail().addAll(
+          response['getLessonsDetail']);
+    });
   }
 }
 
@@ -1942,166 +1954,170 @@ class _MyPlansState extends State<MyPlans> {
             )),
       );
     } else if (flag == 1) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(
-                MediaQuery.of(context).size.height / 8,
-              ),
-              child: AppBar(
-                elevation: 0.0,
-                backgroundColor: color,
-                actions: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(color: color),
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 40),
-                    padding: EdgeInsets.only(
-                        right: MediaQuery.of(context).size.height / 32,
-                        left: MediaQuery.of(context).size.height / 32),
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      textDirection: TextDirection.rtl,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
+      return SafeArea(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+              appBar: PreferredSize(
+                preferredSize: Size.fromHeight(
+                  MediaQuery.of(context).size.height / 8,
+                ),
+                child: AppBar(
+                  elevation: 0.0,
+                  backgroundColor: color,
+                  actions: <Widget>[
+                    Container(
+                      decoration: BoxDecoration(color: color),
+                      margin: EdgeInsets.only(
+                          top: MediaQuery.of(context).size.height / 40),
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).size.height / 32,
+                          left: MediaQuery.of(context).size.height / 32),
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 6,
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                'ممتاز',
-                                textDirection: TextDirection.rtl,
-                                style: TextStyle(
-                                  fontFamily: 'Aviny',
-                                  color: Colors.white,
-                                  fontSize: 25.0,
+                          Expanded(
+                            flex: 6,
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  'ممتاز',
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                    fontFamily: 'Aviny',
+                                    color: Colors.white,
+                                    fontSize: 25.0,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Icon(Icons.shopping_basket, color: Colors.white),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            body: Container(
-              decoration: BoxDecoration(color: color),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xffEAEAEA),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: color,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(45.0))),
-                          child: Center(
-                            child:
-                                Text('همه برنامه هایی که قبلا گرفتی اینجاست!',
-                                    textDirection: TextDirection.rtl,
-                                    style: TextStyle(
-                                      fontFamily: 'Aviny',
-                                      color: Colors.white,
-                                    )),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        padding: EdgeInsets.all(
-                            MediaQuery.of(context).size.width / 20),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Color(0xffEAEAEA),
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(45.0)),
-                        ),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xffEAEAEA),
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(45.0))),
-                            child: GridView.builder(
-                              itemCount: week.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      crossAxisSpacing: 4.0,
-                                      mainAxisSpacing: 4.0),
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () {
-//                                    Navigator.push(
-//                                        context,
-//                                        MaterialPageRoute(
-//                                            builder: (context) =>
-//                                                pieChartHome()));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: color,
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10.0))),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Center(
-                                          child: Text(
-                                            'هفته ' +
-                                                '${week[index].toString()}',
-                                            textDirection: TextDirection.rtl,
-                                            style: TextStyle(
-                                                fontFamily: 'Aviny',
-                                                fontSize: 20.0,
-                                                color: Color(0xffEAEAEA)),
-                                          ),
-                                        ),
-                                        Center(
-                                          child: Text(
-                                            '${date[index].toString()}',
-                                            style: TextStyle(
-                                                fontFamily: 'Aviny',
-                                                fontSize: 20.0,
-                                                color: Color(0xffEAEAEA)),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            )),
+                          Icon(Icons.shopping_basket, color: Colors.white),
+                        ],
                       ),
                     )
                   ],
                 ),
               ),
-            )),
+              body: Container(
+                decoration: BoxDecoration(color: color),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Color(0xffEAEAEA),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: color,
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(45.0))),
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child:
+                                  Text('همه برنامه هایی که قبلا گرفتی اینجاست!',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                        fontFamily: 'Aviny',
+                                        color: Colors.white,
+                                      )),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 9,
+                        child: Container(
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width / 20),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Color(0xffEAEAEA),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(45.0)),
+                          ),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xffEAEAEA),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(45.0))),
+                              child: GridView.builder(
+                                itemCount: week.length,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 4.0,
+                                        mainAxisSpacing: 4.0),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return InkWell(
+                                    onTap: () {
+//                                    Navigator.push(
+//                                        context,
+//                                        MaterialPageRoute(
+//                                            builder: (context) =>
+//                                                myPlan()));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: color,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0))),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Center(
+                                            child: Text(
+                                              'هفته ' +
+                                                  '${week[index].toString()}',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontFamily: 'Aviny',
+                                                  fontSize: 20.0,
+                                                  color: Color(0xffEAEAEA)),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              '${week[index].toString()}',
+                                              style: TextStyle(
+                                                  fontFamily: 'Aviny',
+                                                  fontSize: 20.0,
+                                                  color: Color(0xffEAEAEA)),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              )),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )),
+        ),
       );
     }
   }

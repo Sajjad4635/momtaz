@@ -1,223 +1,938 @@
 import 'package:flutter/material.dart';
-import 'package:mmtaz/PlanningChilds/WeekOfAzmons.dart';
+import 'package:mmtaz/PlanningChilds/finalPage.dart';
+import 'package:mmtaz/widgets/Setting.dart';
 
-var myStyle =
-    TextStyle(fontSize: 24.0, fontFamily: 'vazir', fontWeight: FontWeight.w500);
+class azmoonAmade extends StatefulWidget {
+  @override
+  _azmoonAmadeState createState() => _azmoonAmadeState();
+}
 
-class nameOfAzmoon extends StatelessWidget {
+class _azmoonAmadeState extends State<azmoonAmade> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-            MediaQuery.of(context).size.height / 8,
-          ),
-          child: AppBar(
-            elevation: 0.0,
-            backgroundColor: Color(0xff00d170),
-            actions: <Widget>[
-              Container(
-                decoration: BoxDecoration(color: Color(0xff00d170)),
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 40),
-                padding: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.height / 32,
-                    left: MediaQuery.of(context).size.height / 32),
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  textDirection: TextDirection.rtl,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
+    return SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / 8,
+            ),
+            child: AppBar(
+              elevation: 0.0,
+              backgroundColor: color,
+              actions: <Widget>[
+                Container(
+                  decoration: BoxDecoration(color: color),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 40),
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 6,
-                      child: Container(
-                        child: Center(
-                          child: Text(
-                            'ممتاز',
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                              fontFamily: 'Aviny',
-                              color: Colors.white,
-                              fontSize: 25.0,
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              'ممتاز',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontFamily: 'Aviny',
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Icon(Icons.shopping_basket, color: Colors.white),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-              color: Color(0xff00d170),
-//          color: Color(0xffEAEAEA),
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(25.0),
-                  topLeft: Radius.circular(25.0))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(color: Color(0xffEAEAEA)),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Color(0xff00d170),
-                        borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(45.0))),
-                    child: Center(
-                      child: Text(
-                        'برای کدوم آزمون برنامه میخوای؟',
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            fontSize: 25.0,
-                            color: Colors.white,
-                            fontFamily: 'Aviny'),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 9,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Color(0xffEAEAEA),
-                    borderRadius:
-                    BorderRadius.only(topRight: Radius.circular(45.0)),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width/2,
-                        height: MediaQuery.of(context).size.height/5,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('images/23.jpg'),fit: BoxFit.cover
-                          )
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width/2,
-                        height: MediaQuery.of(context).size.height/5,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/24.jpg'),fit: BoxFit.cover
-                            )
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width/2,
-                        height: MediaQuery.of(context).size.height/5,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/25.png')
-                            )
-                        ),
-                      )
+                      Icon(Icons.shopping_basket, color: Colors.white),
                     ],
                   ),
+                )
+              ],
+            ),
+          ),
+          body: Container(
+            decoration: BoxDecoration(
+                color: color,
+//          color: Color(0xffEAEAEA),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                    topLeft: Radius.circular(25.0))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(color: Color(0xffEAEAEA)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(45.0))),
+                      child: Center(
+                        child: Text(
+                          'برای کدوم آزمون برنامه میخوای؟',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.white,
+                              fontFamily: 'Aviny'),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-
-//          InkWell(
-//            onTap: () {
-//              Navigator.push(
-//                  context, MaterialPageRoute(builder: (context) => ChatPage()));
-//            },
-//            child: Container(
-//                decoration: BoxDecoration(
-//                  color: Color(0xff00d170),
-//                    image: DecorationImage(
-//                        colorFilter: new ColorFilter.mode(
-//                            Color(0xff00d170).withOpacity(0.7),
-//                            BlendMode.dstATop),
-//                        image: AssetImage('images/back.png'),
-//                        fit: BoxFit.cover),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/1111.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                ),
-//                margin: const EdgeInsets.only(right: 25.0, left: 25.0),
-//                width: pageWidth,
-//                height: pageHeight / 4,
-//                child: Stack(
-//                  children: <Widget>[
-//                    Container(
-//                      margin: const EdgeInsets.only(
-//                          top: 10.0, right: 20.0, left: 20.0, bottom: 10.0),
-//
-//                    )
-//                  ],
-//                )),
-//          ),
-//            InkWell(
-//              onTap: () {
-//                Navigator.push(context,
-//                    MaterialPageRoute(builder: (context) => ChatPagesec()));
-//              },
-//              child: Container(
-//                  decoration: BoxDecoration(
-//                    gradient: LinearGradient(
-//                      colors: [Color(0xff365de7), Color(0xffB97CF5)],
-//                      begin: Alignment.centerLeft,
-//                      end: Alignment.centerRight,
-//                    ),
-////                    image: DecorationImage(
-////                      image: AssetImage("images/2222.png"),
-////                      fit: BoxFit.cover,
-////                    ),
-//                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
-////                    border: Border.all(width: 0.5, color: Colors.black)
-//                  ),
-//                  width: pageWidth / 2,
-//                  height: pageHeight / 5,
-//                  child: Container(
-//                    decoration: BoxDecoration(
-//                        image: DecorationImage(
-//                            image: AssetImage('images/bac4.png'))),
-//                    child: Column(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      crossAxisAlignment: CrossAxisAlignment.center,
-//                      children: <Widget>[
-//                        Text(
-//                          'پیام خصوصی',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                        Text(
-//                          'به مشاور',
-//                          style: TextStyle(fontSize: 22.0),
-//                        ),
-//                      ],
-//                    ),
-//                  )),
-//            ),
-            ],
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                      borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(45.0)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Ghalamchi();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/ghalamchi.png')
+                                  )),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Gaj();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/gaj.png'))),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Gozine2();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/gozinedo.png'))),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  Ghalamchi() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون قلم چی 20000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(0)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Gaj() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون گاج 20000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(0)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Gozine2() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون گزینه دو 20000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(2)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+}
+
+class azmoonMoshaver extends StatefulWidget {
+  @override
+  _azmoonMoshaverState createState() => _azmoonMoshaverState();
+}
+
+class _azmoonMoshaverState extends State<azmoonMoshaver> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height / 8,
+            ),
+            child: AppBar(
+              elevation: 0.0,
+              backgroundColor: color,
+              actions: <Widget>[
+                Container(
+                  decoration: BoxDecoration(color: color),
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 40),
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    textDirection: TextDirection.rtl,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_forward,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          child: Center(
+                            child: Text(
+                              'ممتاز',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                fontFamily: 'Aviny',
+                                color: Colors.white,
+                                fontSize: 25.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Icon(Icons.shopping_basket, color: Colors.white),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          body: Container(
+            decoration: BoxDecoration(
+                color: color,
+//          color: Color(0xffEAEAEA),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(25.0),
+                    topLeft: Radius.circular(25.0))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(color: Color(0xffEAEAEA)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(45.0))),
+                      child: Center(
+                        child: Text(
+                          'برای کدوم آزمون برنامه میخوای؟',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontSize: 25.0,
+                              color: Colors.white,
+                              fontFamily: 'Aviny'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 9,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                      borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(45.0)),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            Ghalamchi();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/ghalamchi.png'))),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Gaj();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/gaj.png'))),
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Gozine2();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(10.0),
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.height / 5,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(15.0)),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/gozinedo.png'))),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Ghalamchi() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون قلم چی 40000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(2)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Gaj() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون گاج 40000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(2)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Gozine2() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.all(MediaQuery.of(context).size.width / 30),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(15.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Designer-rafiki.png'))),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'هزینه دریافت برنامه برای آزمون گزینه دو 40000 تومان',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width/2,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        'برای ارسال درخواست تایید کن!',
+                        textDirection: TextDirection.rtl,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontFamily: 'Aviny',
+                            color: Colors.black54),
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => finalPage(2)));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 7,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: color),
+                          color: Color(0xffeaeaea),
+                          borderRadius: BorderRadius.circular(15.0)),
+                      child: FittedBox(
+                        fit: BoxFit.contain,
+                        child: Text(
+                          'تایید',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontFamily: 'Aviny',
+                              color: Colors.black54),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

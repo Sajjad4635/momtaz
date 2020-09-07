@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mmtaz/Screens/FirstScreen.dart';
 
-var colorGreen = Color(0xff00d170);
+var colorGreen = Color(0xff166ee7);
 var colorGrey = Color(0xffEAEAEA);
 var colorWhite = Colors.white;
 var colorBlack54 = Colors.black54;

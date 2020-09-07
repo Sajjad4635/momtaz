@@ -79,80 +79,81 @@ class _phoneNumberState extends State<phoneNumber> {
   Widget build(BuildContext context) {
     var pageWith = MediaQuery.of(context).size.width;
     var pageHeight = MediaQuery.of(context).size.height;
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new Scaffold(
-            resizeToAvoidBottomPadding: false,
-            body: Container(
-              width: pageWith,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    height: pageHeight / 4,
-                    width: pageWith / 2,
-                    decoration: new BoxDecoration(
-                      image: DecorationImage(
-                        image: new AssetImage('images/phoneNumber.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  Container(
-                      width: pageWith / 1.5,
-                      height: pageHeight / 12,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: color),
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          color: Color(0xffeaeaea)),
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                        maxLength: 11,
-                        controller: myController,
-                        textAlign: TextAlign.center,
-                        decoration: new InputDecoration(
-                            counter: Offstage(),
-                            contentPadding: EdgeInsets.all(5.0),
-                            hintText: "شماره همراه",
-                            hintStyle:
-                                TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
-                            suffixIcon: Icon(Icons.phone_android),
-                            prefixIcon: Icon(Icons.arrow_back,
-                                color: Color(0xffeaeaea)),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(32.0))),
-                      )),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => verificationCode()));
-//                      _PhoneNumIsIncorrectFormat();
-                    },
-                    child: Container(
-                      width: pageWith / 1.5,
-                      height: pageHeight / 12,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          color: color),
-                      child: Center(
-                        child: Text(
-                          'ادامه',
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontFamily: 'Aviny',
-                              color: Colors.white),
+    return SafeArea(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: new Scaffold(
+              resizeToAvoidBottomPadding: false,
+              body: Container(
+                width: pageWith,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      height: pageHeight / 2,
+                      decoration: new BoxDecoration(
+                        image: DecorationImage(
+                          image: new AssetImage('images/Mobilelogin-bro.png'),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
-            )));
+                    Container(
+                        width: pageWith / 1.5,
+                        height: pageHeight / 12,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: color),
+                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                            color: Color(0xffeaeaea)),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          maxLength: 11,
+                          controller: myController,
+                          textAlign: TextAlign.center,
+                          decoration: new InputDecoration(
+                              counter: Offstage(),
+                              contentPadding: EdgeInsets.all(5.0),
+                              hintText: "شماره همراه",
+                              hintStyle:
+                              TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                              suffixIcon: Icon(Icons.phone_android),
+                              prefixIcon: Icon(Icons.arrow_back,
+                                  color: Color(0xffeaeaea)),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(32.0))),
+                        )),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => verificationCode()));
+//                      _PhoneNumIsIncorrectFormat();
+                      },
+                      child: Container(
+                        width: pageWith / 1.5,
+                        height: pageHeight / 12,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                            color: color),
+                        child: Center(
+                          child: Text(
+                            'ادامه',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Aviny',
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ))),
+    );
   }
 
   _PhoneNumIsIncorrectFormat() {
@@ -361,76 +362,77 @@ class _verificationCodeState extends State<verificationCode> {
   Widget build(BuildContext context) {
     var pageWidth = MediaQuery.of(context).size.width;
     var pageHeight = MediaQuery.of(context).size.height;
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: new Material(
-            child: new Container(
-          decoration: BoxDecoration(color: Colors.white),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: pageWidth / 2,
-                height: pageHeight / 4,
-                decoration: new BoxDecoration(
-                  image: DecorationImage(
-                    image: new AssetImage('images/Confirmed.png'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              Container(
-                  width: pageWidth / 1.5,
-                  height: pageHeight / 12,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: color),
-                      borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                      color: Color(0xffeaeaea)),
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    maxLength: 6,
-                    controller: myController,
-                    textAlign: TextAlign.center,
-                    decoration: new InputDecoration(
-                        counter: Offstage(),
-                        contentPadding: EdgeInsets.all(5.0),
-                        hintText: "کد تایید",
-                        hintStyle:
-                            TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
-                        suffixIcon: Icon(Icons.sms),
-                        prefixIcon:
-                            Icon(Icons.arrow_back, color: Color(0xffeaeaea)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(32.0))),
-                  )),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => register()));
-//                      _RegisterCodeIsIncorrectFormat();
-                },
-                child: Container(
-                  width: pageWidth / 1.5,
-                  height: pageHeight / 12,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                      color: color),
-                  child: Center(
-                    child: Text(
-                      'ادامه',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'Aviny',
-                          color: Colors.white),
+    return SafeArea(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: new Material(
+              child: new Container(
+                decoration: BoxDecoration(color: Colors.white),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: pageHeight / 2,
+                      decoration: new BoxDecoration(
+                        image: DecorationImage(
+                          image: new AssetImage('images/Confirmed-bro.png'),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
-                  ),
+                    Container(
+                        width: pageWidth / 1.5,
+                        height: pageHeight / 12,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: color),
+                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                            color: Color(0xffeaeaea)),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          maxLength: 6,
+                          controller: myController,
+                          textAlign: TextAlign.center,
+                          decoration: new InputDecoration(
+                              counter: Offstage(),
+                              contentPadding: EdgeInsets.all(5.0),
+                              hintText: "کد تایید",
+                              hintStyle:
+                              TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                              suffixIcon: Icon(Icons.sms),
+                              prefixIcon:
+                              Icon(Icons.arrow_back, color: Color(0xffeaeaea)),
+                              border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(32.0))),
+                        )),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => register()));
+//                      _RegisterCodeIsIncorrectFormat();
+                      },
+                      child: Container(
+                        width: pageWidth / 1.5,
+                        height: pageHeight / 12,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                            color: color),
+                        child: Center(
+                          child: Text(
+                            'ادامه',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 20.0,
+                                fontFamily: 'Aviny',
+                                color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        )));
+              ))),
+    );
   }
 
   sendDataToServer() async {
@@ -560,176 +562,178 @@ class _registerState extends State<register> {
   Widget build(BuildContext context) {
     var pageWidth = MediaQuery.of(context).size.width;
     var pageHeight = MediaQuery.of(context).size.height;
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-            body: Container(
-          child: SingleChildScrollView(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              padding:
-                  EdgeInsets.only(right: pageWidth / 30, left: pageWidth / 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    width: pageWidth / 2,
-                    height: pageHeight / 4,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('images/Confirmed.png'),
-                            fit: BoxFit.cover)),
-                  ),
-                  Container(
-                      width: pageWidth,
-                      height: pageHeight / 11,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          border: Border.all(color: color),
-                          color: Color(0xffeaeaea),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: myControllerName,
-                            textAlign: TextAlign.center,
-                            decoration: new InputDecoration(
-                                counter: Offstage(),
-                                contentPadding: EdgeInsets.all(5.0),
-                                hintText: "نام و نام خانوادگی",
-                                hintStyle: TextStyle(
-                                    fontSize: 18.0, fontFamily: 'Aviny'),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(32.0))),
-                          ),
-                        ),
-                      )),
-                  Container(
-                    child: Row(
-                      textDirection: TextDirection.rtl,
+    return SafeArea(
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+              body: Container(
+                child: SingleChildScrollView(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height-20.0,
+                    padding:
+                    EdgeInsets.only(right: pageWidth / 30, left: pageWidth / 30),
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                            width: pageWidth / 3,
-                            padding: const EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
+                          width: pageWidth / 2,
+                          height: pageHeight / 4,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('images/register.png'),
+                                  fit: BoxFit.cover)),
+                        ),
+                        Container(
+                            width: pageWidth,
+                            height: pageHeight / 11,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
                                 border: Border.all(color: color),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(45.0)),
-                                color: Color(0xffeaeaea)),
-                            child: Center(
-                              child: base(),
+                                color: Color(0xffeaeaea),
+                              ),
+                              child: Center(
+                                child: TextField(
+                                  controller: myControllerName,
+                                  textAlign: TextAlign.center,
+                                  decoration: new InputDecoration(
+                                      counter: Offstage(),
+                                      contentPadding: EdgeInsets.all(5.0),
+                                      hintText: "نام و نام خانوادگی",
+                                      hintStyle: TextStyle(
+                                          fontSize: 18.0, fontFamily: 'Aviny'),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none,
+                                          borderRadius: BorderRadius.circular(32.0))),
+                                ),
+                              ),
                             )),
                         Container(
-                            width: pageWidth / 3,
-                            padding: const EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Container(
+                                  width: pageWidth / 3,
+                                  padding: const EdgeInsets.all(4.0),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: color),
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(45.0)),
+                                      color: Color(0xffeaeaea)),
+                                  child: Center(
+                                    child: base(),
+                                  )),
+                              Container(
+                                  width: pageWidth / 3,
+                                  padding: const EdgeInsets.all(4.0),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: color),
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(45.0)),
+                                      color: Color(0xffeaeaea)),
+                                  child: Center(
+                                    child: major(),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        Container(
+                            width: pageWidth,
+                            height: pageHeight / 11,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
                                 border: Border.all(color: color),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(45.0)),
-                                color: Color(0xffeaeaea)),
-                            child: Center(
-                              child: major(),
+                                color: Color(0xffeaeaea),
+                              ),
+                              child: Center(
+                                child: TextField(
+                                  controller: myControllerPass1,
+                                  textAlign: TextAlign.center,
+                                  decoration: new InputDecoration(
+                                    counter: Offstage(),
+                                    contentPadding: EdgeInsets.all(5.0),
+                                    hintText: "کلمه عبور",
+                                    hintStyle: TextStyle(
+                                        fontSize: 18.0, fontFamily: 'Aviny'),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(32.0)),
+                                    suffixIcon: Icon(
+                                      Icons.remove_red_eye,
+                                      color: Color(0xffeaeaea),
+                                    ),
+                                    prefixIcon: Icon(Icons.remove_red_eye),
+                                  ),
+                                ),
+                              ),
                             )),
+                        Container(
+                            width: pageWidth,
+                            height: pageHeight / 11,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                border: Border.all(color: color),
+                                color: Color(0xffeaeaea),
+                              ),
+                              child: Center(
+                                child: TextField(
+                                  controller: myControllerPass2,
+                                  textAlign: TextAlign.center,
+                                  decoration: new InputDecoration(
+                                    counter: Offstage(),
+                                    contentPadding: EdgeInsets.all(5.0),
+                                    hintText: "تکرار کلمه عبور",
+                                    hintStyle: TextStyle(
+                                        fontSize: 18.0, fontFamily: 'Aviny'),
+                                    border: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius: BorderRadius.circular(32.0)),
+                                    suffixIcon: Icon(
+                                      Icons.remove_red_eye,
+                                      color: Color(0xffeaeaea),
+                                    ),
+                                    prefixIcon: Icon(Icons.remove_red_eye),
+                                  ),
+                                ),
+                              ),
+                            )),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FirstScreen()));
+//                      sendDataToServer();
+                          },
+                          child: Container(
+                            width: pageWidth / 3,
+                            height: pageHeight / 11,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                color: color),
+                            child: Center(
+                              child: Text(
+                                'تایید',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny',
+                                    fontSize: 20.0,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  Container(
-                      width: pageWidth,
-                      height: pageHeight / 11,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          border: Border.all(color: color),
-                          color: Color(0xffeaeaea),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: myControllerPass1,
-                            textAlign: TextAlign.center,
-                            decoration: new InputDecoration(
-                              counter: Offstage(),
-                              contentPadding: EdgeInsets.all(5.0),
-                              hintText: "کلمه عبور",
-                              hintStyle: TextStyle(
-                                  fontSize: 18.0, fontFamily: 'Aviny'),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(32.0)),
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
-                                color: Color(0xffeaeaea),
-                              ),
-                              prefixIcon: Icon(Icons.remove_red_eye),
-                            ),
-                          ),
-                        ),
-                      )),
-                  Container(
-                      width: pageWidth,
-                      height: pageHeight / 11,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          border: Border.all(color: color),
-                          color: Color(0xffeaeaea),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: myControllerPass2,
-                            textAlign: TextAlign.center,
-                            decoration: new InputDecoration(
-                              counter: Offstage(),
-                              contentPadding: EdgeInsets.all(5.0),
-                              hintText: "تکرار کلمه عبور",
-                              hintStyle: TextStyle(
-                                  fontSize: 18.0, fontFamily: 'Aviny'),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(32.0)),
-                              suffixIcon: Icon(
-                                Icons.remove_red_eye,
-                                color: Color(0xffeaeaea),
-                              ),
-                              prefixIcon: Icon(Icons.remove_red_eye),
-                            ),
-                          ),
-                        ),
-                      )),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FirstScreen()));
-//                      sendDataToServer();
-                    },
-                    child: Container(
-                      width: pageWidth / 3,
-                      height: pageHeight / 11,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                          color: color),
-                      child: Center(
-                        child: Text(
-                          'تایید',
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                              fontFamily: 'Aviny',
-                              fontSize: 20.0,
-                              color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        )));
+                ),
+              ))),
+    );
   }
 
   sendDataToServer() async {
@@ -780,7 +784,8 @@ class _baseState extends State<base> {
         underline: Container(),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
+        style: TextStyle(
+            fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
         onChanged: (String newValue) {
           setState(() {
             dropdownValueBase = newValue;
@@ -836,20 +841,11 @@ class _majorState extends State<major> {
         underline: Container(),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
+        style: TextStyle(
+            fontSize: 18.0, fontFamily: 'Aviny', color: Colors.black54),
         onChanged: (String newValue) {
           setState(() {
             dropdownValueMajor = newValue;
-            major_stu = dropdownValueMajor.toString();
-            if (major_stu == 'ریاضیات و فیزیک') {
-              major_stu_n = 0;
-            } else if (major_stu == 'علوم تجربی') {
-              major_stu_n = 1;
-            } else if (major_stu == 'علوم انسانی') {
-              major_stu_n = 2;
-            } else if (major_stu == 'بدون رشته') {
-              major_stu_n = 3;
-            }
           });
         },
         items: <String>[

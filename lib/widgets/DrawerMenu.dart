@@ -4,7 +4,6 @@ import 'package:mmtaz/widgets/SelfKnowledge.dart';
 import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/barnameha.dart';
 import 'package:mmtaz/widgets/profile.dart';
-import 'package:mmtaz/Reporting/pieChartMenu.dart';
 import 'package:mmtaz/widgets/Wallet.dart';
 
 class LightDrawerPage extends StatelessWidget {
@@ -55,18 +54,18 @@ class LightDrawerPage extends StatelessWidget {
                               ),
                               child: CircleAvatar(
                                 radius: 40,
-                                backgroundImage: AssetImage('images/5.jpg'),
+                                backgroundImage: AssetImage('images/11.jpg'),
                               ),
                             ),
                           ),
                           Expanded(
                             flex: 2,
-                            child: Center(
+                            child: FittedBox(
+                              fit: BoxFit.contain,
                               child: Text(
                                 "سجاد حاجی زاده",
                                 style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 22.0,
                                     fontWeight: FontWeight.w600,
                                     fontFamily: 'Aviny'),
                               ),
@@ -133,10 +132,10 @@ class LightDrawerPage extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => pieChartHome()));
+//                                Navigator.push(
+//                                    context,
+//                                    MaterialPageRoute(
+//                                        builder: (context) => pieChartHome()));
                               },
                               child: _buildRow(
                                   Icons.map,
