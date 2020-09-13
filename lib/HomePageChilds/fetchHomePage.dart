@@ -11,10 +11,20 @@ class getimageSlider {
     final response = await http.post(api.siteName + '/api/get_home',
         body: {"token": prefs.getString('myIp_token')});
     print(response.statusCode);
-
     if (response.statusCode == 200) {
       var responseBody = json.decode(response.body);
-
+      List<imageSlider> getimage = [];
+      responseBody['slider'].forEach((item) {
+        getimage.add(imageSlider.fromJson(item));
+      });
+      return {
+        "slider": getimage,
+        "message": responseBody['message']['vlaue'],
+        "week_id": responseBody['week_id'],
+        "StudentStatus": json.decode(response.body)['student_status'],
+      };
+    }else if(response.statusCode == 500){
+      var responseBody = json.decode(response.body);
 
 
       List<imageSlider> getimage = [];
@@ -24,6 +34,8 @@ class getimageSlider {
       return {
         "slider": getimage,
         "message": responseBody['message']['vlaue'],
+        "StudentStatus": responseBody['studnet_status'],
+        "week_id": responseBody['week_id'],
       };
     }
   }

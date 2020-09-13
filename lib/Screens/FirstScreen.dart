@@ -4,7 +4,7 @@ import 'package:mmtaz/Screens/HomePage.dart';
 import 'package:mmtaz/Screens/MessageBox.dart';
 import 'package:mmtaz/Screens/Planning.dart';
 import 'package:mmtaz/Screens/Reporting.dart';
-import 'package:mmtaz/Screens/planningOffice.dart';
+import 'package:mmtaz/Screens/planningBooklet.dart';
 import 'package:mmtaz/widgets/DrawerMenu.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,9 +20,9 @@ class _FirstScreenState extends State<FirstScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int _selectedIndex = 4;
   static List<Widget> _widgetOptions = <Widget>[
-    Reporting(),
+    ReportingMenu(),
     Planning(),
-    planning_Office(),
+    planningBooklet(),
     MessageBox(),
     HomePage(),
   ];

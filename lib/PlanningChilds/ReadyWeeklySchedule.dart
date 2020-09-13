@@ -2,16 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/PlanningChilds/finalPage.dart';
 import 'package:mmtaz/PlanningChilds/nameOFAzmoon.dart';
+import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+import 'package:http/http.dart' as http;
 
 
 
 class barname_amade extends StatefulWidget {
+  var key1;
+
+  barname_amade(this.key1);
+
   @override
-  _barname_amadeState createState() => _barname_amadeState();
+  _barname_amadeState createState() => _barname_amadeState(key1);
 }
 
 class _barname_amadeState extends State<barname_amade> {
+  var key1;
+
+  _barname_amadeState(this.key1);
+
   @override
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
@@ -168,7 +178,7 @@ class _barname_amadeState extends State<barname_amade> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  azmoonAmade()));
+                                                  azmoonAmade(widget.key1, 1)));
                                     },
                                     child: Container(
 //                width: MediaQuery.of(context).size.width,
@@ -272,6 +282,7 @@ class _barname_amadeState extends State<barname_amade> {
                   ),
                   InkWell(
                     onTap: () {
+                      barnameSariHafteghi();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -302,14 +313,28 @@ class _barname_amadeState extends State<barname_amade> {
           );
         });
   }
+
+  barnameSariHafteghi() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'0',
+    });
+  }
 }
 
 class barname_moshaver extends StatefulWidget {
+  var key1;
+
+  barname_moshaver(this.key1);
+
   @override
-  _barname_moshaverState createState() => _barname_moshaverState();
+  _barname_moshaverState createState() => _barname_moshaverState(key1);
 }
 
 class _barname_moshaverState extends State<barname_moshaver> {
+  var key1;
+
+  _barname_moshaverState(this.key1);
+
   @override
   Widget build(BuildContext context) {
     var pageHeight = MediaQuery.of(context).size.height;
@@ -466,7 +491,7 @@ class _barname_moshaverState extends State<barname_moshaver> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  azmoonMoshaver()));
+                                                  azmoonMoshaver(widget.key1, 1)));
                                     },
                                     child: Container(
 //                width: MediaQuery.of(context).size.width,
@@ -560,6 +585,7 @@ class _barname_moshaverState extends State<barname_moshaver> {
                   ),
                   InkWell(
                     onTap: () {
+                      sendDataToServerHafteghiMoshavar();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -589,5 +615,11 @@ class _barname_moshaverState extends State<barname_moshaver> {
             ),
           );
         });
+  }
+
+  sendDataToServerHafteghiMoshavar() async{
+    var response = http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'0'
+    });
   }
 }

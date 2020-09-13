@@ -1,13 +1,19 @@
 class imageSlider {
-  String ImageVlaue;
+  String id;
+  String type;
+  String value;
 
   imageSlider(
       {
-        this.ImageVlaue,});
+        this.id, this.type, this.value});
 
   factory imageSlider.fromJson(Map<String, dynamic> json) {
     return imageSlider(
-        ImageVlaue: json['vlaue'].toString());
+        id: json['id'].toString(),
+        type: json['type'].toString(),
+        value: json['vlaue'].toString(),
+
+    );
   }
 }
 

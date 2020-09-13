@@ -12,13 +12,189 @@ var timeTo;
 var timeToshow = '';
 var flag = 0;
 
+class ReportingMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xffEAEAEA),
+                ),
+                child: Container(
+                  padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.height / 32,
+                      left: MediaQuery.of(context).size.height / 32),
+                  decoration: BoxDecoration(
+                      color: color,
+                      borderRadius:
+                          BorderRadius.only(bottomLeft: Radius.circular(45.0))),
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        'مسیر پیشرفتت رو رصد کن!',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                          fontFamily: 'Aviny',
+                          color: Colors.white,
+                          fontSize: 25.0,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 9,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: color,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xffEAEAEA),
+                      borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(45.0))),
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          child: Row(
+                            textDirection: TextDirection.rtl,
+                            children: <Widget>[
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 8,
+                                        child: Container(
+                                          child: Image.asset(
+                                            'images/DataTrends-rafiki.png',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          child: Center(
+                                            child: Text(
+                                              'نمودار پیشرفت',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                color: color,
+                                                fontSize: 25.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Expanded(
+                                        flex: 8,
+                                        child: Container(
+                                          child: Image.asset(
+                                            'images/FileSearching-rafiki.png',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: Container(
+                                          child: Center(
+                                            child: Text(
+                                              'جزِییات هرروز',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                fontFamily: 'Aviny',
+                                                color: color,
+                                                fontSize: 25.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: Column(
+                            children: <Widget>[
+                              Expanded(
+                                flex: 8,
+                                child: Container(
+                                  child: Image.asset(
+                                    'images/Calendar-bro.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  child: Center(
+                                    child: Text(
+                                      'بازه زمانی',
+                                      textDirection: TextDirection.rtl,
+                                      style: TextStyle(
+                                        fontFamily: 'Aviny',
+                                        color: color,
+                                        fontSize: 25.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ReportWeeks extends StatefulWidget {
   @override
   _ReportWeeksState createState() => _ReportWeeksState();
 }
 
 class _ReportWeeksState extends State<ReportWeeks> {
-
   @override
   Widget build(BuildContext context) {
     if (flag == 0) {
@@ -240,9 +416,7 @@ class _ReportingState extends State<Reporting> {
                   child: Container(
                     color: color,
                     child: Container(
-                      padding: EdgeInsets.only(
-                          top: pageWidth/20.0
-                      ),
+                      padding: EdgeInsets.only(top: pageWidth / 20.0),
                       decoration: BoxDecoration(
                           color: Color(0xffEAEAEA),
                           borderRadius: BorderRadius.only(

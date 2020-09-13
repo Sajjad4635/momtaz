@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mmtaz/widgets/Setting.dart';
 import 'package:mmtaz/widgets/raidioButton.dart';
 
+var Balance = 50000;
+
 class wallet extends StatefulWidget {
   @override
   _walletState createState() => _walletState();
@@ -212,7 +214,7 @@ class _chargeWalletState extends State<chargeWallet> {
                                     ),
                                     FittedBox(
                                       fit: BoxFit.contain,
-                                      child: Text('20000  تومان',
+                                      child: Text('${Balance}'+'  '+'تومان',
                                           textDirection: TextDirection.rtl,
                                           style: TextStyle(
                                             fontFamily: 'Aviny',

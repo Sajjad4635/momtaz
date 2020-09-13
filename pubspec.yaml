@@ -86,6 +86,10 @@ flutter:
     - images/Visualdata-pana.png
     - images/Wallet-bro.png
     - images/CustomerSurvey-amico.png
+    - images/Warning-rafiki.png
+    - images/Calendar-bro.png
+    - images/DataTrends-rafiki.png
+    - images/FileSearching-rafiki.png
   fonts:
     - family: Aviny
       fonts:

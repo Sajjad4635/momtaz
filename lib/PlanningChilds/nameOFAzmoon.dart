@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:mmtaz/PlanningChilds/ListOfWeeks.dart';
 import 'package:mmtaz/PlanningChilds/finalPage.dart';
+import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+import 'package:http/http.dart' as http;
 
 class azmoonAmade extends StatefulWidget {
+  var key1;
+  var key2;
+
+  azmoonAmade(this.key1, this.key2);
+
   @override
-  _azmoonAmadeState createState() => _azmoonAmadeState();
+  _azmoonAmadeState createState() => _azmoonAmadeState(key1, key2);
 }
 
 class _azmoonAmadeState extends State<azmoonAmade> {
+  var key1;
+  var key2;
+
+  _azmoonAmadeState(this.key1, this.key2);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -248,6 +261,7 @@ class _azmoonAmadeState extends State<azmoonAmade> {
                   ),
                   InkWell(
                     onTap: () {
+                      sendDataToServerGhalamchi();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -343,6 +357,7 @@ class _azmoonAmadeState extends State<azmoonAmade> {
                   ),
                   InkWell(
                     onTap: () {
+                      sendDataToServerGaj();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -438,6 +453,7 @@ class _azmoonAmadeState extends State<azmoonAmade> {
                   ),
                   InkWell(
                     onTap: () {
+                      sendDataToServerGozine2();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -468,14 +484,40 @@ class _azmoonAmadeState extends State<azmoonAmade> {
           );
         });
   }
+
+  sendDataToServerGhalamchi() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'0'
+    });
+  }
+  sendDataToServerGaj() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'1'
+    });
+  }
+  sendDataToServerGozine2() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'2'
+    });
+  }
 }
 
 class azmoonMoshaver extends StatefulWidget {
+  var key1;
+  var key2;
+
+  azmoonMoshaver(this.key1, this.key2);
+
   @override
-  _azmoonMoshaverState createState() => _azmoonMoshaverState();
+  _azmoonMoshaverState createState() => _azmoonMoshaverState(key1, key2);
 }
 
 class _azmoonMoshaverState extends State<azmoonMoshaver> {
+  var key1;
+  var key2;
+
+  _azmoonMoshaverState(this.key1, this.key2);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -576,16 +618,21 @@ class _azmoonMoshaverState extends State<azmoonMoshaver> {
                       borderRadius:
                       BorderRadius.only(topRight: Radius.circular(45.0)),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        InkWell(
+                    child: ListView.builder(
+                      itemCount: 5,
+                      itemBuilder: (context, index){
+                        return InkWell(
                           onTap: () {
-                            Ghalamchi();
+                            goToListOfWeeks(index);
                           },
                           child: Container(
                             padding: EdgeInsets.all(10.0),
-                            width: MediaQuery.of(context).size.width / 2,
+                            margin: EdgeInsets.only(
+                              top: 10.0,
+                              bottom: 10.0,
+                              right: MediaQuery.of(context).size.width/4,
+                              left: MediaQuery.of(context).size.width/4
+                            ),
                             height: MediaQuery.of(context).size.height / 5,
                             decoration: BoxDecoration(
                               border: Border.all(color: color),
@@ -598,49 +645,9 @@ class _azmoonMoshaverState extends State<azmoonMoshaver> {
                                       image: AssetImage('images/ghalamchi.png'))),
                             ),
                           ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Gaj();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            width: MediaQuery.of(context).size.width / 2,
-                            height: MediaQuery.of(context).size.height / 5,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: color),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(15.0)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('images/gaj.png'))),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Gozine2();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(10.0),
-                            width: MediaQuery.of(context).size.width / 2,
-                            height: MediaQuery.of(context).size.height / 5,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: color),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(15.0)),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('images/gozinedo.png'))),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                        );
+                      },
+                    )
                   ),
                 ),
               ],
@@ -934,5 +941,24 @@ class _azmoonMoshaverState extends State<azmoonMoshaver> {
             ),
           );
         });
+  }
+  sendDataToServerGhalamchi() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'0'
+    });
+  }
+  sendDataToServerGaj() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'1'
+    });
+  }
+  sendDataToServerGozine2() async{
+    var response = await http.post(api.siteName + '/api/', body: {
+      'key': '${widget.key1}'+'${widget.key2}'+'2'
+    });
+  }
+
+  goToListOfWeeks(int index) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => ListOfWeeks(index)));
   }
 }

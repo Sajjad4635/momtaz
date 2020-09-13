@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+import 'package:mmtaz/widgets/WeeklySchedule.dart';
 import 'package:mmtaz/widgets/login.dart';
 
 class Enter_page extends StatefulWidget {
@@ -11,13 +12,13 @@ class Enter_page extends StatefulWidget {
 class _Enter_pageState extends State<Enter_page> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return SafeArea(
+      child: Scaffold(
         body: Container(
           child: Column(
             children: <Widget>[
               Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Color(0xffEAEAEA),
@@ -29,60 +30,52 @@ class _Enter_pageState extends State<Enter_page> {
                             bottomLeft: Radius.circular(45.0),
                             bottomRight: Radius.circular(45.0)),
                       ),
-                      child: Center(
-                        child: Text(
-                          'داستان موفقیتت رو شروع کن!',
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontSize: 25.0,
-                            fontFamily: 'Aviny',
-                            color: Colors.white
+                      child: Row(
+                        textDirection: TextDirection.rtl,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                child: Center(
+                                  child: Icon(Icons.arrow_forward, color: Colors.white,),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            flex: 9,
+                            child: Container(
+                              child: Center(
+                                child: Text(
+                                  'داستان موفقیتت رو شروع کن!',
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                      fontSize: 25.0,
+                                      fontFamily: 'Aviny',
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   )),
               Expanded(
-                flex: 8,
+                flex: 9,
                 child: Container(
                   padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width / 10,
                     right: MediaQuery.of(context).size.width / 10,
                   ),
                   color: Color(0xffEAEAEA),
-                  child: ListView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        height: MediaQuery.of(context).size.height / 10,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
-                            decoration: InputDecoration(
-                              border: new OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(80.0),
-                                ),
-                                borderSide: new BorderSide(),
-                              ),
-                              hintText: 'نام و نام خانوادگی',
-                              hintStyle: TextStyle(
-                                fontFamily: 'Aviny',
-                                fontSize: 18.0,
-                              ),
-                            ),
-//                          controller: myController,
-                            cursorColor: Colors.black,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 40.0,
-                      ),
                       Container(
                         height: MediaQuery.of(context).size.height / 10,
                         decoration: BoxDecoration(
@@ -145,58 +138,22 @@ class _Enter_pageState extends State<Enter_page> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 40.0,
                       ),
-                      Container(
-                        height: MediaQuery.of(context).size.height / 10.0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                                border: Border.all(
-                                  width: 0.7,
-                                  color: Colors.black54
-                                )
-                              ),
-                              width: MediaQuery.of(context).size.width / 3,
-                              child: Center(
-                                child: paye(),
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                                  border: Border.all(
-                                      width: 0.7,
-                                      color: Colors.black54
-                                  )
-                              ),
-                              width: MediaQuery.of(context).size.width / 3,
-                              child: Center(
-                                child: reshte(),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height / 40.0,
-                      ),
                       InkWell(
-                        onTap: (){},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WeeklySchedule()));
+                        },
                         child: Container(
-                          width: MediaQuery.of(context).size.width / 3,
+                          width: MediaQuery.of(context).size.width / 2,
                           height: MediaQuery.of(context).size.height / 10,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(45.0)),
                               border: Border.all(
-                                  width: 0.7,
-                                  color: Colors.black54
-                              )
-                          ),
+                                  width: 0.7, color: Colors.black54)),
                           child: Center(
                             child: Text(
                               'برنامه هفتگی',
@@ -212,18 +169,16 @@ class _Enter_pageState extends State<Enter_page> {
                         height: MediaQuery.of(context).size.height / 40.0,
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: () {},
                         child: Container(
                           width: MediaQuery.of(context).size.width / 3,
                           height: MediaQuery.of(context).size.height / 10,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(45.0)),
                               border: Border.all(
-                                  width: 0.7,
-                                  color: Colors.black54
-                              )
-                          ),
+                                  width: 0.7, color: Colors.black54)),
                           child: Center(
                             child: Text(
                               'تایید',

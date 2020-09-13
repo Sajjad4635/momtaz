@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mmtaz/Screens/FirstScreen.dart';
 import 'package:mmtaz/models/api.dart';
 import 'package:mmtaz/widgets/Setting.dart';
+import 'package:mmtaz/widgets/passWordPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RaisedGradientButton extends StatelessWidget {
@@ -57,21 +57,17 @@ class RaisedGradientButton extends StatelessWidget {
 final myController = TextEditingController();
 var aa = myController;
 var stu_id;
-var base_stu;
 var base_stu_n;
-var major_stu;
 var major_stu_n;
-
-class phoneNumber extends StatefulWidget {
-  @override
-  _phoneNumberState createState() => _phoneNumberState();
-}
-
 class Consts {
   Consts._();
 
   static const double padding = 16.0;
   static const double avatarRadius = 66.0;
+}
+class phoneNumber extends StatefulWidget {
+  @override
+  _phoneNumberState createState() => _phoneNumberState();
 }
 
 class _phoneNumberState extends State<phoneNumber> {
@@ -82,76 +78,75 @@ class _phoneNumberState extends State<phoneNumber> {
     return SafeArea(
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: new Scaffold(
-              resizeToAvoidBottomPadding: false,
-              body: Container(
-                width: pageWith,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: pageHeight / 2,
-                      decoration: new BoxDecoration(
-                        image: DecorationImage(
-                          image: new AssetImage('images/Mobilelogin-bro.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    Container(
-                        width: pageWith / 1.5,
-                        height: pageHeight / 12,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: color),
-                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                            color: Color(0xffeaeaea)),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 11,
-                          controller: myController,
-                          textAlign: TextAlign.center,
-                          decoration: new InputDecoration(
-                              counter: Offstage(),
-                              contentPadding: EdgeInsets.all(5.0),
-                              hintText: "شماره همراه",
-                              hintStyle:
-                              TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
-                              suffixIcon: Icon(Icons.phone_android),
-                              prefixIcon: Icon(Icons.arrow_back,
-                                  color: Color(0xffeaeaea)),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(32.0))),
-                        )),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => verificationCode()));
-//                      _PhoneNumIsIncorrectFormat();
-                      },
-                      child: Container(
-                        width: pageWith / 1.5,
-                        height: pageHeight / 12,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                            color: color),
-                        child: Center(
-                          child: Text(
-                            'ادامه',
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'Aviny',
-                                color: Colors.white),
+          home: Scaffold(
+//              resizeToAvoidBottomPadding: false,
+              body: SingleChildScrollView(
+                  child: Container(
+                    width: pageWith,
+                    height: pageHeight-25,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          height: pageHeight / 2,
+                          decoration: new BoxDecoration(
+                            image: DecorationImage(
+                              image: new AssetImage('images/Mobilelogin-bro.png'),
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
-                ),
+                        Container(
+                            width: pageWith / 1.5,
+                            height: pageHeight / 12,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: color),
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                color: Color(0xffeaeaea)),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              maxLength: 11,
+                              controller: myController,
+                              textAlign: TextAlign.center,
+                              decoration: new InputDecoration(
+                                  counter: Offstage(),
+                                  contentPadding: EdgeInsets.all(5.0),
+                                  hintText: "شماره همراه",
+                                  hintStyle:
+                                  TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                                  suffixIcon: Icon(Icons.phone_android),
+                                  prefixIcon: Icon(Icons.arrow_back,
+                                      color: Color(0xffeaeaea)),
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(32.0))),
+                            )),
+                        InkWell(
+                          onTap: () {
+                            _PhoneNumIsIncorrectFormat();
+                          },
+                          child: Container(
+                            width: pageWith / 1.5,
+                            height: pageHeight / 12,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                color: color),
+                            child: Center(
+                              child: Text(
+                                'ادامه',
+                                textDirection: TextDirection.rtl,
+                                style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontFamily: 'Aviny',
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
               ))),
     );
   }
@@ -160,90 +155,7 @@ class _phoneNumberState extends State<phoneNumber> {
     if ((myController.text.length == 11) &&
         ('${myController.text[0]}' == '0') &&
         ('${myController.text[1]}' == '9')) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0)),
-              //this right here
-              child: Container(
-                padding: EdgeInsets.only(
-                  top: Consts.avatarRadius + Consts.padding,
-                  bottom: Consts.padding,
-                  left: Consts.padding,
-                  right: Consts.padding,
-                ),
-                decoration: new BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(Consts.padding),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10.0,
-                      offset: const Offset(0.0, 10.0),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  // To make the card compact
-                  children: <Widget>[
-                    Text(
-                      "${myController.text}",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontFamily: 'vazir',
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(height: 16.0),
-                    Text(
-                      'با تایید شماره همراه پیامی حاوی کد فعال سازی برای شما ارسال میگردد',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: 'Aviny',
-                          fontSize: 20.0,
-                          color: Colors.black54),
-                    ),
-                    SizedBox(height: 24.0),
-                    Row(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.center,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(18.0),
-                            ),
-                            onPressed: () {
-                              sendDataToServer();
-                            },
-                            child: Container(
-                              width: 75.0,
-                              height: 45.0,
-                              decoration: BoxDecoration(
-                                  color: color,
-                                  borderRadius: BorderRadius.circular(18.0)),
-                              child: Center(
-                                child: Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                      fontFamily: 'Aviny',
-                                      fontSize: 20.0,
-                                      color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            );
-          });
+      sendDataToServer();
     } else {
       showDialog(
           context: context,
@@ -345,7 +257,7 @@ class _phoneNumberState extends State<phoneNumber> {
     } else if (status == 1) {
       Navigator.pushReplacementNamed(context, '/register');
     } else if (status == 2) {
-      Navigator.pushReplacementNamed(context, '/FirstScreen');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => passwordPage(myController.text)));
     }
   }
 }
@@ -365,71 +277,73 @@ class _verificationCodeState extends State<verificationCode> {
     return SafeArea(
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: new Material(
-              child: new Container(
-                decoration: BoxDecoration(color: Colors.white),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Container(
-                      height: pageHeight / 2,
-                      decoration: new BoxDecoration(
-                        image: DecorationImage(
-                          image: new AssetImage('images/Confirmed-bro.png'),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                    Container(
-                        width: pageWidth / 1.5,
-                        height: pageHeight / 12,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: color),
-                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                            color: Color(0xffeaeaea)),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          maxLength: 6,
-                          controller: myController,
-                          textAlign: TextAlign.center,
-                          decoration: new InputDecoration(
-                              counter: Offstage(),
-                              contentPadding: EdgeInsets.all(5.0),
-                              hintText: "کد تایید",
-                              hintStyle:
-                              TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
-                              suffixIcon: Icon(Icons.sms),
-                              prefixIcon:
-                              Icon(Icons.arrow_back, color: Color(0xffeaeaea)),
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(32.0))),
-                        )),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => register()));
-//                      _RegisterCodeIsIncorrectFormat();
-                      },
-                      child: Container(
-                        width: pageWidth / 1.5,
-                        height: pageHeight / 12,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(45.0)),
-                            color: color),
-                        child: Center(
-                          child: Text(
-                            'ادامه',
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'Aviny',
-                                color: Colors.white),
+          home: Scaffold(
+              body: SingleChildScrollView(
+                child: Container(
+                  width: pageWidth,
+                  height: pageHeight-25,
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Container(
+                        height: pageHeight / 2,
+                        decoration: new BoxDecoration(
+                          image: DecorationImage(
+                            image: new AssetImage('images/Confirmed-bro.png'),
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                          width: pageWidth / 1.5,
+                          height: pageHeight / 12,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: color),
+                              borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                              color: Color(0xffeaeaea)),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            maxLength: 6,
+                            controller: myController,
+                            textAlign: TextAlign.center,
+                            decoration: new InputDecoration(
+                                counter: Offstage(),
+                                contentPadding: EdgeInsets.all(5.0),
+                                hintText: "کد تایید",
+                                hintStyle:
+                                TextStyle(fontSize: 18.0, fontFamily: 'Aviny'),
+                                suffixIcon: Icon(Icons.sms),
+                                prefixIcon:
+                                Icon(Icons.arrow_back, color: Color(0xffeaeaea)),
+                                border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(32.0))),
+                          )),
+                      InkWell(
+                        onTap: () {
+                      _RegisterCodeIsIncorrectFormat();
+                        },
+                        child: Container(
+                          width: pageWidth / 1.5,
+                          height: pageHeight / 12,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                              color: color),
+                          child: Center(
+                            child: Text(
+                              'ادامه',
+                              textDirection: TextDirection.rtl,
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'Aviny',
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ))),
     );
@@ -441,11 +355,11 @@ class _verificationCodeState extends State<verificationCode> {
     print(response.statusCode);
     var type = json.decode(response.body)['type'];
     if (type == 0) {
-      print('err');
+      codeIsWrong();
     } else if (type == 1) {
       Navigator.pushReplacementNamed(context, '/register');
     } else if (type == -2) {
-      print('error!!!');
+      youAreBaned();
     }
   }
 
@@ -542,6 +456,198 @@ class _verificationCodeState extends State<verificationCode> {
     } else {
       sendDataToServer();
     }
+  }
+
+  codeIsWrong() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 15.0,
+                bottom: Consts.padding,
+                left: Consts.padding,
+                right: Consts.padding,
+              ),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(Consts.padding),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Warning-rafiki.png'))),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'کد وارد شده نادرست است!',
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'Aviny',
+                        fontSize: 20.0,
+                        color: Colors.black54),
+                  ),
+                  SizedBox(height: 24.0),
+                  Row(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.center,
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(18.0),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 75.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                color: color,
+                                borderRadius: BorderRadius.circular(18.0)),
+                            child: Center(
+                              child: Text(
+                                'تایید',
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny',
+                                    fontSize: 20.0,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  youAreBaned() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //this right here
+            child: Container(
+              padding: EdgeInsets.only(
+                top: 15.0,
+                bottom: Consts.padding,
+                left: Consts.padding,
+                right: Consts.padding,
+              ),
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(Consts.padding),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10.0,
+                    offset: const Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                // To make the card compact
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('images/Warning-rafiki.png'))),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    'شما 10 بار کد را نادرست وارد کردید!',
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'Aviny',
+                        fontSize: 20.0,
+                        color: Colors.black54),
+                  ),
+                  SizedBox(height: 24.0),
+                  Text(
+                    'این شماره تلفن مسدود گردید!',
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontFamily: 'Aviny',
+                        fontSize: 20.0,
+                        color: Colors.black54),
+                  ),
+                  SizedBox(height: 24.0),
+                  Row(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.center,
+                        child: FlatButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(18.0),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            width: 75.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                color: color,
+                                borderRadius: BorderRadius.circular(18.0)),
+                            child: Center(
+                              child: Text(
+                                'تایید',
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Aviny',
+                                    fontSize: 20.0,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
 
@@ -704,11 +810,7 @@ class _registerState extends State<register> {
                             )),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FirstScreen()));
-//                      sendDataToServer();
+                      sendDataToServer();
                           },
                           child: Container(
                             width: pageWidth / 3,
@@ -737,15 +839,20 @@ class _registerState extends State<register> {
   }
 
   sendDataToServer() async {
-    final response = await http.post(api.siteName + '/api/register', body: {
-      "stu_id": '${stu_id}',
-      "name": '${myControllerName.text}',
-      "base": '${base_stu_n.toString()}',
-      "major": '${major_stu_n.toString()}',
-      "pass": '${myControllerPass1.text}',
-    });
 
-    print(response.statusCode);
+    print('${stu_id.toString()}',);
+    print('${myControllerName.text}',);
+    print('${base_stu_n.toString()}',);
+    print('${major_stu_n.toString()}',);
+    print('${myControllerPass1.text}',);
+
+    final response = await http.post(api.siteName + '/api/register', body: {
+      "stu_id": '${stu_id.toString()}',
+      "name":   '${myControllerName.text}',
+      "base":   '${base_stu_n.toString()}',
+      "major":  '${major_stu_n.toString()}',
+      "pass":   '${myControllerPass1.text}',
+    });
     var status = json.decode(response.body)['status'];
     if (status == 1) {
       await saveIpToken(json.decode(response.body)['token']);
@@ -789,14 +896,13 @@ class _baseState extends State<base> {
         onChanged: (String newValue) {
           setState(() {
             dropdownValueBase = newValue;
-            base_stu = dropdownValueBase.toString();
-            if (base_stu == 'نهم') {
+            if (dropdownValueBase.toString() == 'نهم') {
               base_stu_n = 0;
-            } else if (base_stu == 'دهم') {
+            } else if (dropdownValueBase.toString() == 'دهم') {
               base_stu_n = 1;
-            } else if (base_stu == 'یازدهم') {
+            } else if (dropdownValueBase.toString() == 'یازدهم') {
               base_stu_n = 2;
-            } else if (base_stu == 'دوازدهم') {
+            } else if (dropdownValueBase.toString() == 'دوازدهم') {
               base_stu_n = 3;
             }
           });
@@ -846,6 +952,15 @@ class _majorState extends State<major> {
         onChanged: (String newValue) {
           setState(() {
             dropdownValueMajor = newValue;
+            if (dropdownValueMajor.toString() == 'بدون رشته') {
+              major_stu_n = 0;
+            } else if (dropdownValueMajor.toString() == 'ریاضیات و فیزیک') {
+              major_stu_n = 1;
+            } else if (dropdownValueMajor.toString() == 'علوم تجربی') {
+              major_stu_n = 2;
+            } else if (dropdownValueMajor.toString() == 'علوم انسانی') {
+              major_stu_n = 3;
+            }
           });
         },
         items: <String>[
